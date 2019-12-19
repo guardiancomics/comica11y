@@ -1,0 +1,28 @@
+input:not([type="radio"]),
+input:not([type="checkbox"]),
+input:not([type="file"]),
+textarea {
+    -webkit-appearance: none;
+    font-family: $font-stack;
+    
+    &::-webkit-input-placeholder {
+        transition: color $timing linear;
+    }
+
+    &::selection {
+        
+    }
+
+    &:focus {
+        &::-webkit-input-placeholder {
+            
+        }
+    }
+
+    // validation
+    &.error {
+    }
+}
+input[type="file"] {
+    cursor: pointer;
+}

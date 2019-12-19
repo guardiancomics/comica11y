@@ -1,0 +1,21 @@
+{
+  "name": "comica11y",
+  "version": "1.0.0",
+  "description": "ComicA11y build tasks",
+  "private": true,
+  "main": "gulpfile.js",
+  "author": "Humaan",
+  "dependencies": {
+    "gulp": "^4.0.0"
+  },
+  "devDependencies": {
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-consolidate": "^0.2.0",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify-es": "^1.0.4"
+  }
+}

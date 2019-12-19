@@ -1,0 +1,126 @@
+// SVG fix
+// --------------------------------------------------
+svg {
+	min-height: 0;
+    min-width: 0;
+}
+img {
+  display: block;
+  margin: 0;
+  max-width: 100%;
+  width: auto;
+}
+
+// Page layout
+// --------------------------------------------------
+
+html {
+	height: 100%;
+}
+
+body {
+  position: relative;
+
+  &:before {
+    // content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, 
+      rgba(#e0f4f3, 1) 0%,
+      rgba(#e0f4f3, 0) 100%);
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+
+// Containers
+// --------------------------------------------------
+
+.container {
+  max-width: $container-std + ($container-gutter*2);
+  padding: 50px $container-gutter;
+  margin: 0 auto;
+  width: 100%;
+  
+  &--narrow {
+    max-width: $container-narrow + ($container-gutter*2);
+  }
+	
+	&--page {
+		// Overall container which contains the overflow, to avoid any horizontal scrolling when content may break.
+		width: 100%;
+		min-height: 100vh;
+		overflow: hidden;
+		position: relative;
+	}
+}
+
+.statement {
+  text-align: center;
+  background-color: $grey-cool;
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
+
+.main-content {
+  width: 100%;
+}
+
+.comic-frame {
+  min-height: calc(100vh - 250px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  + .comic-frame {
+    border-top: 1px solid $border-color;
+  }
+
+  &__inner {
+    padding: 5em;
+    max-width: 1500px;
+  }
+
+  img {
+    margin: 20px 0;
+  }
+}
+
+.notes {
+  display: block;
+  background-color: white;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  padding: 5px 30px;
+}
+
+.objectives {
+  background-color: $grey-cool;
+
+  .grid {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;  
+
+    > .grid-item {
+      width: 50%;
+    }
+  }
+}
+
+.credits {
+  background-color: $grey-cool;
+  display: block;
+  width: 100%;
+  padding: 5px 30px;
+
+
+}

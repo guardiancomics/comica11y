@@ -1,0 +1,45 @@
+// Brand Colors
+// --------------------------------------------------
+$black:             #000;
+$red:               #d03838;
+$grey-light:        rgba(black,.03);
+$color:             #cceeee;
+$grey-cool:         #edf1f9;
+
+$brand-primary:		#000;
+$brand-secondary:   #000;
+$text-color:        $black;
+$border-color:		rgba(black,.08);
+$error:				$red;
+
+
+// Font stack and weight
+// --------------------------------------------------
+$font-stack: "Montserrat", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 600;
+$fw-semibold: 700;
+$fw-bold: 900;
+
+
+// Social colors
+// --------------------------------------------------
+$facebook:			#3b5999;
+$twitter:			#44acee;
+$instagram:			#253e53;
+$google:			#dd4b39;
+$linkedin:			#0077B5;
+
+
+// Timing & Easing
+// --------------------------------------------------
+$timing:			.2s;
+$ease-std:			ease-in-out;
+
+// Container sizes
+// --------------------------------------------------
+$container-gutter: 30px;
+$container-std:    1400px;
+$container-narrow: 800px;

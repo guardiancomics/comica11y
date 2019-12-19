@@ -1,0 +1,60 @@
+# osx noise
+.DS_Store
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# xcode noise
+build/*
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+xcuserdata
+
+# svn & cvs
+.svn
+CVS
+
+# sass
+*.scssc
+*.css.map
+*.sass-cache/
+
+# bower
+bower_components/
+
+# general
+*.log
+.env
+
+# wordpress
+sitemap.xml
+sitemap.xml.gz
+*/wp-content/uploads/*
+
+# node_modules
+*node_modules/
+
+# IDE
+.idea
+.vscode
+
+# middleman
+middleman/Gemfile.lock
+middleman/node_modules/
+middleman/bundle
+middleman/build
+middleman/.sass-cache
+middleman/.cache
+middleman/.DS_Store
+
+# feeds
+*-feed.json
+
+# cache
+*.cache

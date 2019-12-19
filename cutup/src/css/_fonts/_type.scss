@@ -1,0 +1,79 @@
+@font-face {
+	font-family: 'Montserrat';
+	src: url('../fonts/Montserrat-Regular.woff2') format('woff2');
+	font-weight:  $fw-regular;
+	font-style:   normal;
+	font-stretch: normal;
+	text-rendering: optimizeLegibility;
+}
+@font-face {
+	font-family: 'Montserrat Variable';
+	src: url('../fonts/Montserrat-VF.woff2') format('woff2');
+	font-weight:  $fw-regular;
+	font-style:   normal;
+	font-stretch: normal;
+	text-rendering: optimizeLegibility;
+}
+
+// Type Scale
+// --------------------------------------------------
+
+html {
+	font-size: 62.5%;
+	text-size-adjust: 100%;
+}
+
+html, body {
+	text-rendering: geometricPrecision;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	@include vfont(500)
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+// General type
+// --------------------------------------------------
+h1,h2,h3,h4,h5,h6 {
+	@include vfont(620);
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+ul {
+	padding-left: 1.15em;
+	margin-bottom: -10px;
+
+	> li {
+		margin-bottom: 10px;
+	}
+}
+
+strong {
+	@include vfont(600);
+}
+
+
+
+// Links
+// --------------------------------------------------
+
+a {
+	outline: 0;
+	transition: color $timing linear;
+	color: #c43c3e;
+	&:visited { color: #c43c9b; }
+	&:hover { text-decoration: none; }
+}
+
+.focus-visible {
+	outline: 1px dotted #212121;
+	outline: 5px auto -webkit-focus-ring-color;
+}

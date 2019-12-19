@@ -1,0 +1,94 @@
+
+// REM font size with px fallback
+@mixin font-size($sizeValue: 1.6) {
+	font-size: ($sizeValue * 1) + px;
+	font-size: ($sizeValue / 10) + rem;
+}
+
+// Variable font
+@mixin vfont($size) {
+	font-family: $font-stack;
+	@supports (font-variation-settings: normal) {
+		font-family: "Montserrat Variable", serif;
+		font-variation-settings: "wght" $size;
+	}
+}
+
+@mixin hide {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px !important;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+}
+.hidden { @include hide; } // Visually hide
+.hide { display: none; } // Display none
+
+// Setting a flexible ratio
+@mixin ratio($ratio){
+	&:before {
+		content: '';
+		display: block;
+		width: 100%;
+		padding-top: $ratio;
+	}
+}
+
+// hover helper
+@mixin hover() {
+    html:not(.mobile):not(.tablet) &:hover,
+    &.on-press {
+        @content;
+    }
+}
+
+
+// breakpoints
+@mixin breakpoint($min: 0, $max: 0, $side: 'width') {
+    // check to see if first variable is string or number
+    $type: type-of($min);
+    $sideType: type-of($side);
+
+    // if it's a number, check if min, max or both are required.
+    // then check if the values of $side are correctly spelt 'width' or 'height'
+    // write new breakpoint using these boundaries.
+    // default to 'all' if nothing specified.
+    @if $type == number and $sideType == string {
+        @if $side == 'width' or $side == 'height' {
+            $query: "all" !default;
+            @if      $min != 0 and $max != 0 { $query: "(min-#{$side}: #{$min}) and (max-#{$side}: #{$max})"; } // set both min and max
+            @else if $min != 0 and $max == 0 { $query: "(min-#{$side}: #{$min})"; } // set just min
+            @else if $min == 0 and $max != 0 { $query: "(max-#{$side}: #{$max})"; } // set just max
+            @media #{$query} { @content; }
+        }
+    }
+}
+
+
+// Responsive type
+// Usage: @include fluid(font-size, 768px, 1310px, 14px, 18px);
+
+@mixin fluid($properties, $min-vw, $max-vw, $min-value, $max-value) {
+    @each $property in $properties {
+        #{$property}: $min-value;
+    }
+
+    @media screen and (min-width: $min-vw) {
+        @each $property in $properties {
+            #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+        }
+    }
+
+    @media screen and (min-width: $max-vw) {
+        @each $property in $properties {
+            #{$property}: $max-value;
+        }
+    }
+}
+
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
