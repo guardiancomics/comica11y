@@ -16,6 +16,7 @@ $error:				$red;
 // Font stack and weight
 // --------------------------------------------------
 $font-stack: "Montserrat", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$comic-stack: "DigitalStripBB", "Comic Sans MS", "Comic Sans", cursive;
 
 $fw-light: 300;
 $fw-regular: 400;
@@ -35,7 +36,7 @@ $linkedin:			#0077B5;
 
 // Timing & Easing
 // --------------------------------------------------
-$timing:			.2s;
+$timing:			.15s;
 $ease-std:			ease-in-out;
 
 // Container sizes

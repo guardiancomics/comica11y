@@ -1,0 +1,12 @@
+/* Webfont: DigitalStripBB */@font-face {
+    font-family: 'DigitalStripBB';
+    src: url('DigitalStripBB.eot'); /* IE9 Compat Modes */
+    src: url('DigitalStripBB.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('DigitalStripBB.woff') format('woff'), /* Modern Browsers */
+         url('DigitalStripBB.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('DigitalStripBB.svg#DigitalStripBB') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

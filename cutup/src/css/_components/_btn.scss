@@ -8,10 +8,72 @@ button {
 	 // Override safari default styles
 	background-color: transparent;
 	border-radius: 0;
+	cursor: pointer;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: wrap;
+
+	margin-bottom: -10px;
+
+	> *	{
+		margin-bottom: 10px;
+		margin-right: 10px;
+	}
+}
+
+
+
+.btn,
+.btn-toggle {
+	@include vfont(600);
+	font-size: 1.3rem;
+	position: relative;
 }
 
 .btn {
-	display: inline-block;
-	padding: 10px 15px;
-	text-align: center;
-}  
+	padding: 6px 12px;
+	border: 1px solid rgba(black,.1);
+	background-color: rgba(black,.05);
+	border-radius: 3px;
+}
+
+.btn-toggle {
+	padding-left: 45px;
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 35px;
+		height: 20px;
+		background-color: rgba(black,.1);
+		border-radius: 20px;
+		transition: background-color .1s ease-out;
+	}
+	&:after {
+		content:'';
+		position: absolute;
+		left: 4px;
+		top: 4px;
+		width: 12px;
+		height: 12px;
+		display: block;
+		border-radius: 8px;
+		background-color: white;
+		transition: transform .1s ease-out;
+	}
+
+	&.is-active {
+		&:before {
+			background-color: #0ADB41;
+		}
+		&:after {
+			transform: translateX(15px);
+		}
+	}
+}

@@ -11,6 +11,10 @@ img {
   width: auto;
 }
 
+.hidden {
+  @include hide;
+}
+
 // Page layout
 // --------------------------------------------------
 
@@ -39,6 +43,10 @@ body {
   }
 }
 
+.skiptranslate {
+  z-index: 999999;
+}
+
 
 // Containers
 // --------------------------------------------------
@@ -62,6 +70,14 @@ body {
 	}
 }
 
+.breakout {
+  // Breakout
+  @include breakpoint(1740px,0){
+    margin-left: -150px;
+    margin-right: -150px;
+  }
+}
+
 .statement {
   text-align: center;
   background-color: $grey-cool;
@@ -73,14 +89,12 @@ body {
   width: 100%;
 }
 
-.comic-frame {
-  min-height: calc(100vh - 250px);
-
+.comic-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  + .comic-frame {
+  + .comic-wrap {
     border-top: 1px solid $border-color;
   }
 
@@ -94,12 +108,168 @@ body {
   }
 }
 
+.comic-filter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  img {
+    display: inline-block;
+    margin: 0;
+  }
+}
+
+.comic-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+
+  // RTL mode
+  &.is-rtl-mode {
+    direction: rtl;
+
+    .comic-frame img,
+    .comic-frame svg {
+      transform: scaleX(-1);
+    }
+  }
+
+  // Colourblind filters
+  &.is-cb-protanopia .comic-frame > img { filter: url('../../img/filters.svg#protanopia'); }
+  &.is-cb-protanomaly .comic-frame > img { filter: url('../../img/filters.svg#protanomaly'); }
+  &.is-cb-deuteranopia .comic-frame > img { filter: url('../../img/filters.svg#deuteranopia'); }
+  &.is-cb-deuteranomaly .comic-frame > img { filter: url('../../img/filters.svg#deuteranomaly'); }
+  &.is-cb-tritanopia .comic-frame > img { filter: url('../../img/filters.svg#tritanopia'); }
+  &.is-cb-achromatopsia .comic-frame > img { filter: url('../../img/filters.svg#achromatopsia'); }
+  &.is-cb-achromatomaly .comic-frame > img { filter: url('../../img/filters.svg#achromatomaly'); }
+}
+
+.comic-frame {
+  border: 4px solid #000;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+  background-color: black;
+
+  > img {
+    display: block;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+// Caption styles
+.caption-sr,
+.caption-closed > p {
+  padding: 15px;
+  font-size: .875em;
+  border-radius: 3px;
+  background-color: white;
+}
+
+// Screen reader caption
+.caption-sr {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  outline: none;
+  background-color: rgba(black, .9);
+  color: white;
+
+  &:not(:focus),
+  &:focus + .caption-closed,
+  &:focus + .caption-closed + .bubble-wrap {
+    @include hide();
+  }
+}
+
+// Closed captions
+.caption-closed {
+  // position: absolute;
+  left: 0;
+  top: 0;
+  outline: none;
+
+  > p {
+    margin: 10px;
+  }
+
+  .comic-strip:not(.is-closed-caption-mode) & {
+    @include hide();
+  }
+}
+
+// Bubbles
+.bubble-wrap {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+  > .bubble:first-child {
+    margin-top: -2em;
+    padding-top: 2.5em;
+  }
+  .bubble + .bubble {
+    z-index: 2;
+    margin-top: -.65em;
+  }
+
+  .comic-strip.is-closed-caption-mode & {
+    @include hide();
+  }
+}
+
+.bubble {
+  display: inline-block;
+  font-family: $comic-stack;
+  font-size: 1.375em;
+  line-height: 1;
+  text-align: center;
+  padding: 20px 30px;
+  position: relative;
+
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  strong {
+    font-family: $comic-stack;
+    font-weight: bold;
+    font-style: italic;
+  }
+}
+
 .notes {
   display: block;
   background-color: white;
   border: 1px solid $border-color;
   border-radius: 5px;
   padding: 5px 30px;
+  margin: 20px 0;
+
+  h1,h2,h3,h4,h5,h6 {
+    margin-top: 1em;
+  }
+
+  &--changelog {
+    background-color: lighten($border-color, 50%);
+  }
 }
 
 .objectives {
@@ -121,6 +291,113 @@ body {
   display: block;
   width: 100%;
   padding: 5px 30px;
+  text-align: center;
+  font-size: 1.3rem;
+}
 
+.dropdown {
+  position: relative;
+  font-size: 1.3rem;
+  cursor: pointer;
 
+  &__selected {
+    display: block;
+    width: auto;
+    padding: 6px 12px;
+    padding-right: 30px;
+    border: 1px solid rgba(black,.1);
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+
+    &:after {
+      content: url(../../img/arrow.svg);
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 30px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(0deg) translateY(-1px);
+      transition: transform $timing ease-in-out;
+    }
+  }
+
+  &:not(.is-focussed) ul {
+    display: none;
+  }
+
+  &.is-focussed .dropdown__selected:after {
+    transform: rotate(180deg) translateY(-3px);
+  }
+
+  ul { 
+    transition: opacity $timing $ease-std;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    background-color: white;
+    border: 1px solid rgba(black,.1);
+    list-style: none;
+    padding: 0;
+    margin: -1px 0 0 0;
+    width: 100%;
+
+    > li {
+      margin: 0;
+      padding: 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(black,.1);
+      }
+    }
+
+    &,
+    > li:last-child {
+      border-radius: 0 0 3px 3px;
+    }
+  }
+
+  .btn-option {
+    padding: 6px 12px;
+    outline: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(black,.05);
+    }
+  }
+}
+
+.font-sizer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.3rem;
+  
+  .js-resize-down,
+  .js-resize-up {
+    @include vfont(500);
+    font-size: 2.0rem;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .js-resize-down:before { content: '-'; }
+  .js-resize-up:before { content: '+'; }
+
+  .text {
+    margin: 0;
+    padding: 0 12px;
+  }
 }

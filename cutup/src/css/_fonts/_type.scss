@@ -15,6 +15,46 @@
 	text-rendering: optimizeLegibility;
 }
 
+/* Webfont: DigitalStripBB */
+@font-face {
+	font-family: 'DigitalStripBB';
+	src: url('../fonts/DigitalStripBB.eot'); /* IE9 Compat Modes */
+	src: url('../fonts/DigitalStripBB.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			 url('../fonts/DigitalStripBB.woff') format('woff'), /* Modern Browsers */
+			 url('../fonts/DigitalStripBB.ttf') format('truetype'), /* Safari, Android, iOS */
+			 url('../fonts/DigitalStripBB.svg#DigitalStripBB') format('svg'); /* Legacy iOS */
+	font-style: normal;
+	font-weight: normal;
+	text-rendering: optimizeLegibility;
+}
+
+/* Webfont: DigitalStripBB-Italic */
+@font-face {
+	font-family: 'DigitalStripBB';
+	src: url('../fonts/DigitalStripBB-Italic.eot'); /* IE9 Compat Modes */
+	src: url('../fonts/DigitalStripBB-Italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			 url('../fonts/DigitalStripBB-Italic.woff') format('woff'), /* Modern Browsers */
+			 url('../fonts/DigitalStripBB-Italic.ttf') format('truetype'), /* Safari, Android, iOS */
+			 url('../fonts/DigitalStripBB-Italic.svg#DigitalStripBB-Italic') format('svg'); /* Legacy iOS */
+	font-style: italic;
+	font-weight: normal;
+	text-rendering: optimizeLegibility;
+}
+
+/* Webfont: DigitalStripBB-BoldItalic */
+@font-face {
+	font-family: 'DigitalStripBB';
+	src: url('../fonts/DigitalStripBB-BoldItalic.eot'); /* IE9 Compat Modes */
+	src: url('../fonts/DigitalStripBB-BoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			 url('../fonts/DigitalStripBB-BoldItalic.woff') format('woff'), /* Modern Browsers */
+			 url('../fonts/DigitalStripBB-BoldItalic.ttf') format('truetype'), /* Safari, Android, iOS */
+			 url('../fonts/DigitalStripBB-BoldItalic.svg#DigitalStripBB-BoldItalic') format('svg'); /* Legacy iOS */
+	font-style: italic;
+	font-weight: bold;
+	text-rendering: optimizeLegibility;
+}
+
+
 // Type Scale
 // --------------------------------------------------
 
@@ -47,13 +87,17 @@ h1,h2,h3,h4,h5,h6 {
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 
-ul {
+ul,
+ol {
 	padding-left: 1.15em;
-	margin-bottom: -10px;
 
 	> li {
 		margin-bottom: 10px;
 	}
+}
+
+ol {
+	list-style: disc;
 }
 
 strong {
