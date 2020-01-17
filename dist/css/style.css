@@ -766,6 +766,9 @@ html {
 
 .comic-strip.is-loading {
   overflow: hidden;
+  white-space: nowrap;
+  min-width: 1680px;
+  grid-template-columns: repeat(4, 1fr) !important;
 }
 
 .comic-strip.is-loading > .comic-frame {
@@ -845,6 +848,19 @@ html {
   left: 0;
   top: 0;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
 }
 
 .bubble-wrap > .bubble:first-child {
@@ -877,6 +893,14 @@ html {
   position: relative;
   white-space: nowrap;
   font-size: 1.35em;
+}
+
+.bubble--left {
+  margin-left: -3em;
+}
+
+.bubble--right {
+  margin-right: -3em;
 }
 
 .bubble svg {

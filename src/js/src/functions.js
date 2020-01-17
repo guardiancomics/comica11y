@@ -16,7 +16,7 @@ $(function(){
               timeout = null;
 
               // Run our scroll functions
-              bubblesReset()
+              bubblesResize()
 
           }, 66);
       }
@@ -116,7 +116,9 @@ $(function(){
 
   // To refresh bubbles
   $('.js-bubbles').on('click', function(){
-    bubblesReset();
+    $('.bubble svg').remove();
+    $('.comic-strip').addClass('is-loading');
+    bubblesInit();
     return false;
   });
  
@@ -220,16 +222,12 @@ function bubblesInit() {
   });
 
   $('.comic-strip').removeClass('is-loading');
-  bubblesReset();
+  bubblesResize();
 }
 
-function bubblesReset() {
-  $w = ( $('.comic-frame').width() / 280 )+'em';
+function bubblesResize() {
+  $w = ( $('.comic-frame').width() / 265 )+'em';
   $('.bubble').css({'font-size': $w});
-  console.log('resize'+$w);
-
-  // $('.bubble svg').remove();
-  // bubblesInit();
 }
 
 /*

@@ -189,6 +189,9 @@ body {
 
   &.is-loading {
     overflow: hidden;
+    white-space: nowrap;
+    min-width: 1680px;
+    grid-template-columns: repeat(4, 1fr)!important;
 
     > .comic-frame {
       min-width: 400px;
@@ -260,6 +263,10 @@ body {
   left: 0;
   top: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 
   > .bubble:first-child {
     margin-top: -2em;
@@ -285,6 +292,9 @@ body {
   position: relative;
   white-space: nowrap;
   font-size: 1.35em;
+
+  &--left { margin-left: -3em; }
+  &--right { margin-right: -3em; }
 
   svg {
     position: absolute;
