@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>ComicA11y - An experiment aiming to achieve a full accessible comic reading experience.</title>
+
+  <meta name="title" content="" />
+	<meta name="description" content="" />
+	
+	<script>
+		window.addEventListener('DOMContentLoaded', function() {
+			document.documentElement.classList.remove('no-js');
+			document.documentElement.classList.add('js');
+		});
+
+		var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+		if (prefersReducedMotion.matches) {
+			document.documentElement.classList.add('reduced-motion');
+		}
+
+		function reducedMotionHandler(e) {
+			if (e.matches) {
+				document.documentElement.classList.add('reduced-motion');
+			} else {
+				document.documentElement.classList.remove('reduced-motion');
+			}
+		}
+
+		prefersReducedMotion.addListener(reducedMotionHandler);
+	</script>
+	
+	<link rel="stylesheet" href="/dist/css/style.css" media="screen">
+	<link rel="stylesheet" href="/dist/css/print.css" media="print">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content=""><!--  width 1200x1200 -->
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="">
+	<meta property="twitter:title" content="">
+	<meta property="twitter:description" content="">
+	<meta property="twitter:image" content=""><!--  width 1200x1200 -->
+
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
+
+	<!-- Made by Humaan http://humaan.com @wearehumaan -->
+
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+  <![endif]-->
+
+  <!--[if IE 9]>
+    <script src="/dist/js/resources/matchMedia-addListener.min.js"></script>
+    <script src="/dist/js/resources/matchMedia.min.js"></script>
+  <![endif]-->
+
+  <!--[if (gte IE 9)|!(IE)]><!-->
+  <script src="/dist/js/resources/focus-visible.min.js"></script>
+  <!--<![endif]-->
+
+</head>
+<body>
+
+	<a class="skip-to-link" href="#skip-to-problem">Skip to: The problem</a>
+	<a class="skip-to-link" href="#skip-to-objectives">Skip to: The objectives</a>
+	<a class="skip-to-link" href="#skip-to-solution">Skip to: The solution</a>
+
+	<div class="container-page">
+
+		<header class="statement text-center">
+      <div class="container">
+        <h1>ComicA11y</h1>
+        <p>
+          An experiment aiming to achieve an all inclusive online comic reading experience.
+          <br>
+          Because comics shouldn't just be for the abled.
+        </p>
+      </div>
+    </header>
+
+		<main class="main-content">
+
+			<section id="skip-to-problem" class="comic-wrap">
+        <div class="comic-wrap__inner">
+      
+          <h2 class="text-center">The problem</h2>
+          <div class="breakout">
+            <img class="breakout" src="img/comics/basic.png" alt="Comic Image for 2011-12-07" title="A master of disguise, he blends into the shadows and is naught but a whisper on the winds. Just ignore the fact he has his name pinned to his work short." />
+          </div>
+          <div class="notes">
+            <p><strong>Here's a typical example of how an online comic author might present their comic strip.</strong></p>
+            <ul>
+              <li>
+                <p>Little to no information provided in the alt text or title.</p>
+              </li>
+              <li>
+                <p>A high resolution image serving all screen and device sizes. This is often a high resolution asset ranging from 900 - ~3500px wide and file size anywhere between 100kb - 2.5mb.</p>
+              </li>
+              <li>
+                <p>No keyboard ARIA information for assistive technologies.</p>
+              </li>
+              <li>
+                <p>No colour options for people who struggle with colour blindness or vision impairments.</p>
+              </li>
+              <li>
+                <p>No closed captions for assistive technology to convey the speech bubbles to text.</p>
+              </li>							
+              <li>
+                <p>No right to left reading mode.</p>
+              </li>
+              <li>
+                <p>No way to translate text.</p>
+              </li>
+            </ul>
+            <p><small><strong>Sources:</strong> <a href="https://www.penny-arcade.com/comic" target="_blank" title="Penny Arcade"><span class="hidden">Opens in a new window:</span> www.penny-arcade.com</a>, <a href="https://www.pvponline.com/comic" target="_blank" title="PVP online"><span class="hidden">Opens in a new window:</span> www.pvponline.com</a>, <a href="https://www.explosm.net/comics" target="_blank" title="Explosm"><span class="hidden">Opens in a new window:</span> www.explosm.net</a></small></p>
+            <p><small><strong>Credits:</strong> <a href="https://deadtoride.com" target="_blank" title="This dead to ride"><span class="hidden">Opens in a new window:</span> www.deadtoride.com</a>, <a href="https://paulspencer.net.au" title="Paul Spencer" target="_blank"><span class="hidden">Opens in a new window:</span> www.PaulSpencer.net.au</a>, <a href="http://webofink.com.au" title="Web of Ink" target="_blank"><span class="hidden">Opens in a new window:</span> www.webofink.com.au</a></small></p>
+          </div><!-- // .notes -->
+          
+        </div><!-- // .comic-wrap_inner -->
+      </section><!-- // .comic-wrap -->
+
+			<section id="skip-to-objectives" class="objectives">
+        <div class="container container--narrow">
+      
+          <h2 class="text-center">The objectives</h2>
+      
+          <div class="grid">
+            <div class="grid-item">
+              <h3>Must have features</h3>
+              <ul>
+                <li><s>Colour blind and high contrast mode.</s></li>
+                <li><s>Closed captions.</s></li>
+                <li><s>Translatable.</s></li>
+                <li><s>RTL/LTR.</s></li>
+                <li><s>Resizable text.</s></li>
+                <li>Responsive / fluid layout.</li>
+                <li>ARIA best practices.</li>
+              </ul>
+            </div>
+            <div class="grid-item">
+              <h3>Nice to have features</h3>
+              <ul>
+                <li>Autoplay mode.</li>
+                <li>Audio mode.</li>
+                <li>Responsive image sizes.</li>
+                <li>Keyboard commands.</li>
+              </ul>
+            </div><!-- // .grid-item -->
+          </div><!-- // .grid -->
+      
+        </div><!-- // .container -->
+      </section><!-- // .objectives -->
+
+      <section id="skip-to-solution" class="comic-wrap">
+        <div class="comic-wrap__inner">
+      
+          <h2 class="text-center">The Solution</h2>
+      
+          <div class="comic-strip breakout" data-fontsize="100">
+
+            <figure class="comic-frame">
+              <img 
+                src="img/comics/colour-f1.png" 
+                data-src="img/comics/colour-f1.png" 
+                data-contrast="img/comics/contrast-f1.png" 
+                alt=""
+              >
+              <figcaption class="caption-sr" tabindex="0">
+                Dante, a lanky man with thinning dark hair and stubble is cautiously standing outside a shop titled Games Dungeon. An open sign hangs in the window. He sighs apprehensively.
+              </figcaption>
+              <div class="caption-closed" tabindex="-1" aria-hidden>
+                <p><strong>[Dante]</strong>: Sigh.</p>
+              </div><!-- // .caption-closed -->
+            </figure>
+          
+            <figure class="comic-frame">
+              <img 
+                src="img/comics/colour-f2.png" 
+                data-src="img/comics/colour-f2.png" 
+                data-contrast="img/comics/contrast-f2.png" 
+                alt=""
+              >
+              <figcaption class="caption-sr" tabindex="0">
+                "Welcome to Games Dungeon! How can I help?", a preppy dressed young asian woman asks Dante.
+                "Uh, yeah. I need something for someone who's never played Dungeons and Dragons before.", Dante replies.
+              </figcaption>
+              <div class="caption-closed" tabindex="-1" aria-hidden>
+                <p><strong>[Clerk]:</strong> Welcome to Games Dungeon! How can I help?</p>
+                <p><strong>[Dante]:</strong> Uh, yeah. I need something for someone who's never played Dungeons and Dragons before.</p>
+              </div><!-- // .caption-closed -->
+              <div class="bubble-wrap" aria-hidden>
+                <div class="bubble" data-position="right" data-direction="left" data-length="normal">
+                  <span class="inner">
+                    Welcome to <strong>Games Dungeon!</strong><br>
+                    How can I <strong>help?</strong>
+                  </span>
+                </div>
+                <div class="bubble" data-position="center" data-direction="left" data-length="short">
+                  <span class="inner">
+                    Uh, yeah. <br>
+                    I need something for <br>
+                    someone who's <strong>never</strong> <br>
+                    played dungeons and <br>
+                    dragons before.
+                  </span>
+          
+                </div>
+              </div><!-- // .bubble-wrap -->
+            </figure>
+          
+            <figure class="comic-frame">
+              <img 
+                src="img/comics/colour-f3.png" 
+                data-src="img/comics/colour-f3.png" 
+                data-contrast="img/comics/contrast-f3.png" 
+                alt=''
+              >
+              <figcaption class="caption-sr" tabindex="0">
+                "Well, you need the redbox. Would you like me to bag it up for you?" the attendant asks.
+                "Yeah... actually, two bags please.", Dante replies.
+              </figcaption>
+              <div class="caption-closed" tabindex="-1" aria-hidden>
+                <p><strong>[Clerk]</strong>: Well, you need the redbox. Would you like me to bag it up for you?</p>
+                <p><strong>[Dante]</strong>: Yeah... actually, two bags please.</p>
+              </div><!-- // .caption-closed -->
+              <div class="bubble-wrap" aria-hidden>
+                <div class="bubble" data-position="right" data-direction="left" data-length="normal">
+                  <span class="inner">
+                    Well, you need the 
+                    <strong>redbox.</strong> <br>
+                    Would you like me to bag <br>
+                    it up for you?
+                  </span>
+                </div>
+                <div class="bubble" data-position="center" data-direction="left" data-length="short">
+                  <span class="inner">
+                    Yeah... actually, <br>
+                    <strong>two</strong> bags please.
+                  </span>
+                </div>
+              </div><!-- // .bubble-wrap -->
+            </figure>
+          
+            <figure class="comic-frame">
+              <img 
+                src="img/comics/colour-f4.png" 
+                data-src="img/comics/colour-f4.png" 
+                data-contrast="img/comics/contrast-f4.png" 
+                alt=""
+              >
+              <figcaption class="caption-sr" tabindex="0">
+                Dante is now leaving the building holding a paper bag. The other bag has eye holes cut out and is worn like a mask.
+              </figcaption>
+              <div class="caption-closed" tabindex="-1" aria-hidden>
+              </div><!-- // .caption-closed -->
+            </figure>
+          
+          </div><!-- // .comic-strip -->
+          
+          <div class="comic-filter">
+            <div class="buttons">
+              <button class="btn-toggle js-closedcaptions" type="button"><span class="hidden">Click here to toggle </span>Closed captions</button>
+              <button class="btn-toggle js-rtl" type="button"><span class="hidden">Click here to toggle </span>RTL/LTR</button>
+              <button class="btn-toggle js-highcontrast" type="button"><span class="hidden">Click here to toggle </span>High contrast</button>
+              <div class="dropdown">
+                <button type="button" class="dropdown__selected"><span class="hidden">Click to open dropdown menu. Current option selected: </span>Colour blindness: <strong>Normal</strong></button>
+                <ul>
+                  <li><button class="btn-option js-cb-normal" type="button">Normal</button></li>
+                  <li><button class="btn-option js-cb-protanopia" type="button">Protanopia</button></li>
+                  <li><button class="btn-option js-cb-protanomaly" type="button">Protanomaly</button></li>
+                  <li><button class="btn-option js-cb-deuteranopia" type="button">Deuteranopia</button></li>
+                  <li><button class="btn-option js-cb-deuteranomaly" type="button">Deuteranomaly</button></li>
+                  <li><button class="btn-option js-cb-tritanopia" type="button">Tritanopia</button></li>
+                  <li><button class="btn-option js-cb-tritanomaly" type="button">Tritanomaly</button></li>
+                  <li><button class="btn-option js-cb-achromatopsia" type="button">Achromatopsia</button></li>
+                  <li><button class="btn-option js-cb-achromatomaly" type="button">Achromatomaly</button></li>
+                </ul>
+              </div>
+              <div class="font-sizer">
+                <button class="btn js-resize-down"><span class="hidden">Click here to resize comic font down a size</span></button>
+                <p class="text">Font size: <strong>100%</strong></p>
+                <button class="btn js-resize-up"><span class="hidden">Click here to resize comic font up a size</span></button>
+              </div>
+              <button class="btn js-bubbles" type="button"><span class="hidden">Click here to </span>Refresh bubbles</button>
+            </div>
+            
+            <div class="translate">
+              <!-- GTranslate: https://gtranslate.io/ -->
+              <div id="google_translate_element2"></div>
+              <script type="text/javascript">
+              function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element2');}
+              </script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+
+
+              <script type="text/javascript">
+              /* <![CDATA[ */
+              eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('6 7(a,b){n{4(2.9){3 c=2.9("o");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s(\'t\'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a==\'\')v;3 b=a.w(\'|\')[1];3 c;3 d=2.x(\'y\');z(3 i=0;i<d.5;i++)4(d[i].A==\'B-C-D\')c=d[i];4(2.j(\'k\')==E||2.j(\'k\').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,\'m\');7(c,\'m\')}}',43,43,'||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500'.split('|'),0,{}))
+              /* ]]> */
+              </script>
+
+            </div>
+          </div><!-- // .comic-filter -->
+      
+          <div class="notes">
+            <ul>
+              <li>Firstly. Let's split the comic into the individual frames and remove all text from the image - we want the text to be overlayed later.</li>
+              <li>Add a high contrast mode for people who have vision impairment.</li>
+              <li>Added descriptive screen reader text for when tabbing through the comic. Tested on OSX VoiceOver.</li>
+              <li>Added closed caption and ensured they can't be tabbed to - we don't want to double up on voice overs.</li>
+              <li>When keyboard focus selects the screen reader text while the closed captions are on screen, the closed captions will disappear.</li>
+              <li>Added a right to left reading mode. Inversed the images and the order of frames.</li>
+              <li>Replacing the graphical speech bubbles with SVG graphics as well as a comic book webfont was the major step to making the comic accessible to other languages.</li>
+              <li>Using SVG filters, I added the ability to filter out colours that effect the user with particular colour blindness.</li>
+              <li>Adding some jquery, I added some simple buttons that allow you to resize the text as needed.</li>
+            </ul>
+          </div><!-- // .notes -->
+      
+          <div class="notes notes--changelog">
+            <p><strong>Change log</strong></p>
+            <ol>
+              <li>15/01/2020 - Added text resizing buttons.</li>
+              <li>15/01/2020 - Added colour blind svg filters and a dropdown to toggle them on/off.</li>
+              <li>14/01/2020 - Added SVG bubbles and Digital Strip webfont to the comic strip. Added google translate.</li>
+              <li>13/01/2020 - Added RTL mode.</li>
+              <li>13/01/2020 - Added screen reader caption text.</li>
+              <li>13/01/2020 - Added closed caption toggle and closed caption text to each comic book frame.</li>
+              <li>08/01/2020 - Added high contrast images and toggle.</li>
+              <li>19/12/2019 - Split the comic into individual, borderless frames.</li>
+            </ol>
+          </div><!-- // .notes .notes-changelog -->
+      
+        </div><!-- // .comic-wrap__inner -->
+      </section><!-- // .comic-wrap -->
+
+		</main>
+
+		<footer class="credits">
+			<p>This experiment brought to you by <a href="https://paulspencer.net.au" target="_blank"><span class="hidden">Opens in a new window:</span> Paul Spencer</a> at <a href="https://humaan.com" target="_blank" title="World-class digital for forward thinking brands – Websites, Apps, eCommerce and Software"><span class="hidden">Opens in a new window:</span> Humaan</p>
+		</footer>
+
+	</div><!-- // .container-page -->
+
+		
+	<!-- Script Libraries and Resources -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/dist/js/resources/jquery-3.3.1.min.js"><\/script>')</script>
+	
+  <script src="/dist/js/build.js"></script>
+
+</body>
+</html>

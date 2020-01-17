@@ -1,5 +1,7 @@
 $(function(){
 
+  bubblesInit();
+
   $(document).keyup(function(e){
 
     window.addEventListener("keydown", function(e) {
@@ -46,8 +48,6 @@ $(function(){
   $('body').on('click', function(){
     $(".dropdown").removeClass('is-focussed');
   });
-
-  bubblesInit();
 
   // High contrast mode
   $('.js-highcontrast').on('click', function(){
