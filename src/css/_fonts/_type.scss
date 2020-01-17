@@ -72,7 +72,11 @@ html, body {
 body {
 	@include vfont(500)
   font-size: 1.6rem;
-  line-height: 1.4;
+	line-height: 1.4;
+	
+	@include breakpoint(0,768px){
+    font-size: 1.4rem;
+  }
 }
 
 // General type
@@ -81,6 +85,9 @@ h1,h2,h3,h4,h5,h6 {
 	@include vfont(620);
 	margin-top: 0;
 	margin-bottom: 20px;
+
+	@include breakpoint(0,767px) { margin-bottom: 15px; }
+	@include breakpoint(0,479px) { margin-bottom: 10px; }
 }
 
 .text-left { text-align: left; }

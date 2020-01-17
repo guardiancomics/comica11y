@@ -5,7 +5,7 @@ $(function(){
   var timeout;
 
   // Listen for scrolling events
-  window.addEventListener('scroll', function ( event ) {
+  window.addEventListener('resize', function ( event ) {
 
       // If timer is null, reset it to 66ms and run your functions.
       // Otherwise, wait until timer is cleared
@@ -129,6 +129,29 @@ $(function(){
     $('.comic-strip').css('font-size', currentSize + '%');
     $('.font-sizer .text strong').text(currentSize + '%');
 
+    // Removed disbaled button state while we're in the 110% - 190% font-size state
+    if( currentSize != 100 && currentSize != 200 ) {
+      $('.js-resize-down').attr("disabled", false);
+      $('.js-resize-up').attr("disabled", false);
+    }
+
+    // If it's font size above 100 add .is-resized
+    if( currentSize != 100 ) {
+      $('.comic-strip').addClass('is-resized');
+    } else {
+      $('.comic-strip').removeClass('is-resized');
+    }
+
+    // Add disabled state to resize down at font-size 100%
+    if( currentSize == 100 ) {
+      $('.js-resize-down').attr("disabled", true);
+    }
+    
+    // Add disabled state to resize up at font-size 200%
+    if( currentSize == 200 ) {
+      $('.js-resize-up').attr("disabled", true);
+    }
+
     bubblesReset();
     return false;
   });
@@ -171,6 +194,8 @@ function colourblindReset() {
 function bubblesInit() {
   // Apply bubble svg
   $('.bubble').each(function(){
+    $text = $(this).find('.inner').text();
+
     $t = 4; // Bubble stroke thickness
     $w = $(this).outerWidth(); // Bubble width
     $h = $(this).outerHeight(); // Bubble height
@@ -193,11 +218,18 @@ function bubblesInit() {
     $(this).append('<svg xmlns="http://www.w3.org/2000/svg" width="'+$w+'" height="'+($h+$l)+'" viewBox="0 0 '+$w+' '+($h+$l)+'"><path d="M'+$p+','+($h-$o)+' h'+$l+' l-'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+$p+','+($h-$o)+'z" stroke-width="'+($t*2)+'" fill="#000" stroke="#000" stroke-linecap="round" stroke-linejoin="round" /><path d="M'+($t/2)+' '+($h/2)+' Q'+($t/2)+' '+($t/2)+', '+($w/2)+' '+($t/2)+' T'+($w-($t/2))+' '+($h/2)+' T'+($w/2)+' '+($h-($t/2))+' T'+($t/2)+' '+($h/2)+'z" stroke-width="'+$t+'" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" /><path d="M'+$p+','+($h-$o)+' h'+$l+' l-'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+$p+','+($h-$o)+'z" fill="#fff" /></svg>');
     
   });
+
+  $('.comic-strip').removeClass('is-loading');
+  bubblesReset();
 }
 
 function bubblesReset() {
-  $('.bubble svg').remove();
-  bubblesInit();
+  $w = ( $('.comic-frame').width() / 280 )+'em';
+  $('.bubble').css({'font-size': $w});
+  console.log('resize'+$w);
+
+  // $('.bubble svg').remove();
+  // bubblesInit();
 }
 
 /*
