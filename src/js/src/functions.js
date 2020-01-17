@@ -1,6 +1,26 @@
 $(function(){
-
   bubblesInit();
+  
+  // Setup a timer
+  var timeout;
+
+  // Listen for scrolling events
+  window.addEventListener('scroll', function ( event ) {
+
+      // If timer is null, reset it to 66ms and run your functions.
+      // Otherwise, wait until timer is cleared
+      if ( !timeout ) {
+          timeout = setTimeout(function() {
+
+              // Reset timeout
+              timeout = null;
+
+              // Run our scroll functions
+              bubblesReset()
+
+          }, 66);
+      }
+  }, false);
 
   $(document).keyup(function(e){
 

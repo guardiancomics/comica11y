@@ -56,7 +56,7 @@
  *
  * @type {string}
  */
-var active_directory = 'cutup'; // Store the active directory to process (e.g. 'cutup' or 'theme')
+var active_directory = ''; // Store the active directory to process (e.g. 'cutup' or 'theme')
 
 
 /**
@@ -100,7 +100,7 @@ var consolidate = require('gulp-consolidate');
  */
 function update_active_directory(path) {
 
-    active_directory = 'cutup';
+    active_directory = '';
     return active_directory;
 }
 
@@ -135,13 +135,13 @@ var task_concat_js = function(done) {
 
     pump([
             gulp.src([
-                active_directory + '/src/js/**/*.js',
-                '!' + active_directory + '/src/js/resources/**'
+                 'src/js/**/*.js',
+                '!' +  'src/js/resources/**'
             ]),
             concat('build.js').on('error', function(err) {
                 parse_errors(err, done);
             }),
-            gulp.dest(active_directory + '/dist/js')
+            gulp.dest( 'dist/js')
         ],
         done
     );
@@ -156,14 +156,14 @@ var task_minify_js = function(done) {
 
     pump([
             gulp.src([
-                active_directory + '/dist/js/build.js'
+                 'dist/js/build.js'
             ], {
                 allowEmpty: true
             }),
             uglify().on('error', function(err) {
                 parse_errors(err, done);
             }),
-            gulp.dest(active_directory + '/dist/js')
+            gulp.dest( 'dist/js')
         ],
         done
     );
@@ -181,9 +181,9 @@ var task_copy_js = function(done) {
 
     pump([
             gulp.src([
-                active_directory + '/src/js/resources/**/*.js'
+                 'src/js/resources/**/*.js'
             ]),
-            gulp.dest(active_directory + '/dist/js/resources')
+            gulp.dest( 'dist/js/resources')
         ],
         done
     );
@@ -207,7 +207,7 @@ var task_watch_scripts = function(done) {
 
     var watcher = gulp.watch(
         [
-            active_directory + '/src/js/**/*.js'
+             'src/js/**/*.js'
         ],
         {
             alwaysStat: true
@@ -239,7 +239,7 @@ var task_sass = function(done) {
 
     pump([
             gulp.src([
-                active_directory + '/src/css/*.scss'
+                 'src/css/*.scss'
             ]),
             sass({
                 style: 'expanded',
@@ -255,7 +255,7 @@ var task_sass = function(done) {
             gcmq().on('error', function(err) {
                 parse_errors(err, done);
             }),
-            gulp.dest(active_directory + '/dist/css')
+            gulp.dest( 'dist/css')
         ],
         done
     );
@@ -271,8 +271,8 @@ var task_minify_css = function(done) {
     pump([
             gulp.src(
                 [
-                    active_directory + '/dist/css/*.css',
-                    '!' + active_directory + '/dist/css/*.min.css'
+                    'dist/css/*.css',
+                    '!' +  'dist/css/*.min.css'
                 ],
                 {
                     allowEmpty: true
@@ -286,7 +286,7 @@ var task_minify_css = function(done) {
             rename({
                 extname : '.min.css'
             }),
-            gulp.dest(active_directory + '/dist/css')
+            gulp.dest( 'dist/css')
         ],
         done
     );
@@ -301,9 +301,9 @@ var task_copy_css_assets = function(done) {
 
     pump([
             gulp.src([
-                active_directory + '/src/css/resources/**/*'
+                 'src/css/resources/**/*'
             ]),
-            gulp.dest(active_directory + '/dist/css/resources')
+            gulp.dest( 'dist/css/resources')
         ],
         done
     );
@@ -328,7 +328,7 @@ var task_watch_styles = function(done) {
 
     var watcher = gulp.watch(
         [
-            active_directory + '/src/css/**/*.scss'
+             'src/css/**/*.scss'
         ],
         {
             alwaysStat: true
