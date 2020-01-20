@@ -90,18 +90,6 @@ $(function(){
     return false;
   });
 
-  // Closed caption mode
-  $('.js-closedcaptions').on('click', function(){
-    if( !$('.comic-strip').hasClass('is-closed-caption-mode') ) {
-      $('.comic-strip').addClass('is-closed-caption-mode');
-      $(this).addClass('is-active');
-    } else {
-      $('.comic-strip').removeClass('is-closed-caption-mode');
-      $(this).removeClass('is-active');
-    }
-    return false;
-  });
-
   // RTL / LTR toggle
   $('.js-rtl').on('click', function(){
     if( !$('.comic-strip').hasClass('is-rtl-mode') ) {
@@ -121,15 +109,33 @@ $(function(){
     bubblesInit();
     return false;
   });
+
+  // Closed caption mode
+  $('.js-closedcaptions').on('click', function(){
+    if( !$('.comic-strip').hasClass('is-closed-caption-mode') ) {
+      $('.comic-strip').addClass('is-closed-caption-mode');
+      $(this).addClass('is-active');
+    } else {
+      $('.comic-strip').removeClass('is-closed-caption-mode');
+      $(this).removeClass('is-active');
+
+      // Reset the font-size back to 100% and deactivate captions
+      $('.comic-strip').data('fontsize', '100');
+      $('.comic-strip').css('font-size', '100%');
+      $('.font-sizer .text strong').text('100%');
+
+      // Reset the buttons
+      $('.js-resize-up').attr("disabled", false);
+      $('.js-resize-down').attr("disabled", true);
+    }
+    return false;
+  });
  
   // Increase / decrease Font Size
   $(".font-sizer .btn").on('click', function(){
     var currentSize = $('.comic-strip').data('fontsize');
-    if( $(this).hasClass('js-resize-up') ) { var currentSize = parseFloat(currentSize)+10; }
-    if( $(this).hasClass('js-resize-down') ) { var currentSize = parseFloat(currentSize)-10; }
-    $('.comic-strip').data('fontsize', currentSize);
-    $('.comic-strip').css('font-size', currentSize + '%');
-    $('.font-sizer .text strong').text(currentSize + '%');
+    if( $(this).hasClass('js-resize-up') ) { currentSize = parseFloat(currentSize)+10; }
+    if( $(this).hasClass('js-resize-down') ) { currentSize = parseFloat(currentSize)-10; }
 
     // Removed disbaled button state while we're in the 110% - 190% font-size state
     if( currentSize != 100 && currentSize != 200 ) {
@@ -139,8 +145,12 @@ $(function(){
 
     // If it's font size above 100 add .is-resized
     if( currentSize != 100 ) {
+      $('.comic-strip').addClass('is-closed-caption-mode');
+      $('.js-closedcaptions').addClass('is-active');
       $('.comic-strip').addClass('is-resized');
     } else {
+      $('.comic-strip').removeClass('is-closed-caption-mode');
+      $('.js-closedcaptions').removeClass('is-active');
       $('.comic-strip').removeClass('is-resized');
     }
 
@@ -154,9 +164,14 @@ $(function(){
       $('.js-resize-up').attr("disabled", true);
     }
 
-    bubblesReset();
+    // Upkeep
+    $('.comic-strip').css('font-size', currentSize + '%'); // Update the font-size css value on comic-strip.
+    $('.comic-strip').data('fontsize', currentSize); // Update the data-attribute to reflect to increase / decrease.
+    $('.font-sizer .text strong').text(currentSize + '%'); // Update the font size inline text.
+
     return false;
   });
+  
 
 
 
@@ -196,7 +211,6 @@ function colourblindReset() {
 function bubblesInit() {
   // Apply bubble svg
   $('.bubble').each(function(){
-    $text = $(this).find('.inner').text();
 
     $t = 4; // Bubble stroke thickness
     $w = $(this).outerWidth(); // Bubble width
@@ -206,18 +220,24 @@ function bubblesInit() {
     // -------------------------------------------------------
 
     // Elongate SVG to make room for the tail, while retaining the bubble dimensions - short, normal or long
-    if( $(this).data('length') == "short" ) { $l = 50; }
+    if( $(this).data('length') == "short" ) { $l = 40; }
     if( $(this).data('length') == "normal" ) { $l = 80; }
     if( $(this).data('length') == "long" ) { $l = 120; }
 
-    // Find the horizontal position of tail - left, center or right & Offset
-    if( $(this).data('position') == "left" ) { $p = 30; $o = 50; }
-    if( $(this).data('position') == "center" ) { $p = ($w/2) - ($l/2); $o = 10; }
-    if( $(this).data('position') == "right" ) { $p = $w-$l-30; $o = 50; }
+    // Find the horizontal position of tail - left, center or right
+    if( $(this).data('position') == "left" ) { $o = 25; $p = $o; }
+    if( $(this).data('position') == "center" ) { $o = 8; $p = ($w/2) - ($l/2); }
+    if( $(this).data('position') == "right" ) { $o = 25; $p = $w-$l-$o; }
 
     $d = $(this).data('direction'); // Which direction the tail curves to the speaker
+    if ( $d == "left" ) {
+      $path = 'M'+$p+','+($h-$o)+' h'+$l+' l-'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+$p+','+($h-$o)+'z';
+    } else {
+      $path = 'M'+$p+','+($h-$o)+' l'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+($p+$l)+','+($h-$o)+' h-'+$l+'z';
+    }
 
-    $(this).append('<svg xmlns="http://www.w3.org/2000/svg" width="'+$w+'" height="'+($h+$l)+'" viewBox="0 0 '+$w+' '+($h+$l)+'"><path d="M'+$p+','+($h-$o)+' h'+$l+' l-'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+$p+','+($h-$o)+'z" stroke-width="'+($t*2)+'" fill="#000" stroke="#000" stroke-linecap="round" stroke-linejoin="round" /><path d="M'+($t/2)+' '+($h/2)+' Q'+($t/2)+' '+($t/2)+', '+($w/2)+' '+($t/2)+' T'+($w-($t/2))+' '+($h/2)+' T'+($w/2)+' '+($h-($t/2))+' T'+($t/2)+' '+($h/2)+'z" stroke-width="'+$t+'" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" /><path d="M'+$p+','+($h-$o)+' h'+$l+' l-'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+$p+','+($h-$o)+'z" fill="#fff" /></svg>');
+    
+    $(this).append('<svg xmlns="http://www.w3.org/2000/svg" width="'+$w+'" height="'+($h+$l)+'" viewBox="0 0 '+$w+' '+($h+$l)+'"><path d="'+$path+'" stroke-width="'+($t*2)+'" fill="#000" stroke="#000" stroke-linecap="round" stroke-linejoin="round" /><path d="M'+($t/2)+' '+($h/2)+' Q'+($t/2)+' '+($t/2)+', '+($w/2)+' '+($t/2)+' T'+($w-($t/2))+' '+($h/2)+' T'+($w/2)+' '+($h-($t/2))+' T'+($t/2)+' '+($h/2)+'z" stroke-width="'+$t+'" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" /><path d="'+$path+'" fill="#fff" /></svg>');
     
   });
 

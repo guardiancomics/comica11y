@@ -529,7 +529,7 @@ button {
   content: '';
   position: absolute;
   left: 0;
-  top: 0;
+  top: -1px;
   width: 35px;
   height: 20px;
   background-color: rgba(0, 0, 0, 0.1);
@@ -543,7 +543,7 @@ button {
   content: '';
   position: absolute;
   left: 4px;
-  top: 4px;
+  top: 3px;
   width: 12px;
   height: 12px;
   display: block;
@@ -754,6 +754,11 @@ html {
   filter: url("../../img/filters.svg#tritanopia");
 }
 
+.comic-strip.is-cb-tritanomaly .comic-frame > img {
+  -webkit-filter: url("../../img/filters.svg#tritanomaly");
+  filter: url("../../img/filters.svg#tritanomaly");
+}
+
 .comic-strip.is-cb-achromatopsia .comic-frame > img {
   -webkit-filter: url("../../img/filters.svg#achromatopsia");
   filter: url("../../img/filters.svg#achromatopsia");
@@ -864,8 +869,8 @@ html {
 }
 
 .bubble-wrap > .bubble:first-child {
-  margin-top: -2em;
-  padding-top: 2.5em;
+  margin-top: -1.75em;
+  padding-top: 2em;
 }
 
 .bubble-wrap .bubble + .bubble {

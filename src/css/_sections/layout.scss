@@ -184,6 +184,7 @@ body {
   &.is-cb-deuteranopia .comic-frame > img { filter: url('../../img/filters.svg#deuteranopia'); }
   &.is-cb-deuteranomaly .comic-frame > img { filter: url('../../img/filters.svg#deuteranomaly'); }
   &.is-cb-tritanopia .comic-frame > img { filter: url('../../img/filters.svg#tritanopia'); }
+  &.is-cb-tritanomaly .comic-frame > img { filter: url('../../img/filters.svg#tritanomaly'); }
   &.is-cb-achromatopsia .comic-frame > img { filter: url('../../img/filters.svg#achromatopsia'); }
   &.is-cb-achromatomaly .comic-frame > img { filter: url('../../img/filters.svg#achromatomaly'); }
 
@@ -269,8 +270,8 @@ body {
   justify-content: flex-start;
 
   > .bubble:first-child {
-    margin-top: -2em;
-    padding-top: 2.5em;
+    margin-top: -1.75em;
+    padding-top: 2em;
   }
   .bubble + .bubble {
     z-index: 2;
