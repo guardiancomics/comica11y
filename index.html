@@ -171,24 +171,30 @@
       
           <h2 class="text-center">The Solution</h2>
       
-          <div class="comic-strip breakout is-loading" data-fontsize="100">
+          <article class="comic-strip breakout is-loading" data-fontsize="100">
+            <h1 class="hidden">JurassicA11y</h1>
 
-            <figure class="comic-frame">
+            <figure aria-labelledby="frame-1" aria-describedby="frame-1-desc" class="comic-frame">
+              <h2 id="frame-1" class="hidden">Frame 1</h2>
+              
               <img 
                 src="img/comics/colour-f1.png" 
                 data-src="img/comics/colour-f1.png" 
                 data-contrast="img/comics/contrast-f1.png" 
                 alt=""
               >
-              <figcaption class="caption-sr" tabindex="0">
+
+              <figcaption id="frame-1-desc" class="caption-sr" tabindex="0">
                 A small orange dinosaur that looks like a velociraptor stands next to a larger green dinosaur that looks like a brachiosaurus. 
                 The small orange dinosaur asks, "What do you call a blind dinosaur?" "I don't know", the large, green dinosaur replies.
               </figcaption>
+
               <div class="caption-closed" tabindex="-1" aria-hidden>
                 <p><strong>Velociraptor</strong>: What do you call a blind dinosaur?</p>
                 <p><strong>Brachiosaurus</strong>: I don't know.</p>
               </div><!-- // .caption-closed -->
-              <div class="bubble-wrap" aria-hidden>
+
+              <div class="bubble-wrap" tabindex="-1" aria-hidden>
                 <div class="bubble bubble--left" data-position="left" data-direction="left" data-length="normal">
                   <span class="inner">
                     What do you call a <br>
@@ -201,24 +207,30 @@
                   </span>
                 </div>
               </div><!-- // .bubble-wrap -->
+              
             </figure>
           
-            <figure class="comic-frame">
+            <figure aria-labelledby="frame-2" aria-describedby="frame-2-desc" class="comic-frame">
+              <h2 id="frame-2" class="hidden">Frame 2</h2>
+
               <img 
                 src="img/comics/colour-f1.png" 
                 data-src="img/comics/colour-f1.png" 
                 data-contrast="img/comics/contrast-f1.png" 
                 alt=""
               >
-              <figcaption class="caption-sr" tabindex="0">
+
+              <figcaption id="frame-2-desc" class="caption-sr" tabindex="0">
                 "A Do-you-think-he-saurus", the orange velociraptor answers.
                 "Ha ha. Good one", the green brachiosaurus replies.
               </figcaption>
+
               <div class="caption-closed" tabindex="-1" aria-hidden>
                 <p><strong>Velociraptor:</strong> A Do-you-think-he-saurus.</p>
                 <p><strong>Brachiosaurus:</strong> Ha ha. Good one.</p>
               </div><!-- // .caption-closed -->
-              <div class="bubble-wrap" aria-hidden>
+
+              <div class="bubble-wrap" tabindex="-1" aria-hidden>
                 <div class="bubble bubble--left" data-position="left" data-direction="left" data-length="normal">
                   <span class="inner">
                     A Do-you-think-<br>
@@ -232,24 +244,29 @@
                   </span>
                 </div>
               </div><!-- // .bubble-wrap -->
+
             </figure>
           
-            <figure class="comic-frame">
+            <figure aria-labelledby="frame-3" aria-describedby="frame-3-desc" class="comic-frame">
+              <h2 id="frame-3" class="hidden">Frame 3</h2>
+
               <img 
                 src="img/comics/colour-f1.png" 
                 data-src="img/comics/colour-f1.png" 
                 data-contrast="img/comics/contrast-f1.png" 
                 alt=""
               >
-              <figcaption class="caption-sr" tabindex="0">
+              <figcaption id="frame-3-desc" class="caption-sr" tabindex="0">
                 "What do you call a blind dinosaur's dog?", the orange velociraptor asks.
                 "You got me...", the green brachiosaurus replies.
               </figcaption>
+
               <div class="caption-closed" tabindex="-1" aria-hidden>
                 <p><strong>Velociraptor</strong>: What do you call a blind dinosaur's dog?</p>
                 <p><strong>Brachiosaurus</strong>: You got me...</p>
               </div><!-- // .caption-closed -->
-              <div class="bubble-wrap" aria-hidden>
+
+              <div class="bubble-wrap" tabindex="-1" aria-hidden>
                 <div class="bubble" data-position="left" data-direction="left" data-length="normal">
                   <span class="inner">
                     What do you call a blind <br>
@@ -264,20 +281,25 @@
               </div><!-- // .bubble-wrap -->
             </figure>
           
-            <figure class="comic-frame">
+            <figure aria-labelledby="frame-4" aria-describedby="frame-4-desc" class="comic-frame">
+              <h2 id="frame-4" class="hidden">Frame 4</h2>
+
               <img 
                 src="img/comics/colour-f1.png" 
                 data-src="img/comics/colour-f1.png" 
                 data-contrast="img/comics/contrast-f1.png" 
                 alt=""
               >
-              <figcaption class="caption-sr" tabindex="0">
+
+              <figcaption id="frame-4-desc" class="caption-sr" tabindex="0">
                 "A Do-you-think-he-saurus Rex", the orange velociraptor answers.
               </figcaption>
+              
               <div class="caption-closed" tabindex="-1" aria-hidden>
                   <p><strong>Velociraptor</strong>: A Do-you-think-he-saurus Rex.</p>
               </div><!-- // .caption-closed -->
-              <div class="bubble-wrap" aria-hidden>
+
+              <div class="bubble-wrap" tabindex="-1" aria-hidden>
                 <div class="bubble bubble--left" data-position="left" data-direction="left" data-length="normal">
                   <span class="inner">
                     A Do-you-think-<br>
@@ -285,9 +307,10 @@
                   </span>
                 </div>
               </div><!-- // .bubble-wrap -->
+
             </figure>
           
-          </div><!-- // .comic-strip -->
+          </article><!-- // .comic-strip -->
           
           <div class="comic-filter">
             <div class="buttons">
@@ -336,6 +359,8 @@
           <div class="notes notes--log">
             <p><strong>Change log</strong></p>
             <ol>
+              <li><strong class="date">23/01/2020</strong> Added some improvements to the aria attributes and markup.</li>
+              <li><strong class="date">20/01/2020</strong> Replaced the artwork with dinosaurs and re-wrote the captions and screen reader text. Rejigged the logic for the closed caption toggle and the text resizing - Now when you increase the font size it defaults to closed caption mode and toggles off bubbles. Added the logic to the svg generator to flip the tails left and right.</li>
               <li><strong class="date">20/01/2020</strong> Replaced the artwork with dinosaurs and re-wrote the captions and screen reader text. Rejigged the logic for the closed caption toggle and the text resizing - Now when you increase the font size it defaults to closed caption mode and toggles off bubbles. Added the logic to the svg generator to flip the tails left and right.</li>
               <li><strong class="date">17/01/2020</strong> Added a tweak to the jquery so the bubbles are measured and drawn during a loading state, where the comic-strip width is normalised, to ensure the stroke width is always the same. Added a jquery function to measure the frame width and calculate an apprpriate em value that allows for fluid bubbles on resize, while also allowing for up and down resizing.</li>
               <li><strong class="date">17/01/2020</strong> Updated the jquery logic for resizing font-size, to cap between 100% - 200% - added disabled states where needed.</li>

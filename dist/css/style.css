@@ -658,7 +658,7 @@ html {
 
 .statement {
   text-align: center;
-  background-color: #edf1f9;
+  background-color: #f7faff;
   font-size: 1.8rem;
   line-height: 1.6;
 }
@@ -971,11 +971,11 @@ html {
 }
 
 .objectives {
-  background-color: #edf1f9;
+  background-color: #f7faff;
 }
 
 .credits {
-  background-color: #edf1f9;
+  background-color: #f7faff;
   display: block;
   width: 100%;
   padding: 5px 30px;
