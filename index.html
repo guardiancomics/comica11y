@@ -10,8 +10,8 @@
   <meta name="title" content="" />
 	<meta name="description" content="" />
 	
-	<link rel="stylesheet" href="/dist/css/style.css" media="screen">
-	<link rel="stylesheet" href="/dist/css/print.css" media="print">
+	<link rel="stylesheet" href="dist/css/style.css" media="screen">
+	<link rel="stylesheet" href="dist/css/print.css" media="print">
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
@@ -28,10 +28,10 @@
 	<meta property="twitter:image" content=""><!--  width 1200x1200 -->
 
 	<!-- Favicons -->
-	<link rel="shortcut icon" href="/img/favicon.ico">
-	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
 
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,12 +39,12 @@
   <![endif]-->
 
   <!--[if IE 9]>
-    <script src="/dist/js/resources/matchMedia-addListener.min.js"></script>
-    <script src="/dist/js/resources/matchMedia.min.js"></script>
+    <script src="dist/js/resources/matchMedia-addListener.min.js"></script>
+    <script src="dist/js/resources/matchMedia.min.js"></script>
   <![endif]-->
 
   <!--[if (gte IE 9)|!(IE)]><!-->
-  <script src="/dist/js/resources/focus-visible.min.js"></script>
+  <script src="dist/js/resources/focus-visible.min.js"></script>
   <!--<![endif]-->
 
   <script>
@@ -68,7 +68,7 @@
 		}
 
 		prefersReducedMotion.addListener(reducedMotionHandler);
-	</script>
+  </script>
 
 </head>
 <body>
@@ -148,7 +148,7 @@
                 <li><s>RTL/LTR.</s></li>
                 <li><s>Resizable text.</s></li>
                 <li><s>Responsive / fluid layout.</s></li>
-                <li>ARIA best practices.</li>
+                <li><s>ARIA best practices.</s></li>
               </ul>
             </div>
             <div class="grid-item">
@@ -171,7 +171,7 @@
       
           <h2 class="text-center">The Solution</h2>
       
-          <article class="comic-strip breakout is-loading" data-fontsize="100">
+          <article class="comic-strip breakout" data-fontsize="100">
             <h1 class="hidden">JurassicA11y</h1>
 
             <figure aria-labelledby="frame-1" aria-describedby="frame-1-desc" class="comic-frame">
@@ -195,13 +195,13 @@
               </div><!-- // .caption-closed -->
 
               <div class="bubble-wrap" tabindex="-1" aria-hidden>
-                <div class="bubble bubble--left" data-position="left" data-direction="left" data-length="normal">
+                <div class="bubble bubble--left" data-direction="left" data-position="left" data-length="normal" data-girth="normal">
                   <span class="inner">
                     What do you call a <br>
                     <strong>blind dinosaur?</strong>
                   </span>
                 </div>
-                <div class="bubble bubble--right" data-position="center" data-direction="right" data-length="short">
+                <div class="bubble bubble--right" data-direction="right" data-position="center" data-length="short" data-girth="40">
                   <span class="inner">
                     I don't know.
                   </span>
@@ -231,13 +231,13 @@
               </div><!-- // .caption-closed -->
 
               <div class="bubble-wrap" tabindex="-1" aria-hidden>
-                <div class="bubble bubble--left" data-position="left" data-direction="left" data-length="normal">
+                <div class="bubble bubble--left" data-direction="left" data-position="left" data-length="normal" data-girth="normal">
                   <span class="inner">
                     A Do-you-think-<br>
                     he-saurus.
                   </span>
                 </div>
-                <div class="bubble bubble--right" data-position="center" data-direction="right" data-length="short">
+                <div class="bubble bubble--right" data-direction="right" data-position="center" data-length="short" data-girth="normal">
                   <span class="inner">
                     <strong>Ha ha.</strong> <br>
                     Good one.
@@ -267,13 +267,13 @@
               </div><!-- // .caption-closed -->
 
               <div class="bubble-wrap" tabindex="-1" aria-hidden>
-                <div class="bubble" data-position="left" data-direction="left" data-length="normal">
+                <div class="bubble" data-direction="left" data-position="left" data-length="normal" data-girth="normal">
                   <span class="inner">
                     What do you call a blind <br>
                     dinosaur's <strong>dog?</strong>
                   </span>
                 </div>
-                <div class="bubble bubble--right" data-position="center" data-direction="right" data-length="short">
+                <div class="bubble bubble--right" data-direction="right" data-position="center" data-length="short" data-girth="normal">
                   <span class="inner">
                     You got me...
                   </span>
@@ -300,7 +300,7 @@
               </div><!-- // .caption-closed -->
 
               <div class="bubble-wrap" tabindex="-1" aria-hidden>
-                <div class="bubble bubble--left" data-position="left" data-direction="left" data-length="normal">
+                <div class="bubble bubble--left" data-direction="left" data-position="left" data-length="normal" data-girth="normal">
                   <span class="inner">
                     A Do-you-think-<br>
                     he-saurus Rex.
@@ -361,7 +361,6 @@
             <ol>
               <li><strong class="date">23/01/2020</strong> Added some improvements to the aria attributes and markup.</li>
               <li><strong class="date">20/01/2020</strong> Replaced the artwork with dinosaurs and re-wrote the captions and screen reader text. Rejigged the logic for the closed caption toggle and the text resizing - Now when you increase the font size it defaults to closed caption mode and toggles off bubbles. Added the logic to the svg generator to flip the tails left and right.</li>
-              <li><strong class="date">20/01/2020</strong> Replaced the artwork with dinosaurs and re-wrote the captions and screen reader text. Rejigged the logic for the closed caption toggle and the text resizing - Now when you increase the font size it defaults to closed caption mode and toggles off bubbles. Added the logic to the svg generator to flip the tails left and right.</li>
               <li><strong class="date">17/01/2020</strong> Added a tweak to the jquery so the bubbles are measured and drawn during a loading state, where the comic-strip width is normalised, to ensure the stroke width is always the same. Added a jquery function to measure the frame width and calculate an apprpriate em value that allows for fluid bubbles on resize, while also allowing for up and down resizing.</li>
               <li><strong class="date">17/01/2020</strong> Updated the jquery logic for resizing font-size, to cap between 100% - 200% - added disabled states where needed.</li>
               <li><strong class="date">17/01/2020</strong> Added responisve styles for the comic-strip. Just a simple 4 column, 2 column, 1 column breakdown.</li>
@@ -390,10 +389,10 @@
 
 		
 	<!-- Script Libraries and Resources -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="/dist/js/resources/jquery-3.3.1.min.js"><\/script>')</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="dist/js/resources/jquery-3.3.1.min.js"><\/script>')</script>
 	
-  <script src="/dist/js/build.js"></script>
+  <script src="dist/js/build.js"></script>
 
 </body>
 </html>

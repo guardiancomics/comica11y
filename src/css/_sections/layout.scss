@@ -187,18 +187,6 @@ body {
   &.is-cb-tritanomaly .comic-frame > img { filter: url('../../img/filters.svg#tritanomaly'); }
   &.is-cb-achromatopsia .comic-frame > img { filter: url('../../img/filters.svg#achromatopsia'); }
   &.is-cb-achromatomaly .comic-frame > img { filter: url('../../img/filters.svg#achromatomaly'); }
-
-  &.is-loading {
-    overflow: hidden;
-    white-space: nowrap;
-    min-width: 1680px;
-    grid-template-columns: repeat(4, 1fr)!important;
-
-    > .comic-frame {
-      min-width: 400px;
-      opacity: 0;
-    }
-  }
 }
 
 .comic-frame {
@@ -268,6 +256,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  outline: none;
 
   > .bubble:first-child {
     margin-top: -1.75em;

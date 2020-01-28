@@ -1,5 +1,5 @@
 $(function(){
-  bubblesInit();
+  bubbles();
   
   // Setup a timer
   var timeout;
@@ -104,10 +104,8 @@ $(function(){
 
   // To refresh bubbles
   $('.js-bubbles').on('click', function(){
-    $('.bubble svg').remove();
-    $('.comic-strip').addClass('is-loading');
-    bubblesInit();
-    return false;
+    bubbles();
+    return false
   });
 
   // Closed caption mode
@@ -171,9 +169,6 @@ $(function(){
 
     return false;
   });
-  
-
-
 
   $('.dropdown__selected').on('click', function(e){
     if( !$(this).parent().hasClass('is-focussed') ) {
@@ -208,58 +203,165 @@ function colourblindReset() {
   }
 }
 
-function bubblesInit() {
-  // Apply bubble svg
-  $('.bubble').each(function(){
-
-    $t = 4; // Bubble stroke thickness
-    $w = $(this).outerWidth(); // Bubble width
-    $h = $(this).outerHeight(); // Bubble height
-    
-    // Bubble tail
-    // -------------------------------------------------------
-
-    // Elongate SVG to make room for the tail, while retaining the bubble dimensions - short, normal or long
-    if( $(this).data('length') == "short" ) { $l = 40; }
-    if( $(this).data('length') == "normal" ) { $l = 80; }
-    if( $(this).data('length') == "long" ) { $l = 120; }
-
-    // Find the horizontal position of tail - left, center or right
-    if( $(this).data('position') == "left" ) { $o = 25; $p = $o; }
-    if( $(this).data('position') == "center" ) { $o = 8; $p = ($w/2) - ($l/2); }
-    if( $(this).data('position') == "right" ) { $o = 25; $p = $w-$l-$o; }
-
-    $d = $(this).data('direction'); // Which direction the tail curves to the speaker
-    if ( $d == "left" ) {
-      $path = 'M'+$p+','+($h-$o)+' h'+$l+' l-'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+$p+','+($h-$o)+'z';
-    } else {
-      $path = 'M'+$p+','+($h-$o)+' l'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+($p+$l)+','+($h-$o)+' h-'+$l+'z';
-    }
-
-    
-    $(this).append('<svg xmlns="http://www.w3.org/2000/svg" width="'+$w+'" height="'+($h+$l)+'" viewBox="0 0 '+$w+' '+($h+$l)+'"><path d="'+$path+'" stroke-width="'+($t*2)+'" fill="#000" stroke="#000" stroke-linecap="round" stroke-linejoin="round" /><path d="M'+($t/2)+' '+($h/2)+' Q'+($t/2)+' '+($t/2)+', '+($w/2)+' '+($t/2)+' T'+($w-($t/2))+' '+($h/2)+' T'+($w/2)+' '+($h-($t/2))+' T'+($t/2)+' '+($h/2)+'z" stroke-width="'+$t+'" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" /><path d="'+$path+'" fill="#fff" /></svg>');
-    
-  });
-
-  $('.comic-strip').removeClass('is-loading');
-  bubblesResize();
-}
-
 function bubblesResize() {
   $w = ( $('.comic-frame').width() / 265 )+'em';
   $('.bubble').css({'font-size': $w});
 }
 
-/*
-  <svg width="400" height="400" viewBox="0 0 400 400">
-    <path d="M200,150 h150 l-10,150 Q350,150 200,150z" fill="#000" stroke="#000" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M0,100 Q0,0 200,0 T400,100 T200,200 T0,100z" fill="#fff" stroke="#000" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M200,150 h150 l-10,150 Q350,150 200,150z" fill="#fff" />
-  </svg>
+function bubbles() {
+  $('.comic-strip').addClass('is-loading'); // Force the desktop width and height to normalise the stroke width.
+  bubblesResize(); // Resize font to the normalised desktop size
+  $('.bubble svg').remove(); // Remove all current bubble SVG graphics.
 
-<svg xmlns="http://www.w3.org/2000/svg" width="'+$w+'" height="'+($h+$l)+'" viewBox="0 0 '+$w+' '+($h+$l)+'">
-  <path d="M'+$p+','+($h-$o)+' h'+$l+' l-'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+$p+','+($h-$o)+'z" stroke-width="'+($t*2)+'" fill="#000" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
-  <path d="M'+($t/2)+' '+($h/2)+' Q'+($t/2)+' '+($t/2)+', '+($w/2)+' '+($t/2)+' T'+($w-($t/2))+' '+($h/2)+' T'+($w/2)+' '+($h-($t/2))+' T'+($t/2)+' '+($h/2)+'z" stroke-width="'+$t+'" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
-  <path d="M'+$p+','+($h-$o)+' h'+$l+' l-'+($l/2)+','+($l+$o-$t)+' Q'+($p+($l/1.5))+','+($h-$o)+' '+$p+','+($h-$o)+'z" fill="#fff" />
-</svg>
-*/
+  // Apply new bubble SVG graphics.
+  $('.bubble').each(function(){
+
+    // -------------------------------------------------------
+    // Bubble settings
+    // -------------------------------------------------------
+    xmlns = "http://www.w3.org/2000/svg";
+    b_stroke = 4; // Bubble stroke thickness
+    b_width = $(this).outerWidth(); // Bubble width
+    b_height = $(this).outerHeight(); // Bubble height
+
+    t_direction = $(this).data('direction'); // Tail direction - left or right
+
+    // $l = Length // Elongate SVG to make room for the tail, while retaining the bubble dimensions - short, normal, long or numeric pixel dimension
+    if( $(this).data('length') == "short" ) { t_length = 40; }
+    else if( $(this).data('length') == "normal" ) { t_length = 80; }
+    else if( $(this).data('length') == "long" ) { t_length = 120; }
+    else { t_length = $(this).data('length'); } // Or numeric pixel dimension
+
+    // t_girth = Girth // Find the girth of the tail
+    if( $(this).data('girth') == "wide" ) { t_girth = 80; }
+    else if ( $(this).data('girth') == "normal" ) { t_girth = 50 }
+    else if ( $(this).data('girth') == "thin" ) { t_girth = 20; }
+    else { t_girth = $(this).data('girth'); } // Or numeric pixel dimension
+
+    // t_position = Positon // Find the horizontal position of tail - left, center, right
+    if( $(this).data('position') == "left" ) { t_position = 20; }
+    else if( $(this).data('position') == "center" ) { t_position = (b_width / 2) - (t_girth / 2); }
+    else if( $(this).data('position') == "right" ) { t_position = (b_width - t_girth) - 20; }
+
+
+    // -------------------------------------------------------
+    // Bubble
+    // -------------------------------------------------------
+
+    // Coordinates
+    b_x0 = b_stroke / 2;                      // Starting X coordinate
+    b_y0 = b_height / 2;                      // Starting Y coordinate
+    b_x1 = b_stroke / 2;                      // Quadratic handle X coordinate
+    b_y1 = b_stroke / 2;                      // Quadratic handle Y coordinate
+    b_x2 = b_width / 2;                       // Quadratic bezier end X coordinate
+    b_y2 = b_stroke / 2                       // Quadratic bezier end Y coordinate
+    b_x3 = b_width - (b_stroke / 2);          // Second point X coordinate
+    b_y3 = b_height / 2;                      // Second point Y coordinate
+    b_x4 = b_width / 2;                       // Third point X cordinate
+    b_y4 = b_height - (b_stroke / 2);         // Third point Y coordinate
+    b_x5 = b_stroke / 2;                      // Fourth point X coordinate
+    b_y5 = b_height / 2;                      // Fourth point Y coordinate
+
+    // Pattern
+    b_path  = 'M' +  b_x0 + ' ' + b_y0 + ' '; // Move to x0 y0
+    b_path += 'Q' +  b_x1 + ' ' + b_y1 + ' '; // Quadratic bezier curve handle coordinates x1 y1
+    b_path += ' ' +  b_x2 + ' ' + b_y2 + ' '; // Quadratic bezier curve end coordinates x2 y2
+    b_path += 'T' +  b_x3 + ' ' + b_y3 + ' '; // Continue curve x3 y3
+    b_path += 'T' +  b_x4 + ' ' + b_y4 + ' '; // Continue curve x4 y4
+    b_path += 'T' +  b_x5 + ' ' + b_y5 + ' '; // Continue curve x5 y5
+    b_path += 'z'; // Close path
+
+
+    // -------------------------------------------------------
+    // Tail
+    // -------------------------------------------------------
+
+    if ( t_direction == "left" ) {
+      // Coordinates
+      t_x0 = t_position;                      // Starting X coordinate
+      t_y0 = b_height - (b_height / 4);       // Starting Y coordinate
+      t_x1 = t_girth;                         // Horizontal line destination X coordinate
+      t_x2 = "-"+ (t_girth/2);                // Diagonal line X coordinate
+      t_y2 = t_length - b_stroke;             // Diagonal Y coordinate
+      t_x3 = t_position + t_girth;            // Quadratic handle X coordinate
+      t_y3 = b_height - (b_height / 4);       // Quadratic handle Y coordinate
+      t_x4 = t_position;                      // Quadratic end X coordinate - Should be the same as the first coordinate (t_x0)
+      t_y4 = b_height - (b_height / 4);       // Quadratic end Y coordinate - Should be the same as the first coordinate (t_y0)
+
+      // Pattern
+      t_path  = 'M' + t_x0 + ' ' + t_y0 + ' '; // Move to x0 y0
+      t_path += 'h' + t_x1 + ' ';              // Draw horizontal line to x1 y1
+      t_path += 'l' + t_x2 + ' ' + t_y2 + ' '; // Draw a diagonal line to x2 y2
+      t_path += 'Q' + t_x3 + ' ' + t_y3 + ' '; // Quadratic bezier curve handle coordinates x3 y3
+      t_path += ' ' + t_x4 + ' ' + t_y4 + ' '; // Quadratic bezier curve end coordinate x4 y4
+      t_path += 'z'; // Close path
+    }
+    
+    if ( t_direction == "right" ) {
+      // Coordinates
+      t_x0 = t_position;                       // Starting X coordinate 
+      t_y0 = b_height - (b_height / 4);        // Starting Y coordinate
+      t_x1 = t_girth/2;                        // Diagonal line X coordinate
+      t_y1 = t_length - b_stroke;              // Diagonal line Y coordinate
+      t_x2 = t_position;                       // Quadratic handle X coordinate
+      t_y2 = b_height - (b_height / 4);        // Quadratic handle Y coordinate
+      t_x3 = t_position + t_girth;             // Quadratic end X coordinate
+      t_y3 = b_height - (b_height / 4);        // Quadratic end Y coordinate
+      t_x4 = "-"+t_girth;                      // Horizontal line destination X coordinate - Should be the same as first coordinate (t_x0)
+
+      // Pattern
+      t_path  = 'M' + t_x0 + ' ' + t_y0 + ' '; // Move to x0 y0
+      t_path += 'l' + t_x1 + ' ' + t_y1 + ' '; // Draw a diagonal line to x2 y2
+      t_path += 'Q' + t_x2 + ' ' + t_y2 + ' '; // Quadratic bezier curve handle coordinates x3 y3
+      t_path += ' ' + t_x3 + ' ' + t_y3 + ' '; // Quadratic bezier curve end coordinate x4 y4
+      t_path += 'h' + t_x4 + ' ';              // Draw horizontal line to x1 y1
+      t_path += 'z'; // Close path
+    }
+
+
+    // -------------------------------------------------------
+    // Construction
+    // -------------------------------------------------------
+    b_svg = document.createElementNS(xmlns, "svg");
+    b_svg_path = document.createElementNS(xmlns, "path");
+    t_svg_path1 = document.createElementNS(xmlns, "path");
+    t_svg_path2 = document.createElementNS(xmlns, "path");
+
+    // Construct the SVG element
+    b_svg.setAttribute("viewBox", "0 0 " + b_width + " " + (b_height + t_length));
+    b_svg.setAttribute("width", b_width);
+    b_svg.setAttribute("height", (b_height + t_length));
+
+    // Construct the bubble path
+    b_svg_path.setAttribute( 'd' , b_path );
+    b_svg_path.setAttribute( 'stroke' , '#000' );
+    b_svg_path.setAttribute( 'stroke-width' , b_stroke );
+    b_svg_path.setAttribute( 'stroke-linecap' , 'round' );
+    b_svg_path.setAttribute( 'stroke-linejoin' , 'round' );
+    b_svg_path.setAttribute( 'fill' , '#fff' );
+
+    // Construct the behind tail path
+    t_svg_path1.setAttribute( 'd' , t_path );
+    t_svg_path1.setAttribute( 'stroke' , '#000' );
+    t_svg_path1.setAttribute( 'stroke-width' , (b_stroke*2) );
+    t_svg_path1.setAttribute( 'stroke-linecap' , 'round' );
+    t_svg_path1.setAttribute( 'stroke-linejoin' , 'round' );
+    t_svg_path1.setAttribute( 'fill' , '#fff' );
+    
+    // Construct the front tail path
+    t_svg_path2.setAttribute( 'd' , t_path );
+    t_svg_path2.setAttribute( 'fill' , '#fff' );
+
+    // Append the paths to the SVG
+    b_svg.appendChild(t_svg_path1);
+    b_svg.appendChild(b_svg_path);
+    b_svg.appendChild(t_svg_path2);
+
+    // Append the completed SVG into the DOM
+    $(this).append(b_svg);
+  });
+
+  // Cleanup - remove the loading class
+  $('.comic-strip').removeClass('is-loading');
+  bubblesResize(); // Resize the font once more.
+}
