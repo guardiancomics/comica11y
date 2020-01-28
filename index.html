@@ -195,13 +195,13 @@
               </div><!-- // .caption-closed -->
 
               <div class="bubble-wrap" tabindex="-1" aria-hidden>
-                <div class="bubble bubble--left" data-direction="left" data-position="left" data-length="normal" data-girth="normal">
+                <div class="bubble bubble--left" data-direction="right" data-position="left" data-length="normal">
                   <span class="inner">
                     What do you call a <br>
                     <strong>blind dinosaur?</strong>
                   </span>
                 </div>
-                <div class="bubble bubble--right" data-direction="right" data-position="center" data-length="short" data-girth="40">
+                <div class="bubble bubble--right" data-direction="left" data-position="center" data-length="short">
                   <span class="inner">
                     I don't know.
                   </span>
@@ -231,13 +231,13 @@
               </div><!-- // .caption-closed -->
 
               <div class="bubble-wrap" tabindex="-1" aria-hidden>
-                <div class="bubble bubble--left" data-direction="left" data-position="left" data-length="normal" data-girth="normal">
+                <div class="bubble bubble--left" data-direction="right" data-position="left" data-length="normal">
                   <span class="inner">
                     A Do-you-think-<br>
                     he-saurus.
                   </span>
                 </div>
-                <div class="bubble bubble--right" data-direction="right" data-position="center" data-length="short" data-girth="normal">
+                <div class="bubble bubble--right" data-direction="right" data-position="center" data-length="short">
                   <span class="inner">
                     <strong>Ha ha.</strong> <br>
                     Good one.
@@ -267,13 +267,13 @@
               </div><!-- // .caption-closed -->
 
               <div class="bubble-wrap" tabindex="-1" aria-hidden>
-                <div class="bubble" data-direction="left" data-position="left" data-length="normal" data-girth="normal">
+                <div class="bubble" data-direction="right" data-position="left" data-length="normal">
                   <span class="inner">
                     What do you call a blind <br>
                     dinosaur's <strong>dog?</strong>
                   </span>
                 </div>
-                <div class="bubble bubble--right" data-direction="right" data-position="center" data-length="short" data-girth="normal">
+                <div class="bubble bubble--right" data-direction="left" data-position="center" data-length="short">
                   <span class="inner">
                     You got me...
                   </span>
@@ -300,7 +300,7 @@
               </div><!-- // .caption-closed -->
 
               <div class="bubble-wrap" tabindex="-1" aria-hidden>
-                <div class="bubble bubble--left" data-direction="left" data-position="left" data-length="normal" data-girth="normal">
+                <div class="bubble bubble--left" data-direction="right" data-position="left" data-length="normal">
                   <span class="inner">
                     A Do-you-think-<br>
                     he-saurus Rex.
@@ -359,6 +359,7 @@
           <div class="notes notes--log">
             <p><strong>Change log</strong></p>
             <ol>
+              <li><strong class="date">23/01/2020</strong> Reworked the bubbles() function. The SVG generating of the bubbles is now a lot easier to read. Updated the path names so they work out of the box without a hostname.</li>
               <li><strong class="date">23/01/2020</strong> Added some improvements to the aria attributes and markup.</li>
               <li><strong class="date">20/01/2020</strong> Replaced the artwork with dinosaurs and re-wrote the captions and screen reader text. Rejigged the logic for the closed caption toggle and the text resizing - Now when you increase the font size it defaults to closed caption mode and toggles off bubbles. Added the logic to the svg generator to flip the tails left and right.</li>
               <li><strong class="date">17/01/2020</strong> Added a tweak to the jquery so the bubbles are measured and drawn during a loading state, where the comic-strip width is normalised, to ensure the stroke width is always the same. Added a jquery function to measure the frame width and calculate an apprpriate em value that allows for fluid bubbles on resize, while also allowing for up and down resizing.</li>
