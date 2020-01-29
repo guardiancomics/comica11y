@@ -293,7 +293,7 @@ function bubbles() {
       // Controller for point 1
       bezier_control_1 = {
         x: b_stroke,
-        y: (b_height/2) + (b_height/10)
+        y: (b_height/2) + (b_height/11)
       }
 
       bezier_node_1 = Bezier(bezier_point_0, bezier_control_0, bezier_control_1, bezier_point_1, '.45'),      // Return X and Y coordinates based on node location on bezier curve (.45)
