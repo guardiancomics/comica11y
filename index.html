@@ -315,14 +315,14 @@
           <div class="comic-filter">
             <div class="buttons">
               <div class="font-sizer">
-                <button class="btn js-resize-down" disabled><span class="hidden">Click here to resize comic font down a size</span></button>
+                <button class="btn js-resize-down" disabled><span class="hidden">Decrease the font</span></button>
                 <p class="text">Font size: <strong>100%</strong></p>
-                <button class="btn js-resize-up"><span class="hidden">Click here to resize comic font up a size</span></button>
+                <button class="btn js-resize-up"><span class="hidden">Increase the font</span></button>
               </div>
-              <button class="btn-toggle js-closedcaptions" type="button"><span class="hidden">Click here to toggle </span>Closed captions</button>
-              <button class="btn-toggle js-highcontrast" type="button"><span class="hidden">Click here to toggle </span>High contrast</button>
+              <button class="btn-toggle js-closedcaptions" type="button"><span class="hidden">Toggle </span>Closed captions</button>
+              <button class="btn-toggle js-highcontrast" type="button"><span class="hidden">Toggle </span>High contrast</button>
               <div class="dropdown">
-                <button type="button" class="dropdown__selected"><span class="hidden">Click to open dropdown menu. Current option selected: </span>Colour blindness: <strong>Normal</strong></button>
+                <button type="button" class="dropdown__selected"><span class="hidden">Current option selected: </span>Colour blindness: <strong>Normal</strong></button>
                 <ul>
                   <li><button class="btn-option js-cb-normal" type="button">Normal</button></li>
                   <li><button class="btn-option js-cb-protanopia" type="button">Protanopia</button></li>
@@ -335,8 +335,8 @@
                   <li><button class="btn-option js-cb-achromatomaly" type="button">Achromatomaly</button></li>
                 </ul>
               </div>
-              <button class="btn-toggle js-rtl" type="button"><span class="hidden">Click here to toggle </span>RTL/LTR</button>
-              <button class="btn js-bubbles" type="button"><span class="hidden">Click here to </span>Refresh bubbles</button>
+              <button class="btn-toggle js-rtl" type="button"><span class="hidden">Toggle </span>RTL/LTR</button>
+              <button class="btn js-bubbles" type="button">Refresh bubbles</button>
             </div>
 
             <div class="translate">
@@ -359,6 +359,7 @@
           <div class="notes notes--log">
             <p><strong>Change log</strong></p>
             <ol>
+              <li><strong class="date">29/01/2020</strong> Removed 'click here' text from all buttons. Added "verb the noun" format for text resize buttons. Removed pale grey for toggles and update log dates. Removed the lime green on toggles and replaced with blue.</li>
               <li><strong class="date">28/01/2020</strong> Added a function to the bubble SVG generator to render the beginning point and end point along the quadratic bezier arc - phew.</li>
               <li><strong class="date">23/01/2020</strong> Reworked the bubbles() function. The SVG generating of the bubbles is now a lot easier to read. Updated the path names so they work out of the box without a hostname.</li>
               <li><strong class="date">23/01/2020</strong> Reworked the bubbles() function. The SVG generating of the bubbles is now a lot easier to read. Updated the path names so they work out of the box without a hostname.</li>

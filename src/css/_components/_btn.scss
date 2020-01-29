@@ -51,7 +51,7 @@ button {
 		top: -1px;
 		width: 35px;
 		height: 20px;
-		background-color: rgba(black,.1);
+		background-color: #555555;
 		border-radius: 20px;
 		transition: background-color .1s ease-out;
 	}
@@ -70,7 +70,7 @@ button {
 
 	&.is-active {
 		&:before {
-			background-color: #0ADB41;
+			background-color: #1f6be9;
 		}
 		&:after {
 			transform: translateX(15px);
