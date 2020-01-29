@@ -566,6 +566,15 @@ button {
   transform: translateX(15px);
 }
 
+.btn-toggle:disabled {
+  cursor: default;
+}
+
+.btn-toggle:disabled:before,
+.btn-toggle:disabled:after {
+  opacity: .5;
+}
+
 .skip-to-link {
   position: fixed;
   top: 10px;
@@ -716,6 +725,11 @@ html {
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   font-size: 1.6rem;
+}
+
+.comic-strip.is-loading {
+  width: 1650px;
+  white-space: nowrap;
 }
 
 .comic-strip.is-rtl-mode {
@@ -927,8 +941,8 @@ html {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 5px;
-  padding: 5px 30px;
-  margin: 20px 0;
+  padding: .5em 30px;
+  margin: 1em 0;
 }
 
 .notes h1,
@@ -943,10 +957,9 @@ html {
 .notes .date {
   display: block;
   width: 100%;
-  margin-bottom: 5px;
   text-transform: uppercase;
   font-size: 1.2rem;
-  color: #555555;
+  color: #1f6be9;
 }
 
 .notes--log {
@@ -957,6 +970,11 @@ html {
 .notes--log ol {
   list-style: none;
   padding-left: 0;
+}
+
+.notes--log ul > li,
+.notes--log ol > li {
+  margin-bottom: 1em;
 }
 
 .objectives {
@@ -1142,21 +1160,6 @@ html {
   }
 }
 
-@media (min-width: 960px) {
-  .notes--log ul > li,
-  .notes--log ol > li {
-    padding-left: 80px;
-    position: relative;
-  }
-
-  .notes--log ul > li .date,
-  .notes--log ol > li .date {
-    position: absolute;
-    left: 0;
-    top: 1px;
-  }
-}
-
 @media (min-width: 1740px) {
   .breakout {
     margin-left: -150px;
@@ -1171,7 +1174,7 @@ html {
 }
 
 @media (max-width: 1200px) {
-  .comic-strip {
+  .comic-strip:not(.is-loading) {
     grid-template-columns: repeat(2, 1fr);
     margin: 0 auto;
     max-width: 820px;
@@ -1227,7 +1230,7 @@ html {
     padding: 30px 20px;
   }
 
-  .comic-strip {
+  .comic-strip:not(.is-loading) {
     grid-template-columns: repeat(1, 1fr);
     margin: 0 auto;
     max-width: 380px;

@@ -1,8 +1,4 @@
 $(function(){
-  bubbles();
-  
-  // Setup a timer
-  var timeout;
 
   // Listen for scrolling events
   window.addEventListener('resize', function ( event ) {
@@ -119,8 +115,8 @@ $(function(){
 
       // Reset the font-size back to 100% and deactivate captions
       $('.comic-strip').data('fontsize', '100');
-      $('.comic-strip').css('font-size', '100%');
       $('.font-sizer .text strong').text('100%');
+      $('.comic-strip .caption-closed').css('font-size', '100%');
 
       // Reset the buttons
       $('.js-resize-up').attr("disabled", false);
@@ -147,8 +143,10 @@ $(function(){
       $('.js-closedcaptions').addClass('is-active');
       $('.comic-strip').addClass('is-resized');
     } else {
-      $('.comic-strip').removeClass('is-closed-caption-mode');
-      $('.js-closedcaptions').removeClass('is-active');
+      if( !$('.comic-strip').hasClass('is-browserZoom') ) {
+        $('.comic-strip').removeClass('is-closed-caption-mode');
+        $('.js-closedcaptions').removeClass('is-active');
+      }
       $('.comic-strip').removeClass('is-resized');
     }
 
@@ -163,9 +161,9 @@ $(function(){
     }
 
     // Upkeep
-    $('.comic-strip').css('font-size', currentSize + '%'); // Update the font-size css value on comic-strip.
     $('.comic-strip').data('fontsize', currentSize); // Update the data-attribute to reflect to increase / decrease.
     $('.font-sizer .text strong').text(currentSize + '%'); // Update the font size inline text.
+    $('.comic-strip .caption-closed').css('font-size', currentSize + '%'); // Update the font-size css value on comic-strip.
 
     return false;
   });
@@ -195,6 +193,9 @@ $(function(){
     }
     return false
   });
+
+  // Generate bubbles
+  bubbles();
 });
 
 function colourblindReset() {
@@ -208,9 +209,24 @@ function bubblesResize() {
   $('.bubble').css({'font-size': $w});
 }
 
+function bubbleBrowserZoom() {
+  let para = document.querySelector('.bubble');
+  let compStyles = window.getComputedStyle(para);
+  
+  if( parseInt(compStyles.getPropertyValue('font-size'), 10) > 23 ) {
+
+    $('.comic-strip').addClass('is-closed-caption-mode is-browserZoom');
+    $('.js-closedcaptions').addClass('is-active').attr('disabled', true);
+
+  }
+}
+
 function bubbles() {
   $('.comic-strip').addClass('is-loading'); // Force the desktop width and height to normalise the stroke width.
+
   bubblesResize(); // Resize font to the normalised desktop size
+  bubbleBrowserZoom(); // Detect if the browser has zoom - if so remove bubbles and replace with captions
+  
   $('.bubble svg').remove(); // Remove all current bubble SVG graphics.
 
   // Apply new bubble SVG graphics.

@@ -76,4 +76,13 @@ button {
 			transform: translateX(15px);
 		}
 	}
+
+	&:disabled {
+		cursor: default;
+		
+		&:before,
+		&:after {
+			opacity: .5;
+		}
+	}
 }
