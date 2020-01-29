@@ -362,6 +362,7 @@
           <div class="notes notes--log">
             <p><strong>Change log</strong></p>
             <ol>
+              <li><strong class="date">29/01/2020</strong> Fixed SVG filter bug for colour blind options by moving the filters inline and referring to simply the ID within the CSS.</li>
               <li><strong class="date">29/01/2020</strong> Reworked resize font function to only apply the font-size to the closed captions. The bubbles were toggling the browser zoom functionality when the font-size was increased using the buttons, which we don't want.</li>
               <li><strong class="date">29/01/2020</strong> Added a detection for browser font-size being set to large or very large. If so, it will remove the bubbles (they break), toggle captions and disable the toggle button. Resizing font-size still works. Reworked pixel padding to use em's so the layout of the page doesn't break when text is increased.</li>
               <li><strong class="date">29/01/2020</strong> Removed "click here" text from all buttons. Added "verb the noun" format for text resize buttons. Removed pale grey for toggles and update log dates. Removed the lime green on toggles and replaced with blue. Added aria-pressed attribute to all toggle switches. Added true to aria-hidden attributes to avoid axe errors.</li>
