@@ -184,6 +184,16 @@ body {
       transform: scaleX(-1);
     }
   }
+
+  // Colourblind filters
+  &.is-cb-protanopia .comic-frame > img { filter: url(#protanopia); }
+  &.is-cb-protanomaly .comic-frame > img { filter: url(#protanomaly); }
+  &.is-cb-deuteranopia .comic-frame > img { filter: url(#deuteranopia); }
+  &.is-cb-deuteranomaly .comic-frame > img { filter: url(#deuteranomaly); }
+  &.is-cb-tritanopia .comic-frame > img { filter: url(#tritanopia); }
+  &.is-cb-tritanomaly .comic-frame > img { filter: url(#tritanomaly); }
+  &.is-cb-achromatopsia .comic-frame > img { filter: url(#achromatopsia); }
+  &.is-cb-achromatomaly .comic-frame > img { filter: url(#achromatomaly); }
 }
 
 .comic-frame {
