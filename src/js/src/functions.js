@@ -1,22 +1,7 @@
 $(function(){
 
-  // Listen for scrolling events
-  window.addEventListener('resize', function ( event ) {
-
-      // If timer is null, reset it to 66ms and run your functions.
-      // Otherwise, wait until timer is cleared
-      if ( !timeout ) {
-          timeout = setTimeout(function() {
-
-              // Reset timeout
-              timeout = null;
-
-              // Run our scroll functions
-              bubblesResize()
-
-          }, 66);
-      }
-  }, false);
+  // Setup a timer
+  var timeout;
 
   $(document).keyup(function(e){
 
@@ -69,7 +54,7 @@ $(function(){
   $('.js-highcontrast').on('click', function(){
     if( !$('.comic-strip').hasClass('is-high-contrast-mode') ) {
       $('.comic-strip').addClass('is-high-contrast-mode');
-      $(this).addClass('is-active'); // Activate high contrast mode
+      $(this).addClass('is-active').attr("aria-pressed", "true"); // Activate high contrast mode
 
       $('.comic-strip img').each(function(){
         var contrast_url = $(this).data('contrast');
@@ -77,7 +62,7 @@ $(function(){
       });
     } else {
       $('.comic-strip').removeClass('is-high-contrast-mode');
-      $(this).removeClass('is-active');
+      $(this).removeClass('is-active').attr("aria-pressed", "false");
       $('.comic-strip img').each(function(){
         var source_url = $(this).data('src');
         $(this).attr("src",source_url);
@@ -90,10 +75,10 @@ $(function(){
   $('.js-rtl').on('click', function(){
     if( !$('.comic-strip').hasClass('is-rtl-mode') ) {
       $('.comic-strip').addClass('is-rtl-mode');
-      $(this).addClass('is-active');
+      $(this).addClass('is-active').attr("aria-pressed", "true");
     } else {
       $('.comic-strip').removeClass('is-rtl-mode');
-      $(this).removeClass('is-active');
+      $(this).removeClass('is-active').attr("aria-pressed", "false");
     }
     return false;
   });
@@ -108,10 +93,10 @@ $(function(){
   $('.js-closedcaptions').on('click', function(){
     if( !$('.comic-strip').hasClass('is-closed-caption-mode') ) {
       $('.comic-strip').addClass('is-closed-caption-mode');
-      $(this).addClass('is-active');
+      $(this).addClass('is-active').attr("aria-pressed", "true");
     } else {
       $('.comic-strip').removeClass('is-closed-caption-mode');
-      $(this).removeClass('is-active');
+      $(this).removeClass('is-active').attr("aria-pressed", "false");
 
       // Reset the font-size back to 100% and deactivate captions
       $('.comic-strip').data('fontsize', '100');
@@ -140,12 +125,12 @@ $(function(){
     // If it's font size above 100 add .is-resized
     if( currentSize != 100 ) {
       $('.comic-strip').addClass('is-closed-caption-mode');
-      $('.js-closedcaptions').addClass('is-active');
+      $('.js-closedcaptions').addClass('is-active').attr("aria-pressed", "true");
       $('.comic-strip').addClass('is-resized');
     } else {
       if( !$('.comic-strip').hasClass('is-browserZoom') ) {
         $('.comic-strip').removeClass('is-closed-caption-mode');
-        $('.js-closedcaptions').removeClass('is-active');
+        $('.js-closedcaptions').removeClass('is-active').attr("aria-pressed", "false");
       }
       $('.comic-strip').removeClass('is-resized');
     }
@@ -216,7 +201,7 @@ function bubbleBrowserZoom() {
   if( parseInt(compStyles.getPropertyValue('font-size'), 10) > 23 ) {
 
     $('.comic-strip').addClass('is-closed-caption-mode is-browserZoom');
-    $('.js-closedcaptions').addClass('is-active').attr('disabled', true);
+    $('.js-closedcaptions').addClass('is-active').attr('disabled', true).attr("aria-pressed", "true");
 
   }
 }

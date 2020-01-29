@@ -190,12 +190,12 @@
                 The small orange dinosaur asks, "What do you call a blind dinosaur?" "I don't know", the large, green dinosaur replies.
               </figcaption>
 
-              <div class="caption-closed" tabindex="-1" aria-hidden>
+              <div class="caption-closed" tabindex="-1" aria-hidden="true">
                 <p><strong>Velociraptor</strong>: What do you call a blind dinosaur?</p>
                 <p><strong>Brachiosaurus</strong>: I don't know.</p>
               </div><!-- // .caption-closed -->
 
-              <div class="bubble-wrap" tabindex="-1" aria-hidden>
+              <div class="bubble-wrap" tabindex="-1" aria-hidden="true">
                 <div class="bubble bubble--left" data-direction="right" data-position="left" data-length="normal">
                   <span class="inner">
                     What do you call a <br>
@@ -226,12 +226,12 @@
                 "Ha ha. Good one", the green brachiosaurus replies.
               </figcaption>
 
-              <div class="caption-closed" tabindex="-1" aria-hidden>
+              <div class="caption-closed" tabindex="-1" aria-hidden="true">
                 <p><strong>Velociraptor:</strong> A Do-you-think-he-saurus.</p>
                 <p><strong>Brachiosaurus:</strong> Ha ha. Good one.</p>
               </div><!-- // .caption-closed -->
 
-              <div class="bubble-wrap" tabindex="-1" aria-hidden>
+              <div class="bubble-wrap" tabindex="-1" aria-hidden="true">
                 <div class="bubble bubble--left" data-direction="right" data-position="left" data-length="normal">
                   <span class="inner">
                     A Do-you-think-<br>
@@ -262,12 +262,12 @@
                 "You got me...", the green brachiosaurus replies.
               </figcaption>
 
-              <div class="caption-closed" tabindex="-1" aria-hidden>
+              <div class="caption-closed" tabindex="-1" aria-hidden="true">
                 <p><strong>Velociraptor</strong>: What do you call a blind dinosaur's dog?</p>
                 <p><strong>Brachiosaurus</strong>: You got me...</p>
               </div><!-- // .caption-closed -->
 
-              <div class="bubble-wrap" tabindex="-1" aria-hidden>
+              <div class="bubble-wrap" tabindex="-1" aria-hidden="true">
                 <div class="bubble" data-direction="right" data-position="left" data-length="normal">
                   <span class="inner">
                     What do you call a blind <br>
@@ -296,11 +296,11 @@
                 "A Do-you-think-he-saurus Rex", the orange velociraptor answers.
               </figcaption>
               
-              <div class="caption-closed" tabindex="-1" aria-hidden>
+              <div class="caption-closed" tabindex="-1" aria-hidden="true">
                   <p><strong>Velociraptor</strong>: A Do-you-think-he-saurus Rex.</p>
               </div><!-- // .caption-closed -->
 
-              <div class="bubble-wrap" tabindex="-1" aria-hidden>
+              <div class="bubble-wrap" tabindex="-1" aria-hidden="true">
                 <div class="bubble bubble--left" data-direction="right" data-position="left" data-length="normal">
                   <span class="inner">
                     A Do-you-think-<br>
@@ -322,8 +322,8 @@
                 <p class="text">Font size: <strong>100%</strong></p>
                 <button class="btn js-resize-up"><span class="hidden">Increase the font</span></button>
               </div>
-              <button class="btn-toggle js-closedcaptions" type="button"><span class="hidden">Toggle </span>Closed captions</button>
-              <button class="btn-toggle js-highcontrast" type="button"><span class="hidden">Toggle </span>High contrast</button>
+              <button class="btn-toggle js-closedcaptions" aria-pressed="false" type="button"><span class="hidden">Toggle </span>Closed captions</button>
+              <button class="btn-toggle js-highcontrast" aria-pressed="false" type="button"><span class="hidden">Toggle </span>High contrast</button>
               <div class="dropdown">
                 <button type="button" class="dropdown__selected"><span class="hidden">Current option selected: </span>Colour blindness: <strong>Normal</strong></button>
                 <ul>
@@ -338,7 +338,7 @@
                   <li><button class="btn-option js-cb-achromatomaly" type="button">Achromatomaly</button></li>
                 </ul>
               </div>
-              <button class="btn-toggle js-rtl" type="button"><span class="hidden">Toggle </span>RTL/LTR</button>
+              <button class="btn-toggle js-rtl" aria-pressed="false" type="button"><span class="hidden">Toggle </span>RTL/LTR</button>
               <button class="btn js-bubbles" type="button">Refresh bubbles</button>
             </div>
 
@@ -364,8 +364,8 @@
             <ol>
               <li><strong class="date">29/01/2020</strong> Reworked resize font function to only apply the font-size to the closed captions. The bubbles were toggling the browser zoom functionality when the font-size was increased using the buttons, which we don't want.</li>
               <li><strong class="date">29/01/2020</strong> Added a detection for browser font-size being set to large or very large. If so, it will remove the bubbles (they break), toggle captions and disable the toggle button. Resizing font-size still works. Reworked pixel padding to use em's so the layout of the page doesn't break when text is increased.</li>
-              <li><strong class="date">29/01/2020</strong> Removed "click here" text from all buttons. Added "verb the noun" format for text resize buttons. Removed pale grey for toggles and update log dates. Removed the lime green on toggles and replaced with blue.</li>
-              <li><strong class="date">28/01/2020</strong> Added a function to the bubble SVG generator to render the beginning point and end point along the quadratic bezier arc - phew.</li>
+              <li><strong class="date">29/01/2020</strong> Removed "click here" text from all buttons. Added "verb the noun" format for text resize buttons. Removed pale grey for toggles and update log dates. Removed the lime green on toggles and replaced with blue. Added aria-pressed attribute to all toggle switches. Added true to aria-hidden attributes to avoid axe errors.</li>
+              <li><strong class="date">28/01/2020</strong> Added a function to the bubble SVG generator to fontsize-detector the beginning point and end point along the quadratic bezier arc - phew.</li>
               <li><strong class="date">23/01/2020</strong> Reworked the bubbles() function. The SVG generating of the bubbles is now a lot easier to read. Updated the path names so they work out of the box without a hostname.</li>
               <li><strong class="date">23/01/2020</strong> Reworked the bubbles() function. The SVG generating of the bubbles is now a lot easier to read. Updated the path names so they work out of the box without a hostname.</li>
               <li><strong class="date">23/01/2020</strong> Added some improvements to the aria attributes and markup.</li>
