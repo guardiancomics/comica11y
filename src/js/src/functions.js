@@ -461,11 +461,11 @@ function bubbles() {
     // -------------------------------------------------------
     // Tail Pattern
     // -------------------------------------------------------
-    t_path  = 'M' + t_x0 + ',' + t_y0;      // Move to x0 y0
-    t_path += 'L' + t_x1 + ',' + t_y1;      // Draw horizontal line to x1 y1
+    t_path  = 'M' + t_x0 + ',' + (t_y0 - 1);      // Move to x0 y0
+    t_path += 'L' + t_x1 + ',' + (t_y1 - 1);      // Draw horizontal line to x1 y1
     t_path += 'Q' + t_x2 + ',' + t_y2;      // Quadratic bezier curve handle coordinates x3 y3
     t_path += ' ' + t_x3 + ',' + t_y3;      // Quadratic bezier curve end coordinate x4 y4
-    t_path += 'L' + t_x4 + ',' + t_y4;      // Draw a diagonal line to x2 y2
+    t_path += 'L' + t_x4 + ',' + (t_y4 - 1);      // Draw a diagonal line to x2 y2
     t_path += 'z';                          // Close path
 
 
