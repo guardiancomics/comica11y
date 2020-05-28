@@ -1,8 +1,5 @@
 $(function(){
 
-  // Setup a timer
-  var timeout;
-
   $(document).keyup(function(e){
 
     window.addEventListener("keydown", function(e) {
@@ -222,11 +219,12 @@ function bubbles() {
     // -------------------------------------------------------
     xmlns = "http://www.w3.org/2000/svg";
     b_stroke = 4; // Bubble stroke thickness
+    b_handle_length = 8; // This is how much curvature the bubble will have.
     b_width = $(this).outerWidth(); // Bubble width
     b_height = $(this).outerHeight(); // Bubble height
-    t_girth = b_width / 12; // Set a girth for the tail (how much it indents when drawing downwards)
 
-    t_direction = $(this).data('direction'); // Tail direction - left or right
+    // Tail direction - left or right
+    t_direction = $(this).data('direction');
 
     // $l = Length // Elongate SVG to make room for the tail, while retaining the bubble dimensions - short, normal, long or numeric pixel dimension
     if( $(this).data('length') == "short" ) { t_length = 50; }
@@ -235,125 +233,114 @@ function bubbles() {
     else { t_length = $(this).data('length'); } // Or numeric pixel dimension
 
     // -------------------------------------------------------
-    // Bubble
+    // Bubble coordinates
     // -------------------------------------------------------
 
-    // Coordinates
-    b_x0 = b_stroke / 2;                      // Starting X coordinate
-    b_y0 = b_height / 2;                      // Starting Y coordinate
-    b_x1 = b_stroke / 2;                      // Quadratic handle X coordinate
-    b_y1 = b_stroke / 2;                      // Quadratic handle Y coordinate
-    b_x2 = b_width / 2;                       // Quadratic bezier end X coordinate
-    b_y2 = b_stroke / 2                       // Quadratic bezier end Y coordinate
-    b_x3 = b_width - (b_stroke / 2);          // Second point X coordinate
-    b_y3 = b_height / 2;                      // Second point Y coordinate
-    b_x4 = b_width / 2;                       // Third point X cordinate
-    b_y4 = b_height - (b_stroke / 2);         // Third point Y coordinate
-    b_x5 = b_stroke / 2;                      // Fourth point X coordinate
-    b_y5 = b_height / 2;                      // Fourth point Y coordinate
+    // Node 1 coordinates
+    b_1_node_x = b_stroke / 2;                                                  // Node 1 X coordinate
+    b_1_node_y = b_height / 2;                                                  // Node 1 Y coordinate
 
-    // Pattern
-    b_path  = 'M' +  b_x0 + ' ' + b_y0 + ' '; // Move to x0 y0
-    b_path += 'Q' +  b_x1 + ' ' + b_y1 + ' '; // Quadratic bezier curve handle coordinates x1 y1
-    b_path += ' ' +  b_x2 + ' ' + b_y2 + ' '; // Quadratic bezier curve end coordinates x2 y2
-    b_path += 'T' +  b_x3 + ' ' + b_y3 + ' '; // Continue curve x3 y3
-    b_path += 'T' +  b_x4 + ' ' + b_y4 + ' '; // Continue curve x4 y4
-    b_path += 'T' +  b_x5 + ' ' + b_y5 + ' '; // Continue curve x5 y5
-    b_path += 'z'; // Close path
+    b_1_handle_in_x = b_1_node_x;                                               // Node 1 in controller X coordinate
+    b_1_handle_in_y = (b_height / b_handle_length) * (b_handle_length - 1);     // Node 1 in controller Y coordinate
+
+    b_1_handle_out_x = b_1_node_x;                                              // Node 1 out controller X coordinate
+    b_1_handle_out_y = b_height / b_handle_length;                              // Node 1 out controller Y coordinate
+
+    // Node 2 coordinates
+    b_2_node_x = b_width / 2;                                                   // Node 2 X coordinate
+    b_2_node_y = b_stroke / 2;                                                  // Node 2 Y coordinate
+
+    b_2_handle_in_x = b_width / b_handle_length;                                // Node 2 in controller X coordinate
+    b_2_handle_in_y = b_2_node_y;                                               // Node 2 in controller Y coordinate;
+
+    b_2_handle_out_x = (b_width / b_handle_length) * (b_handle_length - 1);     // Node 2 out controller X coordinate
+    b_2_handle_out_y = b_2_node_y;                                              // Node 2 out controller Y coordinate
+    
+    // Node 3 coordinates
+    b_3_node_x = b_width - (b_stroke / 2);                                      // Node 3 X coordinate
+    b_3_node_y = b_1_node_y;                                                    // Node 3 Y coordinate
+
+    b_3_handle_in_x = b_3_node_x;                                               // Node 3 in controller X coordinate
+    b_3_handle_in_y = b_1_handle_out_y;                                         // Node 3 in controller Y coordinate
+
+    b_3_handle_out_x = b_3_node_x;                                              // Node 3 out controller X coordinate
+    b_3_handle_out_y = b_1_handle_in_y;                                         // Node 3 out controller Y coordinate
+    
+    // Node 4 coordinates
+    b_4_node_x = b_2_node_x;                                                    // Node 4 X coordinate
+    b_4_node_y = b_height - (b_stroke / 2);                                     // Node 4 Y coordinate
+    
+    b_4_handle_in_x = b_2_handle_out_x;                                         // Node 4 in controller X coordinate
+    b_4_handle_in_y = b_4_node_y;                                               // Node 4 in controller Y coordinate
+
+    b_4_handle_out_x = b_2_handle_in_x;                                         // Node 4 out controller X coordinate
+    b_4_handle_out_y = b_4_node_y;                                              // Node 4 out controller Y coordinate
+
+    // -------------------------------------------------------
+    // Bubble pattern
+    // -------------------------------------------------------
+
+    // Move to Node 1
+    b_path = 'M' + b_1_node_x + ',' + b_1_node_y + ' ';                         // Move to node 1 X,Y coordinate
+    
+    // Draw the first curve to node 2
+    b_path += 'C' + b_1_handle_out_x + ',' + b_1_handle_out_y;                  // Cubic bezier node1 OUT handle X,Y coordinate
+    b_path += ' ' + b_2_handle_in_x + ',' + b_2_handle_in_y;                    // Cubic bezier node2 IN handle X,Y coordinate
+    b_path += ' ' + b_2_node_x + ',' + b_2_node_y;                              // Cubic bezier node2 X,Y coordinate
+    
+    // // Draw the second curve to node 3 - Continuing the curve does not require the OUT handle
+    b_path += 'S' + b_3_handle_in_x + ',' + b_3_handle_in_y;                    // Cubic bezier node 3 IN handle X,Y coordinate
+    b_path += ' ' + b_3_node_x + ',' + b_3_node_y + ' ';                        // Cubic bezier node 3 X,Y coordinate
+    
+    // // Draw the third curve to node 4 - Continuing the curve does not require the OUT handle
+    b_path += 'S' + b_4_handle_in_x + ',' + b_4_handle_in_y;                    // Cubic bezier node 4 IN handle X,Y coordinate
+    b_path += ' ' + b_4_node_x + ',' + b_4_node_y;                              // Cubic bezier node 4 X,Y coordinate
+    
+    // // Draw the fourth curve to node 1 - Continuing the curve does not require the OUT handle
+    b_path += 'S' + b_1_handle_in_x + ',' + b_1_handle_in_y;                    // Cubic bezier node 4 IN handle X,Y coordinate
+    b_path += ' ' + b_1_node_x + ',' + b_1_node_y;                              // Cubic bezier node 4 X,Y coordinate
+    
+    // // Close the path
+    b_path += ' ' + 'z';
 
 
     // -------------------------------------------------------
-    // Tail
+    // Tail coordinates
     // -------------------------------------------------------
 
     // If the tail is positioned on the left of the bubble
     if( $(this).data('position') == "left" ) {
 
+      // -------------------------------------------------------
       // Bezier calc - Needed to calculate X,Y along a curve
       // -------------------------------------------------------
 
-      // The first point on curve
+      // Node 1 x,y
       bezier_point_0 = {
-        x: b_width / 2,
-        y: b_height - b_stroke
+        x: b_4_node_x  - ( b_stroke / 2 ),
+        y: b_4_node_y - ( b_stroke / 2 )
       };
 
-      // Controller for point 0
-      bezier_control_0 = {
-        x: b_stroke,
-        y: b_height - b_stroke
+      // Controller Node 4 OUT
+      bezier_control_out = {
+        x: b_4_handle_out_x - ( b_stroke / 2 ),
+        y: b_4_handle_out_y - ( b_stroke / 2 )
       };
 
-      // The second point on curve
+      // Controller Node 2 IN
+      bezier_control_in = {
+        x: b_1_handle_in_x - ( b_stroke / 2 ),
+        y: b_1_handle_in_y - ( b_stroke / 2 )
+      }
+
+      // Node 2 x,y
       bezier_point_1 = {
-        x: b_stroke,
-        y: b_height / 2
-      };
+        x: b_1_node_x - ( b_stroke / 2 ),
+        y: b_1_node_y - ( b_stroke / 2 )
+      };  
 
-      // Controller for point 1
-      bezier_control_1 = {
-        x: b_stroke,
-        y: (b_height/2) + (b_height/11)
-      }
-
-      bezier_node_1 = Bezier(bezier_point_0, bezier_control_0, bezier_control_1, bezier_point_1, '.45'),      // Return X and Y coordinates based on node location on bezier curve (.45)
-      bezier_node_2 = Bezier(bezier_point_0, bezier_control_0, bezier_control_1, bezier_point_1, '.2');      // Return X and Y coordinates based on node location on bezier curve (.2)
-
-
-      // If the direction of the bubble is pointing to the left:
-      // -------------------------------------------------------
-
-      if ( t_direction == "left" ) {
-
-        // Coordinates
-        t_x0 = bezier_node_1.x;                      // Starting X coordinate
-        t_y0 = bezier_node_1.y;                      // Starting Y coordinate
-        t_x1 = bezier_node_2.x;                      // Horizontal line destination X coordinate
-        t_y1 = bezier_node_2.y;                      // Horizontal line destination X coordinate
-        t_x2 = '-'+ t_girth;                         // Diagonal line X coordinate
-        t_y2 = t_length - b_stroke;                  // Diagonal line Y coordinate
-        t_x3 = bezier_node_2.x - t_girth;            // Quadratic handle X coordinate
-        t_y3 = bezier_node_2.y + (t_length /4);      // Quadratic handle Y coordinate
-        t_x4 = bezier_node_1.x;                      // Quadratic end X coordinate - Should be the same as the first coordinate (t_x0)
-        t_y4 = bezier_node_1.y;                      // Quadratic end Y coordinate - Should be the same as the first coordinate (t_y0)
-  
-        // Pattern
-        t_path  = 'M' + t_x0 + ' ' + t_y0 + ' ';     // Move to x0 y0
-        t_path += 'L' + t_x1 + ' ' + t_y1 + ' ';     // Draw horizontal line to x1 y1
-        t_path += 'l' + t_x2 + ' ' + t_y2 + ' ';     // Draw a diagonal line to x2 y2
-        t_path += 'Q' + t_x3 + ' ' + t_y3 + ' ';     // Quadratic bezier curve handle coordinates x3 y3
-        t_path += ' ' + t_x4 + ' ' + t_y4 + ' ';     // Quadratic bezier curve end coordinate x4 y4
-        t_path += 'z';                               // Close path
-      }
-      
-
-
-      // If the direction of the bubble is pointing to the right:
-      // -------------------------------------------------------
-
-      if ( t_direction == "right" ) {
-  
-        // Coordinates
-        t_x0 = bezier_node_1.x;                       // Starting X coordinate 
-        t_y0 = bezier_node_1.y;                       // Starting Y coordinate
-        t_x1 = t_girth;                               // Diagonal line X coordinate
-        t_y1 = t_length - b_stroke;                   // Diagonal line Y coordinate
-        t_x2 = bezier_node_1.x + t_girth;             // Quadratic handle X coordinate
-        t_y2 = bezier_node_1.y + (t_length /4);       // Quadratic handle Y coordinate
-        t_x3 = bezier_node_2.x;                       // Quadratic end X coordinate
-        t_y3 = bezier_node_2.y;                       // Quadratic end Y coordinate
-        t_x4 = bezier_node_1.x;                       // Horizontal line destination X coordinate - Should be the same as first coordinate (t_x0)
-        t_y4 = bezier_node_1.y;                       // Horizontal line destination X coordinate - Should be the same as first coordinate (t_x0)
-  
-        // Pattern
-        t_path  = 'M' + t_x0 + ' ' + t_y0 + ' ';      // Move to x0 y0
-        t_path += 'l' + t_x1 + ' ' + t_y1 + ' ';      // Draw a diagonal line to x2 y2
-        t_path += 'Q' + t_x2 + ' ' + t_y2 + ' ';      // Quadratic bezier curve handle coordinates x3 y3
-        t_path += ' ' + t_x3 + ' ' + t_y3 + ' ';      // Quadratic bezier curve end coordinate x4 y4
-        t_path += 'L' + t_x4 + ' ' + t_y4 + ' ';      // Draw horizontal line to x1 y1
-        t_path += 'z';                                // Close path
-      }
-
+      bezier_node_1 = Bezier(bezier_point_0, bezier_control_out, bezier_control_in, bezier_point_1, '.45'),      // Return X and Y coordinates based on node location on bezier curve (.45)
+      bezier_node_2 = Bezier(bezier_point_0, bezier_control_out, bezier_control_in, bezier_point_1, '.2');      // Return X and Y coordinates based on node location on bezier curve (.2)
     }
 
     // If the tail is positioned on the right of the bubble
@@ -362,148 +349,124 @@ function bubbles() {
       // Bezier calc - Needed to calculate X,Y along a curve
       // -------------------------------------------------------
 
-      // The first point on curve
+      // Node 1 x,y
       bezier_point_0 = {
-        x: b_width / 2,
-        y: b_height - b_stroke
+        x: b_4_node_x - ( b_stroke / 2 ),
+        y: b_4_node_y - ( b_stroke / 2 )
       };
 
-      // Controller for point 0
-      bezier_control_0 = {
-        x: b_width - b_stroke,
-        y: b_height - b_stroke
+      // Controller Node 1 IN
+      bezier_control_in = {
+        x: b_4_handle_in_x - ( b_stroke / 2 ),
+        y: b_4_handle_in_y - ( b_stroke / 2 )
+      }
+
+      // Controller Node 3 OUT
+      bezier_control_out = {
+        x: b_3_handle_out_x - ( b_stroke / 2 ),
+        y: b_3_handle_out_y - ( b_stroke / 2 )
       };
 
       // The second point on curve
       bezier_point_1 = {
-        x: b_width - b_stroke,
-        y: (b_height/2) + (b_height/10)
+        x: b_3_node_x - ( b_stroke / 2 ),
+        y: b_3_node_y - ( b_stroke / 2 )
       };
 
-      // Controller for point 1
-      bezier_control_1 = {
-        x: b_width - b_stroke,
-        y: b_height / 2
-      }
-
-      bezier_node_1 = Bezier(bezier_point_0, bezier_control_0, bezier_control_1, bezier_point_1, '.2'),      // Return X and Y coordinates based on node location on bezier curve (.2)
-      bezier_node_2 = Bezier(bezier_point_0, bezier_control_0, bezier_control_1, bezier_point_1, '.45');      // Return X and Y coordinates based on node location on bezier curve (.45)
-
-
-      // If the direction of the bubble is pointing to the left:
-      // -------------------------------------------------------
-
-      if ( t_direction == "left" ) {
-
-        // Coordinates
-        t_x0 = bezier_node_1.x;                      // Starting X coordinate
-        t_y0 = bezier_node_1.y;                      // Starting Y coordinate
-        t_x1 = bezier_node_2.x;                      // Horizontal line destination X coordinate
-        t_y1 = bezier_node_2.y;                      // Horizontal line destination X coordinate
-        t_x2 = '-'+ t_girth;                         // Diagonal line X coordinate
-        t_y2 = t_length - b_stroke;                  // Diagonal line Y coordinate
-        t_x3 = bezier_node_2.x - t_girth;            // Quadratic handle X coordinate
-        t_y3 = bezier_node_2.y + (t_length /4);      // Quadratic handle Y coordinate
-        t_x4 = bezier_node_1.x;                      // Quadratic end X coordinate - Should be the same as the first coordinate (t_x0)
-        t_y4 = bezier_node_1.y;                      // Quadratic end Y coordinate - Should be the same as the first coordinate (t_y0)
-  
-        // Pattern
-        t_path  = 'M' + t_x0 + ' ' + t_y0 + ' ';     // Move to x0 y0
-        t_path += 'L' + t_x1 + ' ' + t_y1 + ' ';     // Draw horizontal line to x1 y1
-        t_path += 'l' + t_x2 + ' ' + t_y2 + ' ';     // Draw a diagonal line to x2 y2
-        t_path += 'Q' + t_x3 + ' ' + t_y3 + ' ';     // Quadratic bezier curve handle coordinates x3 y3
-        t_path += ' ' + t_x4 + ' ' + t_y4 + ' ';     // Quadratic bezier curve end coordinate x4 y4
-        t_path += 'z';                               // Close path
-      }
-      
-
-
-      // If the direction of the bubble is pointing to the right:
-      // -------------------------------------------------------
-
-      if ( t_direction == "right" ) {
-  
-        // Coordinates
-        t_x0 = bezier_node_1.x;                       // Starting X coordinate 
-        t_y0 = bezier_node_1.y;                       // Starting Y coordinate
-        t_x1 = t_girth;                               // Diagonal line X coordinate
-        t_y1 = t_length - b_stroke;                   // Diagonal line Y coordinate
-        t_x2 = bezier_node_1.x + t_girth;             // Quadratic handle X coordinate
-        t_y2 = bezier_node_1.y + (t_length /4);       // Quadratic handle Y coordinate
-        t_x3 = bezier_node_2.x;                       // Quadratic end X coordinate
-        t_y3 = bezier_node_2.y;                       // Quadratic end Y coordinate
-        t_x4 = bezier_node_1.x;                       // Horizontal line destination X coordinate - Should be the same as first coordinate (t_x0)
-        t_y4 = bezier_node_1.y;                       // Horizontal line destination X coordinate - Should be the same as first coordinate (t_x0)
-  
-        // Pattern
-        t_path  = 'M' + t_x0 + ' ' + t_y0 + ' ';      // Move to x0 y0
-        t_path += 'l' + t_x1 + ' ' + t_y1 + ' ';      // Draw a diagonal line to x2 y2
-        t_path += 'Q' + t_x2 + ' ' + t_y2 + ' ';      // Quadratic bezier curve handle coordinates x3 y3
-        t_path += ' ' + t_x3 + ' ' + t_y3 + ' ';      // Quadratic bezier curve end coordinate x4 y4
-        t_path += 'L' + t_x4 + ' ' + t_y4 + ' ';      // Draw horizontal line to x1 y1
-        t_path += 'z';                                // Close path
-      }
-
+      bezier_node_1 = Bezier(bezier_point_0, bezier_control_in, bezier_control_out, bezier_point_1, '.2'),      // Return X and Y coordinates based on node location on bezier curve (.45)
+      bezier_node_2 = Bezier(bezier_point_0, bezier_control_in, bezier_control_out, bezier_point_1, '.45');      // Return X and Y coordinates based on node location on bezier curve (.2)
     }
+
+    // This is in quarter segments, add the correct alignment to the tail spike
+    t_girth = (bezier_node_2.x - bezier_node_1.x) / 4;
 
     // If the tail is positioned in the middle of the bubble
     if( $(this).data('position') == "center" ) { 
 
-      // If the direction of the bubble is pointing to the left:
-      // -------------------------------------------------------
+      t_girth = 10;
 
-      if ( t_direction == "left" ) {
-
-        // Coordinates
-        t_x0 = (b_width / 2) - (t_girth * 2);        // Starting X coordinate
-        t_y0 = b_height - 10;                        // Starting Y coordinate
-        t_x1 = (b_width / 2) + (t_girth * 2);        // Horizontal line destination X coordinate
-        t_y1 = b_height - 10;                        // Horizontal line destination X coordinate
-        t_x2 = '-'+ t_girth * 2;                     // Diagonal line X coordinate
-        t_y2 = t_length - b_stroke;                  // Diagonal line Y coordinate
-        t_x3 = ((b_width /2) + (t_girth * 2)) - t_girth; // Quadratic handle X coordinate
-        t_y3 = (b_height - 10) + (t_length /4);      // Quadratic handle Y coordinate
-        t_x4 = (b_width / 2) - (t_girth * 2);        // Quadratic end X coordinate - Should be the same as the first coordinate (t_x0)
-        t_y4 = b_height - 10;                        // Quadratic end Y coordinate - Should be the same as the first coordinate (t_y0)
-  
-        // Pattern
-        t_path  = 'M' + t_x0 + ' ' + t_y0 + ' ';     // Move to x0 y0
-        t_path += 'L' + t_x1 + ' ' + t_y1 + ' ';     // Draw horizontal line to x1 y1
-        t_path += 'l' + t_x2 + ' ' + t_y2 + ' ';     // Draw a diagonal line to x2 y2
-        t_path += 'Q' + t_x3 + ' ' + t_y3 + ' ';     // Quadratic bezier curve handle coordinates x3 y3
-        t_path += ' ' + t_x4 + ' ' + t_y4 + ' ';     // Quadratic bezier curve end coordinate x4 y4
-        t_path += 'z';                               // Close path
+      bezier_node_2 = {
+        x: (b_width / 2) + (t_girth * 2) - (b_stroke / 2),
+        y: b_height - (b_stroke / 2) - (b_stroke / 2)
       }
-      
 
+      // Node 1 x,y
+      bezier_point_0 = {
+        x: (b_width / 2) - (t_girth * 2)  - (b_stroke / 2),
+        y: b_height - (b_stroke / 2) - (b_stroke / 2)
+      };
 
-      // If the direction of the bubble is pointing to the right:
-      // -------------------------------------------------------
+      // Controller Node 4 OUT
+      bezier_control_out = {
+        x: b_4_handle_out_x - ( b_stroke / 2 ) - (b_stroke / 2),
+        y: b_4_handle_out_y - ( b_stroke / 2 ) - (b_stroke / 2)
+      };
 
-      if ( t_direction == "right" ) {
-  
-        // Coordinates
-        t_x0 = (b_width / 2) - (t_girth * 2);         // Starting X coordinate
-        t_y0 = b_height - 10;                         // Starting Y coordinate
-        t_x1 = t_girth * 2;                           // Diagonal line X coordinate
-        t_y1 = t_length - b_stroke;                   // Diagonal line Y coordinate
-        t_x2 = ((b_width / 2) - (t_girth * 2)) + t_girth; // Quadratic handle X coordinate
-        t_y2 = (b_height - 10) + (t_length /4);       // Quadratic handle Y coordinate
-        t_x3 = (b_width / 2) + (t_girth * 2);         // Quadratic end X coordinate
-        t_y3 = b_height - 10;                         // Quadratic end Y coordinate
-        t_x4 = (b_width / 2) - (t_girth * 2);         // Horizontal line destination X coordinate - Should be the same as first coordinate (t_x0)
-        t_y4 = b_height - 10;                         // Horizontal line destination X coordinate - Should be the same as first coordinate (t_x0)
-  
-        // Pattern
-        t_path  = 'M' + t_x0 + ' ' + t_y0 + ' ';      // Move to x0 y0
-        t_path += 'l' + t_x1 + ' ' + t_y1 + ' ';      // Draw a diagonal line to x2 y2
-        t_path += 'Q' + t_x2 + ' ' + t_y2 + ' ';      // Quadratic bezier curve handle coordinates x3 y3
-        t_path += ' ' + t_x3 + ' ' + t_y3 + ' ';      // Quadratic bezier curve end coordinate x4 y4
-        t_path += 'L' + t_x4 + ' ' + t_y4 + ' ';      // Draw horizontal line to x1 y1
-        t_path += 'z';                                // Close path
+      // Controller Node 2 IN
+      bezier_control_in = {
+        x: b_1_handle_in_x - ( b_stroke / 2 ) - (b_stroke / 2),
+        y: b_1_handle_in_y - ( b_stroke / 2 ) - (b_stroke / 2)
       }
+
+      // Node 2 x,y
+      bezier_point_1 = {
+        x: (b_width / 2) + (t_girth * 2) - (b_stroke / 2),
+        y: b_height - (b_stroke / 2) - (b_stroke / 2)
+      };  
+
+      bezier_node_1 = Bezier(bezier_point_0, bezier_control_out, bezier_control_in, bezier_point_1, '1'),      // Return X and Y coordinates based on node location on bezier curve (1)
+      bezier_node_2 = Bezier(bezier_point_0, bezier_control_out, bezier_control_in, bezier_point_1, '0');      // Return X and Y coordinates based on node location on bezier curve (0)
+
+      // This is in quarter segments, add the correct alignment to the tail spike
+      t_girth = (bezier_node_2.x - bezier_node_1.x) / 2;
 
     }
+
+    // -------------------------------------------------------
+    // If the direction of the bubble is pointing to the left:
+    // -------------------------------------------------------
+    if ( t_direction == "left" ) {
+
+      // Coordinates
+      t_x0 = bezier_node_2.x;                       // Starting X coordinate
+      t_y0 = bezier_node_2.y;                       // Starting Y coordinate
+      t_x1 = bezier_node_1.x;                       // Horizontal line destination X coordinate
+      t_y1 = bezier_node_1.y;                       // Horizontal line destination Y coordinate
+      t_x2 = bezier_node_2.x;                       // Quadratic handle X coordinate
+      t_y2 = bezier_node_2.y + (t_length / 10);     // Quadratic handle Y coordinate
+      t_x3 = bezier_node_2.x - t_girth;             // Quadratic end X coordinate
+      t_y3 = bezier_node_2.y + t_length;            // Quadratic end Y coordinate
+      t_x4 = bezier_node_2.x;                       // Diagonal line X coordinate
+      t_y4 = bezier_node_2.y;                       // Diagonal line Y coordinate
+    }
+
+    // -------------------------------------------------------
+    // If the direction of the bubble is pointing to the right:
+    // -------------------------------------------------------
+    if ( t_direction == "right" ) {
+
+      // Coordinates
+      t_x0 = bezier_node_1.x;                       // Starting X coordinate
+      t_y0 = bezier_node_1.y;                       // Starting Y coordinate
+      t_x1 = bezier_node_2.x;                       // Horizontal line destination X coordinate
+      t_y1 = bezier_node_2.y;                       // Horizontal line destination Y coordinate
+      t_x2 = bezier_node_1.x;                       // Quadratic handle X coordinate
+      t_y2 = bezier_node_1.y + (t_length / 10);     // Quadratic handle Y coordinate
+      t_x3 = bezier_node_1.x + t_girth;             // Quadratic end X coordinate
+      t_y3 = bezier_node_1.y + t_length;            // Quadratic end Y coordinate
+      t_x4 = bezier_node_1.x;                       // Diagonal line X coordinate
+      t_y4 = bezier_node_1.y;                       // Diagonal line Y coordinate
+    }
+
+    // -------------------------------------------------------
+    // Tail Pattern
+    // -------------------------------------------------------
+    t_path  = 'M' + t_x0 + ',' + t_y0;      // Move to x0 y0
+    t_path += 'L' + t_x1 + ',' + t_y1;      // Draw horizontal line to x1 y1
+    t_path += 'Q' + t_x2 + ',' + t_y2;      // Quadratic bezier curve handle coordinates x3 y3
+    t_path += ' ' + t_x3 + ',' + t_y3;      // Quadratic bezier curve end coordinate x4 y4
+    t_path += 'L' + t_x4 + ',' + t_y4;      // Draw a diagonal line to x2 y2
+    t_path += 'z';                          // Close path
 
 
     // -------------------------------------------------------
@@ -525,7 +488,7 @@ function bubbles() {
     b_svg_path.setAttribute( 'stroke-width' , b_stroke );
     b_svg_path.setAttribute( 'stroke-linecap' , 'round' );
     b_svg_path.setAttribute( 'stroke-linejoin' , 'round' );
-    b_svg_path.setAttribute( 'fill' , '#fff' );
+    b_svg_path.setAttribute( 'fill' , 'green' );
 
     // Construct the behind tail path
     t_svg_path1.setAttribute( 'd' , t_path );
@@ -533,13 +496,13 @@ function bubbles() {
     t_svg_path1.setAttribute( 'stroke-width' , (b_stroke*2) );
     t_svg_path1.setAttribute( 'stroke-linecap' , 'round' );
     t_svg_path1.setAttribute( 'stroke-linejoin' , 'round' );
-    t_svg_path1.setAttribute( 'fill' , '#fff' );
+    t_svg_path1.setAttribute( 'fill' , '#000' );
     
     // Construct the front tail path
     t_svg_path2.setAttribute( 'd' , t_path );
     t_svg_path2.setAttribute( 'fill' , '#fff' );
 
-    // Append the paths to the SVG
+    // Append the paths to the SVG in this order: tail behind, bubble, tail in front
     b_svg.appendChild(t_svg_path1);
     b_svg.appendChild(b_svg_path);
     b_svg.appendChild(t_svg_path2);
@@ -558,7 +521,7 @@ function bubbles() {
   * Get new x,y on curve by given x
   * @params a,b,c,d {x:x,y:y}
   * @params x 
-  * @return {{x:new x on cruve ,y: new y on cruve}}
+  * @return {{x:new x on curve, y:new y on curve}}
 */
 function YBX(a,b,c,d,x){
 
@@ -633,7 +596,6 @@ function Bezier(a,b,c,d,t) {
   * @params a,b,c,d
   * @return x
 */
-
 function cubic(a,b,c,d){
   var m,m2,k,n,n2,x,r,rc,theta,sign,dans;
   

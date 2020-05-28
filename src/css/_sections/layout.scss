@@ -11,10 +11,6 @@ img {
   width: auto;
 }
 
-.hidden {
-  @include hide;
-}
-
 // Page layout
 // --------------------------------------------------
 
@@ -224,6 +220,7 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
+  z-index: 2;
   width: calc(100% - 20px);
   outline: none;
   background-color: rgba(black, .9);
@@ -271,7 +268,7 @@ body {
   }
   .bubble + .bubble {
     z-index: 2;
-    margin-top: -.65em;
+    margin-top: -.5em;
   }
 
   // .comic-strip.is-resized &,

@@ -624,17 +624,6 @@ img {
   width: auto;
 }
 
-.hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px !important;
-  overflow: hidden;
-  padding: 0;
-  position: absolute !important;
-  width: 1px;
-}
-
 html {
   height: 100%;
 }
@@ -809,6 +798,7 @@ html {
   position: absolute;
   top: 10px;
   left: 10px;
+  z-index: 2;
   width: calc(100% - 20px);
   outline: none;
   background-color: rgba(0, 0, 0, 0.9);
@@ -878,7 +868,7 @@ html {
 
 .bubble-wrap .bubble + .bubble {
   z-index: 2;
-  margin-top: -.65em;
+  margin-top: -.5em;
 }
 
 .comic-strip.is-closed-caption-mode .bubble-wrap {
