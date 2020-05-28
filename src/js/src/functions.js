@@ -488,7 +488,7 @@ function bubbles() {
     b_svg_path.setAttribute( 'stroke-width' , b_stroke );
     b_svg_path.setAttribute( 'stroke-linecap' , 'round' );
     b_svg_path.setAttribute( 'stroke-linejoin' , 'round' );
-    b_svg_path.setAttribute( 'fill' , 'green' );
+    b_svg_path.setAttribute( 'fill' , '#fff' );
 
     // Construct the behind tail path
     t_svg_path1.setAttribute( 'd' , t_path );
