@@ -154,11 +154,16 @@
 							
 							<img src="img/comics/colour-f1.png" data-src="img/comics/colour-f1.png" data-contrast="img/comics/contrast-f1.png" alt="">
 							<div class="caption-closed" tabindex="-1" aria-hidden="true">
-								<p><strong>[Dante]</strong>: Sigh.</p>
+								<p>
+									<img class="avatar" src="img/comics/avatar-dante.png" alt="Avatar for Dante">
+									<strong>[Dante]</strong>: Sigh.
+								</p>
 							</div><!-- // .caption-closed -->
 
 							<figcaption id="frame-1-desc" class="caption-sr" tabindex="0">
-								Dante, a lanky man with thinning dark hair and stubble is cautiously standing outside a shop titled Games Dungeon. An open sign hangs in the window. He sighs apprehensively.
+								<span class="caption-sr__inner">
+									Dante, a lanky man with thinning dark hair and stubble is cautiously standing outside a shop titled Games Dungeon. An open sign hangs in the window. He sighs apprehensively.
+								</span>
 							</figcaption>
 						</figure>
 
@@ -168,8 +173,14 @@
 							<img src="img/comics/colour-f2.png" data-src="img/comics/colour-f2.png" data-contrast="img/comics/contrast-f2.png" alt="">
 
 							<div class="caption-closed" tabindex="-1" aria-hidden="true">
-								<p><strong>[Clerk]:</strong> Welcome to Games Dungeon! How can I help?</p>
-								<p><strong>[Dante]:</strong> Uh, yeah. I need something for someone who's never played Dungeons and Dragons before.</p>
+								<p>
+									<img class="avatar" src="img/comics/avatar-clerk.png" alt="Avatar for Clerk">
+									<strong>[Clerk]:</strong> Welcome to Games Dungeon! How can I help?
+								</p>
+								<p>
+									<img class="avatar" src="img/comics/avatar-dante.png" alt="Avatar for Dante">
+									<strong>[Dante]:</strong> Uh, yeah. I need something for someone who's never played Dungeons and Dragons before.
+								</p>
 							</div><!-- // .caption-closed -->
 
 							<div class="bubble-wrap" aria-hidden="true">
@@ -191,8 +202,10 @@
 							</div><!-- // .bubble-wrap -->
 
 							<figcaption id="frame-2-desc" class="caption-sr" tabindex="0">
-								"Welcome to Games Dungeon! How can I help?", a preppy dressed young asian woman asks Dante.
-								"Uh, yeah. I need something for someone who's never played Dungeons and Dragons before.", Dante replies.
+								<span class="caption-sr__inner">
+									"Welcome to Games Dungeon! How can I help?", a preppy dressed young asian woman asks Dante.
+									"Uh, yeah. I need something for someone who's never played Dungeons and Dragons before.", Dante replies.
+								</span>
 							</figcaption>
 						</figure>
 
@@ -202,8 +215,14 @@
 							<img src="img/comics/colour-f3.png" data-src="img/comics/colour-f3.png" data-contrast="img/comics/contrast-f3.png" alt="">
 
 							<div class="caption-closed" tabindex="-1" aria-hidden="true">
-								<p><strong>[Clerk]</strong>: Well, you need the redbox. Would you like me to bag it up for you?</p>
-								<p><strong>[Dante]</strong>: Yeah... actually, two bags please.</p>
+								<p>
+									<img class="avatar" src="img/comics/avatar-clerk.png" alt="Avatar for Clerk">
+									<strong>[Clerk]</strong>: Well, you need the redbox. Would you like me to bag it up for you?
+								</p>
+								<p>
+									<img class="avatar" src="img/comics/avatar-dante.png" alt="Avatar for Dante">
+									<strong>[Dante]</strong>: Yeah... actually, two bags please.
+								</p>
 							</div><!-- // .caption-closed -->
 
 							<div class="bubble-wrap" aria-hidden="true">
@@ -223,8 +242,10 @@
 							</div><!-- // .bubble-wrap -->
 
 							<figcaption id="frame-3-desc" class="caption-sr" tabindex="0">
-								"Well, you need the redbox. Would you like me to bag it up for you?" the attendant asks.
-								"Yeah... actually, two bags please.", Dante replies.
+								<span class="caption-sr__inner">
+									"Well, you need the redbox. Would you like me to bag it up for you?" the attendant asks.
+									"Yeah... actually, two bags please.", Dante replies.
+								</span>
 							</figcaption>
 						</figure>
 
@@ -237,7 +258,9 @@
 							</div><!-- // .caption-closed -->
 
 							<figcaption id="frame-4-desc" class="caption-sr" tabindex="0">
-								Dante is now leaving the building holding a paper bag. The other bag has eye holes cut out and is worn like a mask.
+								<span class="caption-sr__inner">
+									Dante is now leaving the building holding a paper bag. The other bag has eye holes cut out and is worn like a mask.
+								</span>
 							</figcaption>
 						</figure>
 
@@ -288,10 +311,21 @@
 							</script>
 						</div><!-- // .translate -->
 					</div><!-- // .comic-filter -->
+					
+					<div class="notes">
+						<p><strong>Outcome</strong></strong></p>
+						<p></p>
+						<p><strong>Helpful links:</strong></p>
+						<ul>
+							<li><a href="https://twitter.com/RobotHugsComic/status/949324465191694337" target="_blank" title="The importance of useful alt text in images"><span class="hidden">Opens in a new window:</span> https://twitter.com/RobotHugsComic/status/949324465191694337</a></li>
+							<li><a href="https://veroniiiica.com/2018/11/29/how-to-write-alt-text-digital-comics/" title="How to write alt text for digital comics" target="_blank"><span class="hidden">Opens in a new window:</span> https://veroniiiica.com/2018/11/29/how-to-write-alt-text-digital-comics/</a></li>
+						</ul>
+					</div><!-- // .notes -->
 
 					<div class="notes notes--log">
 						<p><strong>Change log</strong></p>
 						<ol>
+							<li><strong class="date">29/05/2020</strong> Converted from jquery to javascript and removed dependencies. Thickened the border, improved the focus state for the frame to signify which frame you're currently reading. Added avatars to closed captions so to know which person the caption belongs to. Added fixed position for the closed captions.</li>
 							<li><strong class="date">25/05/2020</strong> Validated markup. Removed all JS that was not needed to power the plugin. Still require jquery dependency to be eliminated. Restructured the bubbles to use cubic beziers instead of quadratic beziers. The tails are now positioned exactly. Tweeked and improved the tail constructor to draw the angles and curves of the spike better than before. Still not perfect.</li>
 							<li><strong class="date">29/01/2020</strong> Fixed SVG filter bug for colour blind options by moving the filters inline and referring to simply the ID within the CSS.</li>
 							<li><strong class="date">29/01/2020</strong> Reworked resize font function to only apply the font-size to the closed captions. The bubbles were toggling the browser zoom functionality when the font-size was increased using the buttons, which we don't want.</li>
@@ -315,14 +349,6 @@
 							<li><strong class="date">08/01/2020</strong> Added high contrast images and toggle for people who have vision impairment.</li>
 							<li><strong class="date">19/12/2019</strong> Split the comic into individual, borderless frames. Firstly. Let's split the comic into the individual frames and remove all text from the image - we want the text to be overlayed later.</li>
 						</ol>
-					</div><!-- // .notes -->
-					
-					<div class="notes">
-						<p><strong>Helpful links:</strong></p>
-						<ul>
-							<li><a href="https://twitter.com/RobotHugsComic/status/949324465191694337" target="_blank" title="The importance of useful alt text in images"><span class="hidden">Opens in a new window:</span> https://twitter.com/RobotHugsComic/status/949324465191694337</a></li>
-							<li><a href="https://veroniiiica.com/2018/11/29/how-to-write-alt-text-digital-comics/" title="How to write alt text for digital comics" target="_blank"><span class="hidden">Opens in a new window:</span> https://veroniiiica.com/2018/11/29/how-to-write-alt-text-digital-comics/</a></li>
-						</ul>
 					</div><!-- // .notes -->
 
 				</div><!-- // .comic-wrap_inner -->
@@ -411,8 +437,6 @@
 		</defs>
 		</svg>
 
-		<!-- Script Libraries and Resources -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="dist/js/build.js"></script>
 
 	</body>

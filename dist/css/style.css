@@ -776,8 +776,41 @@ html {
   border: 4px solid #000;
   margin: 0;
   position: relative;
-  overflow: hidden;
   background-color: black;
+  -webkit-box-shadow: 0 0 0 0 #000;
+  box-shadow: 0 0 0 0 #000;
+  outline: none;
+  -webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
+  transition: -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.comic-frame.is-active {
+  -webkit-box-shadow: 0 0 0 4px #000;
+  box-shadow: 0 0 0 4px #000;
+}
+
+.comic-strip.is-closed-caption-mode .comic-frame.is-active .caption-closed {
+  position: fixed;
+  left: 0;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.comic-strip:not(.is-closed-caption-mode) .comic-frame .caption-closed,
+.comic-strip.is-closed-caption-mode .comic-frame:not(.is-active) .caption-closed {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px !important;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
 }
 
 .comic-frame > img {
@@ -786,9 +819,9 @@ html {
   width: 100%;
 }
 
-.caption-sr,
+.caption-sr__inner,
 .caption-closed > p {
-  padding: 15px;
+  padding: 20px 15px;
   font-size: .875em;
   border-radius: 3px;
   background-color: white;
@@ -798,16 +831,23 @@ html {
   position: absolute;
   top: 10px;
   left: 10px;
-  z-index: 2;
+  z-index: 10;
   width: calc(100% - 20px);
   outline: none;
-  background-color: rgba(0, 0, 0, 0.9);
-  color: white;
+  background-color: transparent;
 }
 
-.caption-sr:not(:focus),
-.caption-sr:focus + .caption-closed,
-.caption-sr:focus + .caption-closed + .bubble-wrap {
+.caption-sr__inner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  text-align: center;
+  border-radius: 0;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -819,24 +859,33 @@ html {
 }
 
 .caption-closed {
-  left: 0;
-  top: 0;
   outline: none;
+  background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.caption-closed .avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 
 .caption-closed > p {
   margin: 10px;
-}
-
-.comic-strip:not(.is-closed-caption-mode) .caption-closed {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px !important;
-  overflow: hidden;
-  padding: 0;
-  position: absolute !important;
-  width: 1px;
+  padding-left: 60px;
+  position: relative;
+  display: block;
+  max-width: 300px;
+  margin: 10px;
 }
 
 .bubble-wrap {
@@ -845,6 +894,8 @@ html {
   left: 0;
   top: 0;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -869,17 +920,6 @@ html {
 .bubble-wrap .bubble + .bubble {
   z-index: 2;
   margin-top: -.5em;
-}
-
-.comic-strip.is-closed-caption-mode .bubble-wrap {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px !important;
-  overflow: hidden;
-  padding: 0;
-  position: absolute !important;
-  width: 1px;
 }
 
 .bubble {

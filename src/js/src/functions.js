@@ -1,194 +1,186 @@
-$(function(){
+// For debounce
+var timeout;
 
-  $(document).keyup(function(e){
+// Selectors
+comicStrip = document.querySelector('.comic-strip');
+comicFrame = document.querySelectorAll('.comic-frame');
+highContrastBtn = document.querySelector('.js-highcontrast');
+rtlBtn = document.querySelector('.js-rtl');
+ccBtn = document.querySelector('.js-closedcaptions');
+bubbleBtn = document.querySelector('.js-bubbles');
 
-    window.addEventListener("keydown", function(e) {
-      // space and arrow keys
-      if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        if( $('.dropdown').hasClass('is-focussed') ) {
-          e.preventDefault();
-        }
-      }
-    }, false);
+// Generate bubbles
+bubbles();
 
-    // If esc key pressed
-    if(e.keyCode === 27) {
-      if( $('.dropdown').hasClass('is-focussed') ) {
-        $('.dropdown').removeClass('is-focussed');
-        $('.dropdown__selected').focus();
-      }
-    }
-    // If up key is pressed
-    if(e.keyCode === 38) {
-      if( $('.dropdown').hasClass('is-focussed') ) {
-        if( $(":focus").hasClass('js-cb-normal') ) {
-          $(":focus").parents('ul').prev().focus();
-        } else if ( !$(":focus").hasClass('dropdown__selected') ) {
-          $(":focus").parent().prev().find('button').focus();
-        }
-        return false;
-      }
-    }
-    // If down key is pressed
-    if(e.keyCode === 40) {
-      if( $('.dropdown').hasClass('is-focussed') ) {
-        if( $(":focus").hasClass('dropdown__selected') ) {
-          $(":focus").next().find('li:first-child > button').focus();
-        } else if ( !$(":focus").hasClass('js-cb-achromatomaly') ) {
-          $(":focus").parent().next().find('button').focus();
-        } 
-        return false;
-      }
-    }
+// Resize bubbles
+window.addEventListener('resize', function (event) {
+	if (timeout) { window.cancelAnimationFrame(timeout); }
+	timeout = window.requestAnimationFrame(function () {
+		bubbles();
+	});
+}, false);
 
-  });
-
-  $('body').on('click', function(){
-    $(".dropdown").removeClass('is-focussed');
-  });
-
-  // High contrast mode
-  $('.js-highcontrast').on('click', function(){
-    if( !$('.comic-strip').hasClass('is-high-contrast-mode') ) {
-      $('.comic-strip').addClass('is-high-contrast-mode');
-      $(this).addClass('is-active').attr("aria-pressed", "true"); // Activate high contrast mode
-
-      $('.comic-strip img').each(function(){
-        var contrast_url = $(this).data('contrast');
-        $(this).attr("src",contrast_url);
-      });
-    } else {
-      $('.comic-strip').removeClass('is-high-contrast-mode');
-      $(this).removeClass('is-active').attr("aria-pressed", "false");
-      $('.comic-strip img').each(function(){
-        var source_url = $(this).data('src');
-        $(this).attr("src",source_url);
-      });
-    }
-    return false;
-  });
-
-  // RTL / LTR toggle
-  $('.js-rtl').on('click', function(){
-    if( !$('.comic-strip').hasClass('is-rtl-mode') ) {
-      $('.comic-strip').addClass('is-rtl-mode');
-      $(this).addClass('is-active').attr("aria-pressed", "true");
-    } else {
-      $('.comic-strip').removeClass('is-rtl-mode');
-      $(this).removeClass('is-active').attr("aria-pressed", "false");
-    }
-    return false;
-  });
-
-  // To refresh bubbles
-  $('.js-bubbles').on('click', function(){
-    bubbles();
-    return false
-  });
-
-  // Closed caption mode
-  $('.js-closedcaptions').on('click', function(){
-    if( !$('.comic-strip').hasClass('is-closed-caption-mode') ) {
-      $('.comic-strip').addClass('is-closed-caption-mode');
-      $(this).addClass('is-active').attr("aria-pressed", "true");
-    } else {
-      $('.comic-strip').removeClass('is-closed-caption-mode');
-      $(this).removeClass('is-active').attr("aria-pressed", "false");
-
-      // Reset the font-size back to 100% and deactivate captions
-      $('.comic-strip').data('fontsize', '100');
-      $('.font-sizer .text strong').text('100%');
-      $('.comic-strip .caption-closed').css('font-size', '100%');
-
-      // Reset the buttons
-      $('.js-resize-up').attr("disabled", false);
-      $('.js-resize-down').attr("disabled", true);
-    }
-    return false;
-  });
- 
-  // Increase / decrease Font Size
-  $(".font-sizer .btn").on('click', function(){
-    var currentSize = $('.comic-strip').data('fontsize');
-    if( $(this).hasClass('js-resize-up') ) { currentSize = parseFloat(currentSize)+10; }
-    if( $(this).hasClass('js-resize-down') ) { currentSize = parseFloat(currentSize)-10; }
-
-    // Removed disbaled button state while we're in the 110% - 190% font-size state
-    if( currentSize != 100 && currentSize != 200 ) {
-      $('.js-resize-down').attr("disabled", false);
-      $('.js-resize-up').attr("disabled", false);
-    }
-
-    // If it's font size above 100 add .is-resized
-    if( currentSize != 100 ) {
-      $('.comic-strip').addClass('is-closed-caption-mode');
-      $('.js-closedcaptions').addClass('is-active').attr("aria-pressed", "true");
-      $('.comic-strip').addClass('is-resized');
-    } else {
-      if( !$('.comic-strip').hasClass('is-browserZoom') ) {
-        $('.comic-strip').removeClass('is-closed-caption-mode');
-        $('.js-closedcaptions').removeClass('is-active').attr("aria-pressed", "false");
-      }
-      $('.comic-strip').removeClass('is-resized');
-    }
-
-    // Add disabled state to resize down at font-size 100%
-    if( currentSize == 100 ) {
-      $('.js-resize-down').attr("disabled", true);
-    }
-    
-    // Add disabled state to resize up at font-size 200%
-    if( currentSize == 200 ) {
-      $('.js-resize-up').attr("disabled", true);
-    }
-
-    // Upkeep
-    $('.comic-strip').data('fontsize', currentSize); // Update the data-attribute to reflect to increase / decrease.
-    $('.font-sizer .text strong').text(currentSize + '%'); // Update the font size inline text.
-    $('.comic-strip .caption-closed').css('font-size', currentSize + '%'); // Update the font-size css value on comic-strip.
-
-    return false;
-  });
-
-  $('.dropdown__selected').on('click', function(e){
-    if( !$(this).parent().hasClass('is-focussed') ) {
-      $(this).parent().addClass('is-focussed');
-    } else {
-      $(this).parent().removeClass('is-focussed');
-    }
-
-    e.stopPropagation();
-  });
-
-  $('.btn-option').on('click', function(){
-    $text = $(this).text();
-    $(this).parents('.dropdown').find('.dropdown__selected strong').text($text);
-    $(this).parents('.dropdown').removeClass('is-focussed');
-    $(this).parents('.dropdown').find('.dropdown__selected').focus();
-
-    $text = $text.toLowerCase();
-    if( $(this).hasClass('js-cb-normal') ) {
-      colourblindReset();
-    } else if ( !$('.comic-strip').hasClass('is-cb-'+$text) ) {
-      colourblindReset()
-      $('.comic-strip').addClass('is-cb-'+$text);
-    }
-    return false
-  });
-
-  // Generate bubbles
-  bubbles();
+document.querySelectorAll('.caption-sr').forEach(function(item){
+	item.addEventListener('focus', (event) => {
+		event.target.parentNode.classList.add('is-active');
+	});
+	item.addEventListener('blur', (event) => {
+		event.target.parentNode.classList.remove('is-active');
+	});
 });
 
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Toggle high contrast mode
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+highContrastBtn.addEventListener('click', function(e){
+	if( !highContrastBtn.classList.contains('is-active') ) {
+		highContrastBtn.classList.add('is-active');
+		highContrastBtn.setAttribute('aria-pressed', 'true');
+		comicStrip.classList.add('is-high-contrast-mode');
+
+		comicImg = document.querySelectorAll('.comic-strip img');
+		comicImg.forEach(function(strip){
+			contrastUrl = strip.dataset.contrast;
+			strip.setAttribute('src', contrastUrl);
+		});
+	} else {
+		highContrastBtn.classList.remove('is-active');
+		highContrastBtn.setAttribute('aria-pressed', 'false');
+		comicStrip.classList.remove('is-high-contrast-mode');
+
+		comicImg = document.querySelectorAll('.comic-strip img');
+		comicImg.forEach(function(strip){
+			srcUrl = strip.dataset.src;
+			strip.setAttribute('src', srcUrl);
+		});
+	}
+
+	e.preventDefault;
+});
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Toggle RTL / LTR mode
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+rtlBtn.addEventListener('click', function(){
+	if( !rtlBtn.classList.contains('is-active') ) {
+		rtlBtn.classList.add('is-active');
+		rtlBtn.setAttribute('aria-pressed', 'true');
+		comicStrip.classList.add('is-rtl-mode');
+	} else {
+		rtlBtn.classList.remove('is-active');
+		rtlBtn.setAttribute('aria-pressed', 'false');
+		comicStrip.classList.remove('is-rtl-mode');
+	}
+});
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Toggle closed caption mode
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+ccBtn.addEventListener('click', function(){
+	if( !ccBtn.classList.contains('is-active') ) {
+		ccBtn.classList.add('is-active');
+		ccBtn.setAttribute('aria-pressed', 'true');
+		comicStrip.classList.add('is-closed-caption-mode');
+	} else {
+		ccBtn.classList.remove('is-active');
+		ccBtn.setAttribute('aria-pressed', 'false');
+		comicStrip.classList.remove('is-closed-caption-mode');
+
+		// Reset the font-size back to 100% and deactive captions
+		document.querySelector('.comic-strip').dataset.fontsize='100';
+		document.querySelector('.font-sizer .text strong').innerHTML = '100%';
+		document.querySelectorAll('.comic-strip .caption-closed').forEach(function(item){
+			item.style.fontSize = "100%";
+		});
+
+		// Reset the buttons
+		document.querySelector('.js-resize-up').disabled = false;
+		document.querySelector('.js-resize-down').disabled = true;
+	}
+});
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Increase / decrease font size
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+document.querySelectorAll('.font-sizer .btn').forEach(function(item){
+	item.addEventListener('click', function(e){
+		currentSize = document.querySelector('.comic-strip').dataset.fontsize;
+		if( item.classList.contains('js-resize-up') ) {
+			currentSize = parseFloat( currentSize ) + 10;
+		}
+		if( item.classList.contains('js-resize-down') ) {
+			currentSize = parseFloat( currentSize ) - 10;
+		}
+
+		// Removed disbaled button state while we're in the 110% - 190% font-size state
+		if( currentSize != 100 && currentSize != 200 ) {
+			document.querySelector('.js-resize-down').disabled = false;
+			document.querySelector('.js-resize-up').disabled = false;
+		}
+
+		// If it's font size above 100 add .is-resized
+		if( currentSize != 100 ) {
+			comicStrip.classList.add('is-closed-caption-mode', 'is-resized');
+			ccBtn.classList.add('is-active');
+			ccBtn.setAttribute('aria-pressed', 'true');
+		  } else {
+			  if( !comicStrip.classList.contains('is-browserZoom') ) {
+				  comicStrip.classList.remove('is-closed-caption-mode');
+				  ccBtn.classList.remove('is-active');
+				  ccBtn.setAttribute('aria-pressed', 'false');
+			  }
+			  comicStrip.classList.remove('is-resized');
+		  }
+	  
+		  // Add disabled state to resize down at font-size 100%
+		  if( currentSize == 100 ) {
+			document.querySelector('.js-resize-down').disabled = true;
+		  }
+		  
+		  // Add disabled state to resize up at font-size 200%
+		  if( currentSize == 200 ) {
+			document.querySelector('.js-resize-up').disabled = true;
+		  }
+	  
+		  // Upkeep
+		  comicStrip.dataset.fontsize = currentSize; // Update the data-attribute to reflect to increase / decrease.
+		  document.querySelector('.font-sizer .text strong').innerHTML = currentSize + '%'; // Update the font size inline text.
+		  document.querySelectorAll('.comic-strip .caption-closed').forEach(function(item){
+			  item.style.fontSize = currentSize + '%'; // Update the font-size css value on comic-strip.
+		  });
+
+		e.preventDefault;
+	});
+});
+
+
 function colourblindReset() {
-  if( $('.comic-strip').hasClass('is-cb-protanopia') || $('.comic-strip').hasClass('is-cb-protanomaly') || $('.comic-strip').hasClass('is-cb-deuteranopia') || $('.comic-strip').hasClass('is-cb-deuteranomaly') || $('.comic-strip').hasClass('is-cb-tritanopia') || $('.comic-strip').hasClass('is-cb-tritanomaly') || $('.comic-strip').hasClass('is-cb-achromatopsia') || $('.comic-strip').hasClass('is-cb-achromatomaly') ) {
-    $('.comic-strip').removeClass('is-cb-protanopia is-cb-protanomaly is-cb-deuteranopia is-cb-deuteranomaly is-cb-tritanopia is-cb-tritanomaly is-cb-achromatopsia is-cb-achromatomaly');
-  }
+	if(
+		comicStrip.classList.contains('is-cb-protanopia') ||
+		comicStrip.classList.contains('is-cb-protanomaly') ||
+		comicStrip.classList.contains('is-cb-deuteranopia') ||
+		comicStrip.classList.contains('is-cb-deuteranomaly') ||
+		comicStrip.classList.contains('is-cb-tritanopia') ||
+		comicStrip.classList.contains('is-cb-tritanomaly') ||
+		comicStrip.classList.contains('is-cb-achromatopsia') ||
+		comicStrip.classList.contains('is-cb-achromatomaly')
+	) {
+		comicStrip.classList.remove('is-cb-protanopia','is-cb-protanomaly','is-cb-deuteranopia','is-cb-deuteranomaly','is-cb-tritanopia','is-cb-tritanomaly','is-cb-achromatopsia','is-cb-achromatomaly');
+	}
 }
 
+// To refresh bubbles // Eventually this will be irrelevant
+bubbleBtn.addEventListener('click', function(e){
+	bubbles();
+	e.preventDefault;
+});
+
 function bubblesResize() {
-  $w = ( $('.comic-frame').width() / 265 )+'em';
-  $('.bubble').css({'font-size': $w});
+	
 }
 
 function bubbleBrowserZoom() {
@@ -197,22 +189,26 @@ function bubbleBrowserZoom() {
   
   if( parseInt(compStyles.getPropertyValue('font-size'), 10) > 23 ) {
 
-    $('.comic-strip').addClass('is-closed-caption-mode is-browserZoom');
-    $('.js-closedcaptions').addClass('is-active').attr('disabled', true).attr("aria-pressed", "true");
+    comicStrip.classList.add('is-closed-caption-mode', 'is-browserZoom');
+	ccBtn.classList.add('is-active');
+	ccBtn.setAttribute('aria-pressed', true);
+	// ccBtn.disabled = true;
 
   }
 }
 
 function bubbles() {
-  $('.comic-strip').addClass('is-loading'); // Force the desktop width and height to normalise the stroke width.
+	comicStrip.classList.add('is-loading'); // Force the desktop width and height to normalise the stroke width.
 
-  bubblesResize(); // Resize font to the normalised desktop size
-  bubbleBrowserZoom(); // Detect if the browser has zoom - if so remove bubbles and replace with captions
+	// bubblesResize(); // Resize font to the normalised desktop size
+	// bubbleBrowserZoom(); // Detect if the browser has zoom - if so remove bubbles and replace with captions
   
-  $('.bubble svg').remove(); // Remove all current bubble SVG graphics.
+	document.querySelectorAll('.bubble svg').forEach(function(item){
+		item.remove(); // Remove all current bubble SVG graphics.
+	});
 
   // Apply new bubble SVG graphics.
-  $('.bubble').each(function(i){
+  document.querySelectorAll('.bubble').forEach(function(i){
 
     // -------------------------------------------------------
     // Bubble settings
@@ -220,17 +216,17 @@ function bubbles() {
     xmlns = "http://www.w3.org/2000/svg";
     b_stroke = 4; // Bubble stroke thickness
     b_handle_length = 8; // This is how much curvature the bubble will have.
-    b_width = $(this).outerWidth(); // Bubble width
-    b_height = $(this).outerHeight(); // Bubble height
+    b_width = i.clientWidth; // Bubble width
+    b_height = i.clientHeight; // Bubble height
 
     // Tail direction - left or right
-    t_direction = $(this).data('direction');
+    t_direction = i.dataset.direction;
 
     // $l = Length // Elongate SVG to make room for the tail, while retaining the bubble dimensions - short, normal, long or numeric pixel dimension
-    if( $(this).data('length') == "short" ) { t_length = 50; }
-    else if( $(this).data('length') == "normal" ) { t_length = 100; }
-    else if( $(this).data('length') == "long" ) { t_length = 200; }
-    else { t_length = $(this).data('length'); } // Or numeric pixel dimension
+    if( i.dataset.length == "short" ) { t_length = 50; }
+    else if( i.dataset.length == "normal" ) { t_length = 100; }
+    else if( i.dataset.length == "long" ) { t_length = 200; }
+    else { t_length = i.dataset.length; } // Or numeric pixel dimension
 
     // -------------------------------------------------------
     // Bubble coordinates
@@ -309,7 +305,7 @@ function bubbles() {
     // -------------------------------------------------------
 
     // If the tail is positioned on the left of the bubble
-    if( $(this).data('position') == "left" ) {
+    if( i.dataset.position == "left" ) {
 
       // -------------------------------------------------------
       // Bezier calc - Needed to calculate X,Y along a curve
@@ -344,7 +340,7 @@ function bubbles() {
     }
 
     // If the tail is positioned on the right of the bubble
-    if( $(this).data('position') == "right" ) {
+    if( i.dataset.position == "right" ) {
       
       // Bezier calc - Needed to calculate X,Y along a curve
       // -------------------------------------------------------
@@ -381,7 +377,7 @@ function bubbles() {
     t_girth = (bezier_node_2.x - bezier_node_1.x) / 4;
 
     // If the tail is positioned in the middle of the bubble
-    if( $(this).data('position') == "center" ) { 
+    if( i.dataset.position == "center" ) { 
 
       t_girth = 10;
 
@@ -508,61 +504,15 @@ function bubbles() {
     b_svg.appendChild(t_svg_path2);
 
     // Append the completed SVG into the DOM
-    $(this).append(b_svg);
+    i.appendChild(b_svg);
   });
 
+
   // Cleanup - remove the loading class
-  $('.comic-strip').removeClass('is-loading');
+  comicStrip.classList.remove('is-loading');
+
   bubblesResize(); // Resize the font once more.
 }
-
-
-/*
-  * Get new x,y on curve by given x
-  * @params a,b,c,d {x:x,y:y}
-  * @params x 
-  * @return {{x:new x on curve, y:new y on curve}}
-*/
-function YBX(a,b,c,d,x){
-
-  a = a.x;
-  b = b.x;
-  c = c.x;
-  d = d.x;
-  
-  // Lets expand this 
-  // x = a * (1-t)³ + b * 3 * (1-t)²t + c * 3 * (1-t)t² + d * t³
-  //------------------------------------------------------------
-  // x = a - 3at + 3at² - at³ 
-  //       + 3bt - 6bt² + 3bt³
-  //             + 3ct² - 3ct³
-  //                    + dt³
-  //--------------------------------
-  // x = - at³  + 3bt³ - 3ct³ + dt³
-  //     + 3at² - 6bt² + 3ct²
-  //     - 3at + 3bt
-  //     + a
-  //--------------------------------
-  // 0 = t³ (-a+3b-3c+d) +  => A
-  //     t² (3a-6b+3c)   +  => B
-  //     t  (-3a+3b)     +  => c
-  //     a - x              => D
-  //--------------------------------
-  
-  var A = d - 3*c + 3*b - a,
-      B = 3*c - 6*b + 3*a,
-      C = 3*b - 3*a,
-      D = a-x;
-      
-  // So we need to solve At³ + Bt² + Ct + D = 0     
-  var t =  cubic(A,B,C,D); 
-  
-  // Replace the t on Bezier function and get x,y 
-  var p = Bezier(p0,c0,c1,p1,t);
-  
-  return p;
-}
-
   
 /*
   * Bezier Function
@@ -588,50 +538,96 @@ function Bezier(a,b,c,d,t) {
 }
 
 
-/*
-  * Cubic Equation Calculator 
-  * refer to http://www.1728.org/cubic.htm
-  *
-  * ax³ + bx² + cx + d = 0 
-  * @params a,b,c,d
-  * @return x
-*/
-function cubic(a,b,c,d){
-  var m,m2,k,n,n2,x,r,rc,theta,sign,dans;
+// /*
+//   * Get new x,y on curve by given x
+//   * @params a,b,c,d {x:x,y:y}
+//   * @params x 
+//   * @return {{x:new x on curve, y:new y on curve}}
+// */
+// function YBX(a,b,c,d,x){
+
+// 	a = a.x;
+// 	b = b.x;
+// 	c = c.x;
+// 	d = d.x;
+	
+// 	// Lets expand this 
+// 	// x = a * (1-t)³ + b * 3 * (1-t)²t + c * 3 * (1-t)t² + d * t³
+// 	//------------------------------------------------------------
+// 	// x = a - 3at + 3at² - at³ 
+// 	//       + 3bt - 6bt² + 3bt³
+// 	//             + 3ct² - 3ct³
+// 	//                    + dt³
+// 	//--------------------------------
+// 	// x = - at³  + 3bt³ - 3ct³ + dt³
+// 	//     + 3at² - 6bt² + 3ct²
+// 	//     - 3at + 3bt
+// 	//     + a
+// 	//--------------------------------
+// 	// 0 = t³ (-a+3b-3c+d) +  => A
+// 	//     t² (3a-6b+3c)   +  => B
+// 	//     t  (-3a+3b)     +  => c
+// 	//     a - x              => D
+// 	//--------------------------------
+	
+// 	var A = d - 3*c + 3*b - a,
+// 		B = 3*c - 6*b + 3*a,
+// 		C = 3*b - 3*a,
+// 		D = a-x;
+		
+// 	// So we need to solve At³ + Bt² + Ct + D = 0     
+// 	var t =  cubic(A,B,C,D); 
+	
+// 	// Replace the t on Bezier function and get x,y 
+// 	var p = Bezier(p0,c0,c1,p1,t);
+	
+// 	return p;
+//   }
+
+// /*
+//   * Cubic Equation Calculator 
+//   * refer to http://www.1728.org/cubic.htm
+//   *
+//   * ax³ + bx² + cx + d = 0 
+//   * @params a,b,c,d
+//   * @return x
+// */
+// function cubic(a,b,c,d){
+//   var m,m2,k,n,n2,x,r,rc,theta,sign,dans;
   
-  var f = eval(((3*c)/a) - (((b*b)/(a*a))))/3;
-  var g = eval((2*((b*b*b)/(a*a*a))-(9*b*c/(a*a)) + ((27*(d/a)))))/27;
-  var h = eval(((g*g)/4) + ((f*f*f)/27));
+//   var f = eval(((3*c)/a) - (((b*b)/(a*a))))/3;
+//   var g = eval((2*((b*b*b)/(a*a*a))-(9*b*c/(a*a)) + ((27*(d/a)))))/27;
+//   var h = eval(((g*g)/4) + ((f*f*f)/27));
   
-  if (h > 0) {
+//   if (h > 0) {
     
-    m = eval(-(g/2)+ (Math.sqrt(h)));
-    k = m < 0 ? -1:1;
-    m2 = eval(Math.pow((m*k),(1/3)));
-    m2 = m2*k;
-    n = eval(-(g/2)- (Math.sqrt(h)));
-    k = n<0 ? -1:1;
-    n2 = eval(Math.pow((n*k),(1/3)));
-    n2 = n2*k;
-    x= eval ((m2 + n2) - (b/(3*a)));
+//     m = eval(-(g/2)+ (Math.sqrt(h)));
+//     k = m < 0 ? -1:1;
+//     m2 = eval(Math.pow((m*k),(1/3)));
+//     m2 = m2*k;
+//     n = eval(-(g/2)- (Math.sqrt(h)));
+//     k = n<0 ? -1:1;
+//     n2 = eval(Math.pow((n*k),(1/3)));
+//     n2 = n2*k;
+//     x= eval ((m2 + n2) - (b/(3*a)));
       
-  } else {
-    r = (eval(Math.sqrt((g*g/4)-h)));
-    k = r<0 ? -1:1;
-    rc = Math.pow((r*k),(1/3))*k;
-    theta = Math.acos((-g/(2*r)));
-    x=eval (2*(rc*Math.cos(theta/3))-(b/(3*a)));
-    x=x*1E+14;
-    x=Math.round(x);
-    x=(x/1E+14);
-  }
+//   } else {
+//     r = (eval(Math.sqrt((g*g/4)-h)));
+//     k = r<0 ? -1:1;
+//     rc = Math.pow((r*k),(1/3))*k;
+//     theta = Math.acos((-g/(2*r)));
+//     x=eval (2*(rc*Math.cos(theta/3))-(b/(3*a)));
+//     x=x*1E+14;
+//     x=Math.round(x);
+//     x=(x/1E+14);
+//   }
   
-  if ((f+g+h)==0) {
-    if (d<0) {sign=-1}
-    if (d>=0) {sign=1}
-    if (sign>0){dans=Math.pow((d/a),(1/3));dans=dans*-1}
-    if (sign<0){d=d*-1;dans=Math.pow((d/a),(1/3))}
-    x=dans;
-  }
-  return x;
-}
+//   if ((f+g+h)==0) {
+//     if (d<0) {sign=-1}
+//     if (d>=0) {sign=1}
+//     if (sign>0){dans=Math.pow((d/a),(1/3));dans=dans*-1}
+//     if (sign<0){d=d*-1;dans=Math.pow((d/a),(1/3))}
+//     x=dans;
+//   }
+//   return x;
+// }
