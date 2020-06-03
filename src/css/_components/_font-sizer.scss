@@ -1,0 +1,26 @@
+.font-sizer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.3rem;
+    
+    .js-resize-down,
+    .js-resize-up {
+        @include vfont(500);
+        font-size: 2.0rem;
+        padding: 0;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .js-resize-down:before { content: '-'; }
+    .js-resize-up:before { content: '+'; }
+    
+    .text {
+        margin: 0;
+        padding: 0 12px;
+    }
+}

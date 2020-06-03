@@ -1,0 +1,38 @@
+.statement {
+    text-align: center;
+    background-color: $grey-cool;
+    font-size: 1.8rem;
+    line-height: 1.6;
+
+    .container {
+        padding: 50px $container-gutter;
+    }
+
+    .logo {
+        margin: 0 auto;
+        width: 260;
+        height: 310px;
+        display: block;
+    }
+
+    @include breakpoint(0,959px) {
+        font-size: 1.6rem;
+        line-height: 1.4;
+
+        .title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+    }
+
+    @include breakpoint(0,767px){
+        .title {
+            margin-bottom: 15px;
+        }
+    }
+    @include breakpoint(0,479px) {
+        .title {
+            margin-bottom: 10px;
+        }
+    }
+}

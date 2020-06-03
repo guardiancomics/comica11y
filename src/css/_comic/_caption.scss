@@ -1,0 +1,60 @@
+// Caption styles
+.caption-sr__inner,
+.caption-closed > p {
+    padding: 20px 15px;
+    font-size: .875em;
+    border-radius: 3px;
+    background-color: white;
+}
+
+// Screen reader caption
+.caption-sr {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    width: calc(100% - 20px);
+    outline: none;
+    background-color: transparent;
+
+    &__inner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(black, .9);
+        color: white;
+        text-align: center;
+        border-radius: 0;
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        @include hide();
+    }
+}
+
+// Closed captions
+.caption-closed {
+    outline: none;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+
+    .avatar {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    > p {
+        margin: 10px;
+        padding-left: 60px;
+        position: relative;
+        display: block;
+        min-width: 300px;
+        margin: 10px;
+    }
+}

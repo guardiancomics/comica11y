@@ -1,0 +1,78 @@
+// --------------------------------------------------
+// Containers
+// --------------------------------------------------
+
+.container {
+    max-width: $container-std + ($container-gutter*2);
+    margin: 0 auto;
+    width: 100%;
+
+    &--narrow {
+        max-width: $container-narrow + ($container-gutter*2);
+    }
+
+    @include breakpoint(769px,959px) {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    @include breakpoint(0,768px) {
+        padding: 20px;
+    }
+}
+
+
+// --------------------------------------------------
+// Sections
+// --------------------------------------------------
+
+.main-content {
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.breakout {
+    > img {
+        margin: 0 auto;
+    }
+
+    @include breakpoint(1740px,0){
+        margin-left: -150px;
+        margin-right: -150px;
+    }
+}
+
+.skiptranslate {
+    z-index: 999999;
+}
+
+
+// --------------------------------------------------
+// Images
+// --------------------------------------------------
+
+svg {
+    min-height: 0;
+    min-width: 0;
+}
+
+img {
+    display: block;
+    margin: 0;
+    max-width: 100%;
+    width: auto;
+}
+
+.section-comic {
+    padding: 50px;
+}
+
+.blurb {
+    font-size: 1.8rem;
+    line-height: 1.6;
+
+    .container {
+        max-width: 960px;
+        padding: 50px;
+    }
+}

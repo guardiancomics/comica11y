@@ -1,0 +1,27 @@
+.tagline {
+    @include vfont(620);
+    font-size: 2.6rem;
+    line-height: 1.4;
+    background-color: $grey-cool;
+
+    .container {
+        max-width: 1080px;
+        padding: 50px;
+
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        min-width: 180px;
+        height: auto;
+        margin-right: 40px;
+    }
+    &__text { 
+        text-align: left;
+
+        strong {
+            color: $brand-primary;
+        }
+    }
+}

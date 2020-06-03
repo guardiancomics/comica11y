@@ -1,6 +1,5 @@
 // Brand Colors
 // --------------------------------------------------
-$black:             #000;
 $red:               #d03838;
 $grey-light:        rgba(black,.03);
 $color:             #cceeee;
@@ -8,8 +7,9 @@ $grey-cool:         #f7faff;
 
 $brand-primary:		#3156e1;
 $brand-secondary:   #000;
-$text-color:        $black;
-$border-color:		rgba(black,.08);
+$heading-color:     rgba(black, .9);
+$text-color:        rgba(black, .75);
+$border-color:		rgba(black, .08);
 $error:				$red;
 
 

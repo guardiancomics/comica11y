@@ -6,10 +6,25 @@
 @import '_utilities/mixins';
 @import '_utilities/type';
 
+// Comic
+@import '_comic/bubbles';
+@import '_comic/caption';
+@import '_comic/comic-frame';
+@import '_comic/comic-strip';
+
+
 // Components
 @import '_components/btn';
-@import '_components/notes';
+@import '_components/dropdown';
+@import '_components/font-sizer';
 @import '_components/skip-to-link';
+@import '_components/toggle';
 
 // Layouts
+@import '_layouts/credits';
+@import '_layouts/filter';
 @import '_layouts/layout';
+@import '_layouts/notes';
+@import '_layouts/objectives';
+@import '_layouts/statement';
+@import '_layouts/tagline';

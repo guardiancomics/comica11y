@@ -1,0 +1,64 @@
+.bubble-wrap {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    outline: none;
+    
+    > .bubble:first-child {
+        margin-top: -1.75em;
+        padding-top: 2em;
+    }
+    .bubble + .bubble {
+        z-index: 2;
+        margin-top: -.5em;
+    }
+}
+    
+.bubble {
+    display: inline-block;
+    font-family: $comic-stack;
+    line-height: 1;
+    text-align: center;
+    padding: .8em 1em .9em;
+    position: relative;
+    white-space: nowrap;
+    font-size: 1.35em;
+    color: black;
+
+    &--left { margin-left: -3em; }
+    &--right { margin-right: -3em; }
+        
+    svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        display: block;
+        
+        text {
+            fill: #000;
+            text-align: center;
+        }
+    }
+    
+    .inner {
+        position: relative;
+        z-index: 2;
+    }
+    
+    strong {
+        font-family: $comic-stack;
+        font-weight: bold;
+        font-style: italic;
+    }
+
+}
