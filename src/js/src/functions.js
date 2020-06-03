@@ -31,6 +31,16 @@ document.querySelectorAll('.caption-sr').forEach(function(item){
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// When clicking a comic-frame, send the focus to the caption
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+document.querySelectorAll('.comic-frame').forEach(function(item){
+  item.addEventListener('click', function(itemClick) {
+    item.lastElementChild.focus();
+  });
+});
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Toggle high contrast mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 highContrastBtn.addEventListener('click', function(e){
@@ -39,7 +49,7 @@ highContrastBtn.addEventListener('click', function(e){
 		highContrastBtn.setAttribute('aria-pressed', 'true');
 		comicStrip.classList.add('is-high-contrast-mode');
 
-		comicImg = document.querySelectorAll('.comic-strip img');
+		comicImg = document.querySelectorAll('.comic-image img');
 		comicImg.forEach(function(strip){
 			contrastUrl = strip.dataset.contrast;
 			strip.setAttribute('src', contrastUrl);
@@ -49,7 +59,7 @@ highContrastBtn.addEventListener('click', function(e){
 		highContrastBtn.setAttribute('aria-pressed', 'false');
 		comicStrip.classList.remove('is-high-contrast-mode');
 
-		comicImg = document.querySelectorAll('.comic-strip img');
+		comicImg = document.querySelectorAll('.comic-image img');
 		comicImg.forEach(function(strip){
 			srcUrl = strip.dataset.src;
 			strip.setAttribute('src', srcUrl);
@@ -83,7 +93,10 @@ ccBtn.addEventListener('click', function(){
 	if( !ccBtn.classList.contains('is-active') ) {
 		ccBtn.classList.add('is-active');
 		ccBtn.setAttribute('aria-pressed', 'true');
-		comicStrip.classList.add('is-closed-caption-mode');
+    comicStrip.classList.add('is-closed-caption-mode');
+    
+    document.querySelector('.comic-strip').firstElementChild.lastElementChild.focus();
+
 	} else {
 		ccBtn.classList.remove('is-active');
 		ccBtn.setAttribute('aria-pressed', 'false');
@@ -94,7 +107,10 @@ ccBtn.addEventListener('click', function(){
 		document.querySelector('.font-sizer .text strong').innerHTML = '100%';
 		document.querySelectorAll('.comic-strip .caption-closed').forEach(function(item){
 			item.style.fontSize = "100%";
-		});
+    });
+    
+    // Send focus back to contrast button
+    document.querySelector('.js-closedcaptions').focus();
 
 		// Reset the buttons
 		document.querySelector('.js-resize-up').disabled = false;
@@ -126,12 +142,13 @@ document.querySelectorAll('.font-sizer .btn').forEach(function(item){
 		if( currentSize != 100 ) {
 			comicStrip.classList.add('is-closed-caption-mode', 'is-resized');
 			ccBtn.classList.add('is-active');
-			ccBtn.setAttribute('aria-pressed', 'true');
+      ccBtn.setAttribute('aria-pressed', 'true');
+      document.querySelector('.comic-strip').firstElementChild.lastElementChild.focus();
 		  } else {
 			  if( !comicStrip.classList.contains('is-browserZoom') ) {
 				  comicStrip.classList.remove('is-closed-caption-mode');
 				  ccBtn.classList.remove('is-active');
-				  ccBtn.setAttribute('aria-pressed', 'false');
+          ccBtn.setAttribute('aria-pressed', 'false');
 			  }
 			  comicStrip.classList.remove('is-resized');
 		  }
@@ -158,20 +175,38 @@ document.querySelectorAll('.font-sizer .btn').forEach(function(item){
 });
 
 
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Colourblind mode
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 function colourblindReset() {
-	if(
-		comicStrip.classList.contains('is-cb-protanopia') ||
-		comicStrip.classList.contains('is-cb-protanomaly') ||
-		comicStrip.classList.contains('is-cb-deuteranopia') ||
-		comicStrip.classList.contains('is-cb-deuteranomaly') ||
-		comicStrip.classList.contains('is-cb-tritanopia') ||
-		comicStrip.classList.contains('is-cb-tritanomaly') ||
-		comicStrip.classList.contains('is-cb-achromatopsia') ||
-		comicStrip.classList.contains('is-cb-achromatomaly')
-	) {
-		comicStrip.classList.remove('is-cb-protanopia','is-cb-protanomaly','is-cb-deuteranopia','is-cb-deuteranomaly','is-cb-tritanopia','is-cb-tritanomaly','is-cb-achromatopsia','is-cb-achromatomaly');
-	}
+  if(
+    comicStrip.classList.contains('is-cb-protanopia') ||
+    comicStrip.classList.contains('is-cb-protanomaly') ||
+    comicStrip.classList.contains('is-cb-deuteranopia') ||
+    comicStrip.classList.contains('is-cb-deuteranomaly') ||
+    comicStrip.classList.contains('is-cb-tritanopia') ||
+    comicStrip.classList.contains('is-cb-tritanomaly') ||
+    comicStrip.classList.contains('is-cb-achromatopsia') ||
+    comicStrip.classList.contains('is-cb-achromatomaly')
+  ) {
+    comicStrip.classList.remove('is-cb-protanopia','is-cb-protanomaly','is-cb-deuteranopia','is-cb-deuteranomaly','is-cb-tritanopia','is-cb-tritanomaly','is-cb-achromatopsia','is-cb-achromatomaly');
+  }
 }
+
+document.querySelector('.js-colourblind').addEventListener('change', function(e){
+  sel = e.srcElement;
+  opt = sel.options[sel.selectedIndex];
+  mode = opt.value;
+  
+  // Reset colourblind mode
+  colourblindReset();
+  if( mode!='normal' ){
+    document.querySelector('.comic-strip').classList.add('is-cb-'+mode);
+  } else {
+    colourblindReset();
+  }
+});
+
 
 // To refresh bubbles // Eventually this will be irrelevant
 bubbleBtn.addEventListener('click', function(e){
@@ -180,7 +215,7 @@ bubbleBtn.addEventListener('click', function(e){
 });
 
 function bubblesResize() {
-	
+  // Need to rework this functionality	
 }
 
 function bubbleBrowserZoom() {

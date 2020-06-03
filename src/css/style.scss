@@ -4,13 +4,12 @@
 @import '_utilities/modern-normalize';
 @import '_utilities/variables';
 @import '_utilities/mixins';
-
-// Type
-@import '_fonts/type';
+@import '_utilities/type';
 
 // Components
 @import '_components/btn';
+@import '_components/notes';
 @import '_components/skip-to-link';
 
 // Layouts
-@import '_sections/layout';
+@import '_layouts/layout';

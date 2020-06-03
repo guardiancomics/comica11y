@@ -5,27 +5,28 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<title>ComicA11y - An experiment aiming to achieve a full accessible comic reading experience.</title>
+		<title>ComicA11y - an all inclusive online comic experiment.</title>
 
-		<meta name="title" content="" />
-		<meta name="description" content="" />
+		<meta name="title" content="ComicA11y" />
+		<meta name="description" content="ComicA11y is an experiment that aims to achieve an all-inclusive online comic experience. Because comics should be universal." />
+		<link rel="canonical" href="https://humaan.com/comica11y" />
 
 		<link rel="stylesheet" href="dist/css/style.css" media="screen">
 		<link rel="stylesheet" href="dist/css/print.css" media="print">
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website">
-		<meta property="og:url" content="">
-		<meta property="og:title" content="">
-		<meta property="og:description" content="">
-		<meta property="og:image" content=""><!--  width 1200x1200 -->
+		<meta property="og:url" content="http://humaan.com/comica11y">
+		<meta property="og:title" content="humaan.com/comica11y">
+		<meta property="og:description" content="ComicA11y is an experiment that aims to achieve an all-inclusive online comic experience. Because comics should be universal.">
+		<meta property="og:image" content="http://humaan.com/comica11y/img/og.png"><!--  width 1200x1200 -->
 
 		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image">
-		<meta property="twitter:url" content="">
-		<meta property="twitter:title" content="">
-		<meta property="twitter:description" content="">
-		<meta property="twitter:image" content=""><!--  width 1200x1200 -->
+		<meta property="twitter:card" content="summary">
+		<meta property="twitter:url" content="http://humaan.com/comica11y">
+		<meta property="twitter:title" content="humaan.com/comica11y">
+		<meta property="twitter:description" content="ComicA11y is an experiment that aims to achieve an all-inclusive online comic experience. Because comics should be universal.">
+		<meta property="twitter:image" content="http://humaan.com/comica11y/img/og.png"><!--  width 1200x1200 -->
 
 		<!-- Favicons -->
 		<link rel="shortcut icon" href="img/favicon.ico">
@@ -42,11 +43,13 @@
 
 		<header class="statement text-center">
 			<div class="container">
-				<h1 class="title">ComicA11y</h1>
+				<h1 class="title">
+					<img class="logo" src="img/logo.png" alt="ComicA11y logo">
+					<span class="hidden">ComicA11y</span>
+				</h1>
 				<p>
-					An experiment aiming to achieve an all inclusive online comic reading experience.
-					<br>
-					Because comics shouldn't just be for the abled.
+					An experiment that aims to achieve an all-inclusive online comic experience.<br>
+					Because comics should be universal.
 				</p>
 			</div>
 		</header>
@@ -54,13 +57,14 @@
 		<main class="main-content">
 
 			<!-- // The problem -->
-			<section id="skip-to-problem" class="comic-wrap" aria-label="The problem">
-				<div class="comic-wrap__inner">
-
+			<section id="skip-to-problem">
+				<div class="container">
 					<h2 class="text-center">The problem</h2>
+
 					<div class="breakout">
 						<img class="breakout" src="img/comics/basic.png" alt="Comic Image for 2011-12-07" title="A master of disguise, he blends into the shadows and is naught but a whisper on the winds. Just ignore the fact he has his name pinned to his work short." />
 					</div>
+
 					<div class="notes">
 						<p><strong>Here's a typical example of how an online comic author might present their comic strip.</strong></p>
 						<ul>
@@ -98,17 +102,16 @@
 							<small>
 								<strong>Credits:</strong> 
 								<a href="https://deadtoride.com" target="_blank" title="This dead to ride"><span class="hidden">Opens in a new window:</span> www.deadtoride.com</a>,
-								<a href="https://paulspencer.net.au" title="Paul Spencer" target="_blank"><span class="hidden">Opens in a new window:</span> www.PaulSpencer.net.au</a>, 
+								<a href="https://paulspencer.net.au" title="Paul Spencer" target="_blank"><span class="hidden">Opens in a new window:</span> www.paulspencer.net.au</a>, 
 								<a href="http://webofink.com.au" title="Web of Ink" target="_blank"><span class="hidden">Opens in a new window:</span> www.webofink.com.au</a>
 							</small>
 						</p>
 					</div><!-- // .notes -->
-
-				</div><!-- // .comic-wrap_inner -->
+				</div><!-- .container -->
 			</section><!-- // .comic-wrap -->
 
 			<!-- // The objectives -->
-			<section id="skip-to-objectives" class="objectives" aria-label="The objectives">
+			<section id="skip-to-objectives" class="objectives">
 				<div class="container container--narrow">
 
 					<h2 class="text-center">The objectives</h2>
@@ -142,9 +145,8 @@
 			</section><!-- // .objectives -->
 
 			<!-- // The solution -->
-			<section id="skip-to-solution" class="comic-wrap" aria-label="The solution">
-				<div class="comic-wrap__inner">
-
+			<section id="skip-to-solution">
+				<div class="container">
 					<h2 class="text-center">The Solution</h2>
 
 					<article class="comic-strip breakout" data-fontsize="100">
@@ -152,7 +154,10 @@
 						<figure aria-labelledby="frame-1" aria-describedby="frame-1-desc" class="comic-frame">
 							<h2 id="frame-1" class="hidden">Frame 1</h2>
 							
-							<img src="img/comics/colour-f1.png" data-src="img/comics/colour-f1.png" data-contrast="img/comics/contrast-f1.png" alt="">
+							<picture class="comic-image">
+								<img src="img/comics/colour-f1.png" data-src="img/comics/colour-f1.png" data-contrast="img/comics/contrast-f1.png" alt="">
+							</picture><!-- .comic-image -->
+
 							<div class="caption-closed" tabindex="-1" aria-hidden="true">
 								<p>
 									<img class="avatar" src="img/comics/avatar-dante.png" alt="Avatar for Dante">
@@ -164,24 +169,15 @@
 								<span class="caption-sr__inner">
 									Dante, a lanky man with thinning dark hair and stubble is cautiously standing outside a shop titled Games Dungeon. An open sign hangs in the window. He sighs apprehensively.
 								</span>
-							</figcaption>
+							</figcaption><!-- .caption-sr -->
 						</figure>
 
 						<figure aria-labelledby="frame-2" aria-describedby="frame-2-desc" class="comic-frame">
 							<h2 id="frame-2" class="hidden">Frame 2</h2>
 
-							<img src="img/comics/colour-f2.png" data-src="img/comics/colour-f2.png" data-contrast="img/comics/contrast-f2.png" alt="">
-
-							<div class="caption-closed" tabindex="-1" aria-hidden="true">
-								<p>
-									<img class="avatar" src="img/comics/avatar-clerk.png" alt="Avatar for Clerk">
-									<strong>[Clerk]:</strong> Welcome to Games Dungeon! How can I help?
-								</p>
-								<p>
-									<img class="avatar" src="img/comics/avatar-dante.png" alt="Avatar for Dante">
-									<strong>[Dante]:</strong> Uh, yeah. I need something for someone who's never played Dungeons and Dragons before.
-								</p>
-							</div><!-- // .caption-closed -->
+							<picture class="comic-image">
+								<img src="img/comics/colour-f2.png" data-src="img/comics/colour-f2.png" data-contrast="img/comics/contrast-f2.png" alt="">
+							</picture><!-- .comic-image -->
 
 							<div class="bubble-wrap" aria-hidden="true">
 								<div class="bubble" data-position="right" data-direction="left" data-length="normal">
@@ -201,29 +197,31 @@
 								</div>
 							</div><!-- // .bubble-wrap -->
 
+							<div class="caption-closed" tabindex="-1" aria-hidden="true">
+								<p>
+									<img class="avatar" src="img/comics/avatar-clerk.png" alt="Avatar for Clerk">
+									<strong>[Clerk]:</strong> Welcome to Games Dungeon! How can I help?
+								</p>
+								<p>
+									<img class="avatar" src="img/comics/avatar-dante.png" alt="Avatar for Dante">
+									<strong>[Dante]:</strong> Uh, yeah. I need something for someone who's never played Dungeons and Dragons before.
+								</p>
+							</div><!-- // .caption-closed -->
+
 							<figcaption id="frame-2-desc" class="caption-sr" tabindex="0">
 								<span class="caption-sr__inner">
 									"Welcome to Games Dungeon! How can I help?", a preppy dressed young asian woman asks Dante.
 									"Uh, yeah. I need something for someone who's never played Dungeons and Dragons before.", Dante replies.
 								</span>
-							</figcaption>
+							</figcaption><!-- .caption-sr -->
 						</figure>
 
 						<figure aria-labelledby="frame-3" aria-describedby="frame-3-desc" class="comic-frame">
 							<h2 id="frame-3" class="hidden">Frame 3</h2>
 
-							<img src="img/comics/colour-f3.png" data-src="img/comics/colour-f3.png" data-contrast="img/comics/contrast-f3.png" alt="">
-
-							<div class="caption-closed" tabindex="-1" aria-hidden="true">
-								<p>
-									<img class="avatar" src="img/comics/avatar-clerk.png" alt="Avatar for Clerk">
-									<strong>[Clerk]</strong>: Well, you need the redbox. Would you like me to bag it up for you?
-								</p>
-								<p>
-									<img class="avatar" src="img/comics/avatar-dante.png" alt="Avatar for Dante">
-									<strong>[Dante]</strong>: Yeah... actually, two bags please.
-								</p>
-							</div><!-- // .caption-closed -->
+							<picture class="comic-image">
+								<img src="img/comics/colour-f3.png" data-src="img/comics/colour-f3.png" data-contrast="img/comics/contrast-f3.png" alt="">
+							</picture><!-- // .comic-image -->
 
 							<div class="bubble-wrap" aria-hidden="true">
 								<div class="bubble" data-position="right" data-direction="left" data-length="normal">
@@ -241,19 +239,32 @@
 								</div>
 							</div><!-- // .bubble-wrap -->
 
+							<div class="caption-closed" tabindex="-1" aria-hidden="true">
+								<p>
+									<img class="avatar" src="img/comics/avatar-clerk.png" alt="Avatar for Clerk">
+									<strong>[Clerk]</strong>: Well, you need the redbox. Would you like me to bag it up for you?
+								</p>
+								<p>
+									<img class="avatar" src="img/comics/avatar-dante.png" alt="Avatar for Dante">
+									<strong>[Dante]</strong>: Yeah... actually, two bags please.
+								</p>
+							</div><!-- // .caption-closed -->
+
 							<figcaption id="frame-3-desc" class="caption-sr" tabindex="0">
 								<span class="caption-sr__inner">
 									"Well, you need the redbox. Would you like me to bag it up for you?" the attendant asks.
 									"Yeah... actually, two bags please.", Dante replies.
 								</span>
-							</figcaption>
+							</figcaption><!-- // .caption-sr -->
 						</figure>
 
 						<figure aria-labelledby="frame-4" aria-describedby="frame-4-desc" class="comic-frame">
 							<h2 id="frame-4" class="hidden">Frame 4</h2>
 
-							<img src="img/comics/colour-f4.png" data-src="img/comics/colour-f4.png" data-contrast="img/comics/contrast-f4.png" alt="">
-
+							<picture class="comic-image">
+								<img src="img/comics/colour-f4.png" data-src="img/comics/colour-f4.png" data-contrast="img/comics/contrast-f4.png" alt="">
+							</picture><!-- .comic-image -->
+							
 							<div class="caption-closed" tabindex="-1" aria-hidden="true">
 							</div><!-- // .caption-closed -->
 
@@ -261,11 +272,11 @@
 								<span class="caption-sr__inner">
 									Dante is now leaving the building holding a paper bag. The other bag has eye holes cut out and is worn like a mask.
 								</span>
-							</figcaption>
+							</figcaption><!-- .caption-sr -->
 						</figure>
 
 					</article><!-- // .comic-strip -->
-
+					
 					<div class="comic-filter">
 						<div class="buttons">
 							<div class="font-sizer">
@@ -274,24 +285,39 @@
 								<button class="btn js-resize-up"><span class="hidden">Increase the font</span></button>
 							</div><!-- // .font-sizer -->
 
-							<button class="btn-toggle js-closedcaptions" aria-pressed="false" type="button"><span class="hidden">Toggle </span>Closed captions</button>
-							<button class="btn-toggle js-highcontrast" aria-pressed="false" type="button"><span class="hidden">Toggle </span>High contrast</button>
+							<label class="toggle">
+								<input type="checkbox" name="closed captions" class="hidden toggle js-closedcaptions">
+								<span class="checkbox"></span>
+								Closed captions
+							</label>
 
-							<div class="dropdown">
-								<button type="button" class="dropdown__selected"><span class="hidden">Current option selected: </span>Colour blindness: <strong>Normal</strong></button>
-								<ul>
-									<li><button class="btn-option js-cb-normal" type="button">Normal</button></li>
-									<li><button class="btn-option js-cb-protanopia" type="button">Protanopia</button></li>
-									<li><button class="btn-option js-cb-protanomaly" type="button">Protanomaly</button></li>
-									<li><button class="btn-option js-cb-deuteranopia" type="button">Deuteranopia</button></li>
-									<li><button class="btn-option js-cb-deuteranomaly" type="button">Deuteranomaly</button></li>
-									<li><button class="btn-option js-cb-tritanopia" type="button">Tritanopia</button></li>
-									<li><button class="btn-option js-cb-tritanomaly" type="button">Tritanomaly</button></li>
-									<li><button class="btn-option js-cb-achromatopsia" type="button">Achromatopsia</button></li>
-									<li><button class="btn-option js-cb-achromatomaly" type="button">Achromatomaly</button></li>
-								</ul>
-							</div><!-- .dropdown -->
-							<button class="btn-toggle js-rtl" aria-pressed="false" type="button"><span class="hidden">Toggle </span>RTL/LTR</button>
+							<label class="toggle">
+								<input type="checkbox" name="high contrast" class="hidden toggle js-highcontrast">
+								<span class="checkbox"></span>
+								High contrast
+							</label>
+
+							<label>
+								<span class="hidden">Toggle colour blind mode</span>
+								<select title="Colour blind" class="dropdown js-colourblind" name="colourblind">
+									<option value="normal">Normal</option>
+									<option value="protanopia">Protanopia</option>
+									<option value="protanomaly">Protanomaly</option>
+									<option value="deuteranopia">Deuteranopia</option>
+									<option value="deuteranomaly">Deuteranomaly</option>
+									<option value="tritanopia">Tritanopia</option>
+									<option value="tritanomaly">Tritanomaly</option>
+									<option value="achromatopsia">Achromatopsia</option>
+									<option value="achromatomaly">Achromatomaly</option>
+								</select>
+							</label>
+
+							<label class="toggle">
+								<input type="checkbox" name="RTL/LTR toggle" class="hidden toggle js-rtl">
+								<span class="checkbox"></span>
+								RTL / LTR
+							</label>
+
 							<button class="btn js-bubbles" type="button">Refresh bubbles</button>
 						</div><!-- .buttons -->
 
@@ -313,7 +339,7 @@
 					</div><!-- // .comic-filter -->
 					
 					<div class="notes">
-						<p><strong>Outcome</strong></strong></p>
+						<p><strong>Outcome</strong></p>
 						<p></p>
 						<p><strong>Helpful links:</strong></p>
 						<ul>
@@ -325,6 +351,7 @@
 					<div class="notes notes--log">
 						<p><strong>Change log</strong></p>
 						<ol>
+							<li><strong class="date">02/06/2020</strong> Converted all filter buttons into native select and checkboxes where appropriate. Added focus management for the filters. Added javascript for input onchange event to toggle the colour blind modes correctly.</li>
 							<li><strong class="date">29/05/2020</strong> Converted from jquery to javascript and removed dependencies. Thickened the border, improved the focus state for the frame to signify which frame you're currently reading. Added avatars to closed captions so to know which person the caption belongs to. Added fixed position for the closed captions.</li>
 							<li><strong class="date">25/05/2020</strong> Validated markup. Removed all JS that was not needed to power the plugin. Still require jquery dependency to be eliminated. Restructured the bubbles to use cubic beziers instead of quadratic beziers. The tails are now positioned exactly. Tweeked and improved the tail constructor to draw the angles and curves of the spike better than before. Still not perfect.</li>
 							<li><strong class="date">29/01/2020</strong> Fixed SVG filter bug for colour blind options by moving the filters inline and referring to simply the ID within the CSS.</li>
@@ -350,8 +377,7 @@
 							<li><strong class="date">19/12/2019</strong> Split the comic into individual, borderless frames. Firstly. Let's split the comic into the individual frames and remove all text from the image - we want the text to be overlayed later.</li>
 						</ol>
 					</div><!-- // .notes -->
-
-				</div><!-- // .comic-wrap_inner -->
+				</div><!-- .container -->
 			</section><!-- // .comic-wrap -->
 
 		</main>
