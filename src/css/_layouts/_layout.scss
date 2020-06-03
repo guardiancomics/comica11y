@@ -64,15 +64,17 @@ img {
 }
 
 .section-comic {
-    padding: 50px;
+    padding: 70px 50px;
+
+    &__blurb {
+        font-size: 2rem;
+        line-height: 1.6;
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto 70px;
+    }
 }
 
-.blurb {
-    font-size: 1.8rem;
-    line-height: 1.6;
-
-    .container {
-        max-width: 960px;
-        padding: 50px;
-    }
+.section-information {
+    padding: 0 50px 70px;
 }
