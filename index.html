@@ -40,12 +40,14 @@
 
 <body>
 
-    <main class="main-content">
+    <header class="tagline" aria-label="Introducing ComicA11y">
+        <div class="container">
 
-        <section class="tagline" aria-label="Introducing ComicA11y">
-            <div class="container">
-
-                <svg class="tagline__logo" xmlns="http://www.w3.org/2000/svg" width="519.967" height="619.661"
+            <h1 class="tagline__logo">
+                <span class="hidden">
+                    ComicA11y
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="519.967" height="619.661"
                     viewBox="0 0 519.967 619.661">
                     <title>ComicA11y logo</title>
                     <g id="type">
@@ -58,13 +60,16 @@
                     </g>
                     <path id="bubble" d="M509.928 326.621c0-108.323-77.394-204.435-249.945-204.435S10.039 218.297 10.039 326.621c0 93.923 58.201 163.292 186.148 180.08l76.803 102.921c-1.202-1.632-26.898-38.206 35.415-101.189 138.67-13.114 201.523-84.206 201.523-181.812z" fill="#fff" stroke="#000" stroke-width="20.0772" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="100" />
                 </svg>
+            </h1>
 
-                <div class="tagline__text">
-                    <p>ComicA11y is an experiment that aims to achieve an <strong>all-inclusive</strong> online comic reading experience.</p>
-                    <p>Because comics <strong>should</strong> be universal.</p>
-                </div>
+            <div class="tagline__text">
+                <p>ComicA11y is an experiment that aims to achieve an <strong>all-inclusive</strong> online comic reading experience.</p>
+                <p>Because comics <strong>should</strong> be universal.</p>
             </div>
-        </section><!-- // .tagline -->
+        </div>
+    </header><!-- // .tagline -->
+    <main class="main-content">
+
 
         <section class="section-comic" aria-label="Accessible comic reader">
             <div class="container">
@@ -271,8 +276,8 @@
                             <input type="checkbox" name="RTL/LTR toggle" class="hidden toggle js-rtl">
                             <span class="checkbox"></span>
                         </label>
-                    </div><!-- // .translate -->
-                </div>
+                    </div><!-- // .transla -->
+                </div><!-- // .notes -->
 
             </div><!-- // .container -->
         </section><!-- // .comic-wrap -->
@@ -280,7 +285,7 @@
     </main>
 
     <div class="section-information">
-        <div class="container">
+        <div class="container container--narrow">
             <div data-tab-component>
                 <ul class="tab-list">
                     <li class="tab-item">
@@ -352,9 +357,7 @@
                 <section id="tab-problem" class="tab-panel">
                     <h2 class="title">The problem</h2>
 
-                    <div class="breakout">
-                        <img class="breakout" src="img/comics/basic.png" alt="Comic Image for 2011-12-07" title="A master of disguise, he blends into the shadows and is naught but a whisper on the winds. Just ignore the fact he has his name pinned to his work short." />
-                    </div>
+                    <img src="img/comics/basic.png" alt="Comic Image for 2011-12-07" title="A master of disguise, he blends into the shadows and is naught but a whisper on the winds. Just ignore the fact he has his name pinned to his work short." />
 
                     <div class="notes">
                         <p><strong>Here's a typical example of how an online comic author might present their comic strip.</strong></p>
@@ -432,6 +435,7 @@
                     <div class="notes notes--log">
                         <p><strong>Updates</strong></p>
                         <ol>
+                            <li><strong class="date">04/06/2020</strong> Added some responsive styles and restructured the filter bar. Moved all the WIP features out of the filter tray and into a specific region while the bugs are being ironed out and features integrated</li>
                             <li><strong class="date">03/06/2020</strong> Restructured the page and added tabs. Included a write up of all of the features and docked problems / objectives / change log.</li>
                             <li><strong class="date">02/06/2020</strong> Converted all filter buttons into native select and checkboxes where appropriate. Added focus management for the filters. Added javascript for input onchange event to toggle the colour blind modes correctly.</li>
                             <li><strong class="date">29/05/2020</strong> Converted from jquery to javascript and removed dependencies. Thickened the border, improved the focus state for the frame to signify which frame you're currently reading. Added avatars to closed captions so to know which person the caption belongs to. Added fixed position for the closed captions.</li>

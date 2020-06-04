@@ -1,6 +1,6 @@
 .filter {
     width: 100%;
-    padding: 20px;
+    padding: 15px 20px;
     border: 1px solid $border-color;
     border-radius: 8px;
 
@@ -13,9 +13,11 @@
         justify-content: center;
 
         > * {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            @include breakpoint(0,768px){ 
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         }
     }
 
@@ -23,7 +25,7 @@
         @include vfont(700);
         font-size: 1.3rem;
         display: block;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         padding: 0;
     }
 

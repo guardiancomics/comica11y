@@ -12,9 +12,15 @@
     }
 
     &__logo {
+        display: block;
         min-width: 180px;
-        height: auto;
+        margin: 0;
         margin-right: 40px;
+        
+        > svg {
+            max-width: 100%;
+            height: auto;
+        }
     }
     &__text { 
         text-align: left;

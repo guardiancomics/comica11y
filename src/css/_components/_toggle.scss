@@ -18,24 +18,26 @@
             height: 28px;
             border-radius: 28px;
             background-color: #555555;
-            transition: background-color .1s ease-out;
+            border: 2px solid #555555;
         }
         &:after {
             content:'';
             position: absolute;
-            left: 5px;
-            top: 5px;
-            width: 18px;
-            height: 18px;
+            left: 6px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
             display: block;
             border-radius: 18px;
             background-color: white;
             transition: transform .1s ease-out;
+            box-shadow: 0 0 0 0 white;
+            transition: box-shadow $timing $ease-std;
         }
     }
 
-    input[type="checkbox"]:focus + .checkbox:before {
-        @extend .focus-visible;
+    input[type="checkbox"]:focus + .checkbox:after {
+        box-shadow: 0 0 0 2px white;
         
     }
     

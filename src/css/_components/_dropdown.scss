@@ -1,8 +1,18 @@
 .dropdown {
+    // reset 
+	appearance: none;
+  	border: none;
+	overflow: hidden;
+    box-shadow: none;
     background: none;
+    
+    @include vfont(620);
     border: 1px solid $border-color;
+    border-radius: 3px;
     margin: 0;
-    padding: 4px;
+    padding: 6px 30px 6px 10px;
     font-size: 1.3rem;
     border-radius: 3px;
+    min-width: 140px;
+    background: url(../../img/arrow.svg) no-repeat center right 10px;
 }

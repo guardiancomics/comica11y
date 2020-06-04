@@ -462,11 +462,11 @@ p {
 }
 
 p:first-child {
-  margin-top: 0 !important;
+  margin-top: 0;
 }
 
 p:last-child {
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 
 h1,
@@ -544,6 +544,118 @@ a:visited {
 
 a:hover {
   text-decoration: none;
+}
+
+.comic-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  font-size: 1.6rem;
+}
+
+.comic-strip.is-loading {
+  width: 1650px;
+  white-space: nowrap;
+}
+
+.comic-strip.is-rtl-mode {
+  direction: rtl;
+}
+
+.comic-strip.is-rtl-mode .comic-frame img,
+.comic-strip.is-rtl-mode .comic-frame svg {
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.comic-strip.is-cb-protanopia .comic-frame picture img {
+  -webkit-filter: url(#protanopia);
+  filter: url(#protanopia);
+}
+
+.comic-strip.is-cb-protanomaly .comic-frame picture img {
+  -webkit-filter: url(#protanomaly);
+  filter: url(#protanomaly);
+}
+
+.comic-strip.is-cb-deuteranopia .comic-frame picture img {
+  -webkit-filter: url(#deuteranopia);
+  filter: url(#deuteranopia);
+}
+
+.comic-strip.is-cb-deuteranomaly .comic-frame picture img {
+  -webkit-filter: url(#deuteranomaly);
+  filter: url(#deuteranomaly);
+}
+
+.comic-strip.is-cb-tritanopia .comic-frame picture img {
+  -webkit-filter: url(#tritanopia);
+  filter: url(#tritanopia);
+}
+
+.comic-strip.is-cb-tritanomaly .comic-frame picture img {
+  -webkit-filter: url(#tritanomaly);
+  filter: url(#tritanomaly);
+}
+
+.comic-strip.is-cb-achromatopsia .comic-frame picture img {
+  -webkit-filter: url(#achromatopsia);
+  filter: url(#achromatopsia);
+}
+
+.comic-strip.is-cb-achromatomaly .comic-frame picture img {
+  -webkit-filter: url(#achromatomaly);
+  filter: url(#achromatomaly);
+}
+
+.comic-frame {
+  border: 4px solid #000;
+  margin: 0;
+  position: relative;
+  background-color: black;
+  -webkit-box-shadow: 0 0 0 0 #000;
+  box-shadow: 0 0 0 0 #000;
+  outline: none;
+  -webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
+  transition: -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.comic-frame.is-active {
+  -webkit-box-shadow: 0 0 0 4px #000;
+  box-shadow: 0 0 0 4px #000;
+}
+
+.comic-strip.is-closed-caption-mode .comic-frame.is-active .caption-closed {
+  position: fixed;
+  left: 0;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.comic-strip:not(.is-closed-caption-mode) .comic-frame .caption-closed,
+.comic-strip.is-closed-caption-mode .comic-frame:not(.is-active) .caption-closed {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px !important;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+}
+
+.comic-frame > img {
+  display: block;
+  margin: 0;
+  width: 100%;
 }
 
 .bubble-wrap {
@@ -664,8 +776,7 @@ a:hover {
   width: 1px;
 }
 
-.caption-sr.focus-visible,
-.toggle input[type="checkbox"]:focus + .caption-sr.checkbox:before {
+.caption-sr.focus-visible {
   outline: none;
 }
 
@@ -697,118 +808,6 @@ a:hover {
   display: block;
   min-width: 300px;
   margin: 10px;
-}
-
-.comic-frame {
-  border: 4px solid #000;
-  margin: 0;
-  position: relative;
-  background-color: black;
-  -webkit-box-shadow: 0 0 0 0 #000;
-  box-shadow: 0 0 0 0 #000;
-  outline: none;
-  -webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
-  transition: -webkit-box-shadow 0.15s ease-in-out;
-  -o-transition: box-shadow 0.15s ease-in-out;
-  transition: box-shadow 0.15s ease-in-out;
-  transition: box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-}
-
-.comic-frame.is-active {
-  -webkit-box-shadow: 0 0 0 4px #000;
-  box-shadow: 0 0 0 4px #000;
-}
-
-.comic-strip.is-closed-caption-mode .comic-frame.is-active .caption-closed {
-  position: fixed;
-  left: 0;
-  top: auto;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-}
-
-.comic-strip:not(.is-closed-caption-mode) .comic-frame .caption-closed,
-.comic-strip.is-closed-caption-mode .comic-frame:not(.is-active) .caption-closed {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px !important;
-  overflow: hidden;
-  padding: 0;
-  position: absolute !important;
-  width: 1px;
-}
-
-.comic-frame > img {
-  display: block;
-  margin: 0;
-  width: 100%;
-}
-
-.comic-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-  font-size: 1.6rem;
-}
-
-.comic-strip.is-loading {
-  width: 1650px;
-  white-space: nowrap;
-}
-
-.comic-strip.is-rtl-mode {
-  direction: rtl;
-}
-
-.comic-strip.is-rtl-mode .comic-frame img,
-.comic-strip.is-rtl-mode .comic-frame svg {
-  -webkit-transform: scaleX(-1);
-  -ms-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
-
-.comic-strip.is-cb-protanopia .comic-frame picture img {
-  -webkit-filter: url(#protanopia);
-  filter: url(#protanopia);
-}
-
-.comic-strip.is-cb-protanomaly .comic-frame picture img {
-  -webkit-filter: url(#protanomaly);
-  filter: url(#protanomaly);
-}
-
-.comic-strip.is-cb-deuteranopia .comic-frame picture img {
-  -webkit-filter: url(#deuteranopia);
-  filter: url(#deuteranopia);
-}
-
-.comic-strip.is-cb-deuteranomaly .comic-frame picture img {
-  -webkit-filter: url(#deuteranomaly);
-  filter: url(#deuteranomaly);
-}
-
-.comic-strip.is-cb-tritanopia .comic-frame picture img {
-  -webkit-filter: url(#tritanopia);
-  filter: url(#tritanopia);
-}
-
-.comic-strip.is-cb-tritanomaly .comic-frame picture img {
-  -webkit-filter: url(#tritanomaly);
-  filter: url(#tritanomaly);
-}
-
-.comic-strip.is-cb-achromatopsia .comic-frame picture img {
-  -webkit-filter: url(#achromatopsia);
-  filter: url(#achromatopsia);
-}
-
-.comic-strip.is-cb-achromatomaly .comic-frame picture img {
-  -webkit-filter: url(#achromatomaly);
-  filter: url(#achromatomaly);
 }
 
 button {
@@ -852,12 +851,30 @@ button {
 }
 
 .dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  overflow: hidden;
+  -webkit-box-shadow: none;
+  box-shadow: none;
   background: none;
+  font-family: "Montserrat", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
   margin: 0;
-  padding: 4px;
+  padding: 6px 30px 6px 10px;
   font-size: 1.3rem;
   border-radius: 3px;
+  min-width: 140px;
+  background: url(../../img/arrow.svg) no-repeat center right 10px;
+}
+
+@supports (font-variation-settings: normal) {
+  .dropdown {
+    font-family: "Montserrat Variable", serif;
+    font-variation-settings: "wght" 620;
+  }
 }
 
 .font-sizer__buttons {
@@ -962,18 +979,16 @@ button {
   height: 28px;
   border-radius: 28px;
   background-color: #555555;
-  -webkit-transition: background-color .1s ease-out;
-  -o-transition: background-color .1s ease-out;
-  transition: background-color .1s ease-out;
+  border: 2px solid #555555;
 }
 
 .toggle .checkbox:after {
   content: '';
   position: absolute;
-  left: 5px;
-  top: 5px;
-  width: 18px;
-  height: 18px;
+  left: 6px;
+  top: 6px;
+  width: 16px;
+  height: 16px;
   display: block;
   border-radius: 18px;
   background-color: white;
@@ -982,6 +997,18 @@ button {
   -o-transition: transform .1s ease-out;
   transition: transform .1s ease-out;
   transition: transform .1s ease-out, -webkit-transform .1s ease-out;
+  -webkit-box-shadow: 0 0 0 0 white;
+  box-shadow: 0 0 0 0 white;
+  -webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
+  transition: -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.toggle input[type="checkbox"]:focus + .checkbox:after {
+  -webkit-box-shadow: 0 0 0 2px white;
+  box-shadow: 0 0 0 2px white;
 }
 
 .toggle input[type="checkbox"]:checked + .checkbox:before {
@@ -1014,7 +1041,7 @@ button {
 
 .filter {
   width: 100%;
-  padding: 20px;
+  padding: 15px 20px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   display: -webkit-box;
@@ -1034,24 +1061,11 @@ button {
   justify-content: center;
 }
 
-.filter .buttons > * {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .filter .label {
   font-family: "Montserrat", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 1.3rem;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding: 0;
 }
 
@@ -1073,7 +1087,7 @@ button {
 }
 
 .container--narrow {
-  max-width: 860px;
+  max-width: 1020px;
 }
 
 .main-content {
@@ -1241,9 +1255,15 @@ img {
 }
 
 .tagline__logo {
+  display: block;
   min-width: 180px;
-  height: auto;
+  margin: 0;
   margin-right: 40px;
+}
+
+.tagline__logo > svg {
+  max-width: 100%;
+  height: auto;
 }
 
 .tagline__text {
@@ -1254,8 +1274,7 @@ img {
   color: #3156e1;
 }
 
-.focus-visible,
-.toggle input[type="checkbox"]:focus + .checkbox:before {
+.focus-visible {
   outline: 2px solid #3156e1;
 }
 
@@ -1339,6 +1358,19 @@ img {
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
+  }
+
+  .filter .buttons > * {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 
   .container {

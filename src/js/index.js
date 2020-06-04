@@ -1,6 +1,3 @@
-// For debounce
-var timeout;
-
 // Selectors
 comicStrip = document.querySelector('.comic-strip');
 comicFrame = document.querySelectorAll('.comic-frame');
@@ -242,27 +239,22 @@ window.a11yTabs = (function tabsComponentIIFE(global, document) {
 const tabComponent = a11yTabs.create('[data-tab-component]')
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// Generate bubbles
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-bubbles();
-
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Resize bubbles
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 window.addEventListener('resize', function (event) {
-  if (timeout) { window.cancelAnimationFrame(timeout); }
-  timeout = window.requestAnimationFrame(function () {
-    bubbles();
-  });
+	if (timeout) { window.cancelAnimationFrame(timeout); }
+		timeout = window.requestAnimationFrame(function () {
+		bubbles();
+	});
 }, false);
 
 document.querySelectorAll('.caption-sr').forEach(function (item) {
-  item.addEventListener('focus', (event) => {
-    event.target.parentNode.classList.add('is-active');
-  });
-  item.addEventListener('blur', (event) => {
-    event.target.parentNode.classList.remove('is-active');
-  });
+	item.addEventListener('focus', (event) => {
+		event.target.parentNode.classList.add('is-active');
+	});
+		item.addEventListener('blur', (event) => {
+		event.target.parentNode.classList.remove('is-active');
+	});
 });  
 
 
@@ -270,9 +262,9 @@ document.querySelectorAll('.caption-sr').forEach(function (item) {
 // When clicking a comic-frame, send the focus to the caption
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 document.querySelectorAll('.comic-frame').forEach(function (item) {
-  item.addEventListener('click', function (itemClick) {
-    item.lastElementChild.focus();
-  });
+	item.addEventListener('click', function (itemClick) {
+		item.lastElementChild.focus();
+	});
 });
 
 
@@ -280,29 +272,29 @@ document.querySelectorAll('.comic-frame').forEach(function (item) {
 // Toggle high contrast mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 highContrastBtn.addEventListener('click', function (e) {
-  if (!highContrastBtn.classList.contains('is-active')) {
-    highContrastBtn.classList.add('is-active');
-    highContrastBtn.setAttribute('aria-pressed', 'true');
-    comicStrip.classList.add('is-high-contrast-mode');
+	if (!highContrastBtn.classList.contains('is-active')) {
+		highContrastBtn.classList.add('is-active');
+		highContrastBtn.setAttribute('aria-pressed', 'true');
+		comicStrip.classList.add('is-high-contrast-mode');
 
-    comicImg = document.querySelectorAll('.comic-image img');
-    comicImg.forEach(function (strip) {
-      contrastUrl = strip.dataset.contrast;
-      strip.setAttribute('src', contrastUrl);
-    });
-  } else {
-    highContrastBtn.classList.remove('is-active');
-    highContrastBtn.setAttribute('aria-pressed', 'false');
-    comicStrip.classList.remove('is-high-contrast-mode');
+		comicImg = document.querySelectorAll('.comic-image img');
+		comicImg.forEach(function (strip) {
+			contrastUrl = strip.dataset.contrast;
+			strip.setAttribute('src', contrastUrl);
+		});
+	} else {
+		highContrastBtn.classList.remove('is-active');
+		highContrastBtn.setAttribute('aria-pressed', 'false');
+		comicStrip.classList.remove('is-high-contrast-mode');
 
-    comicImg = document.querySelectorAll('.comic-image img');
-    comicImg.forEach(function (strip) {
-      srcUrl = strip.dataset.src;
-      strip.setAttribute('src', srcUrl);
-    });
-  }
+		comicImg = document.querySelectorAll('.comic-image img');
+		comicImg.forEach(function (strip) {
+			srcUrl = strip.dataset.src;
+			strip.setAttribute('src', srcUrl);
+		});
+	}
 
-  e.preventDefault;
+	e.preventDefault;
 });
 
 
@@ -310,15 +302,15 @@ highContrastBtn.addEventListener('click', function (e) {
 // Toggle RTL / LTR mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 rtlBtn.addEventListener('click', function () {
-  if (!rtlBtn.classList.contains('is-active')) {
-    rtlBtn.classList.add('is-active');
-    rtlBtn.setAttribute('aria-pressed', 'true');
-    comicStrip.classList.add('is-rtl-mode');
-  } else {
-    rtlBtn.classList.remove('is-active');
-    rtlBtn.setAttribute('aria-pressed', 'false');
-    comicStrip.classList.remove('is-rtl-mode');
-  }
+	if (!rtlBtn.classList.contains('is-active')) {
+		rtlBtn.classList.add('is-active');
+		rtlBtn.setAttribute('aria-pressed', 'true');
+		comicStrip.classList.add('is-rtl-mode');
+	} else {
+		rtlBtn.classList.remove('is-active');
+		rtlBtn.setAttribute('aria-pressed', 'false');
+		comicStrip.classList.remove('is-rtl-mode');
+	}
 });
 
 
@@ -326,32 +318,31 @@ rtlBtn.addEventListener('click', function () {
 // Toggle closed caption mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 ccBtn.addEventListener('click', function () {
-  if (!ccBtn.classList.contains('is-active')) {
-    ccBtn.classList.add('is-active');
-    ccBtn.setAttribute('aria-pressed', 'true');
-    comicStrip.classList.add('is-closed-caption-mode');
+	if (!ccBtn.classList.contains('is-active')) {
+		ccBtn.classList.add('is-active');
+		ccBtn.setAttribute('aria-pressed', 'true');
+		comicStrip.classList.add('is-closed-caption-mode');
 
-    document.querySelector('.comic-strip').firstElementChild.lastElementChild.focus();
+		document.querySelector('.comic-strip').firstElementChild.lastElementChild.focus();
+	} else {
+		ccBtn.classList.remove('is-active');
+		ccBtn.setAttribute('aria-pressed', 'false');
+		comicStrip.classList.remove('is-closed-caption-mode');
 
-  } else {
-    ccBtn.classList.remove('is-active');
-    ccBtn.setAttribute('aria-pressed', 'false');
-    comicStrip.classList.remove('is-closed-caption-mode');
+		// Reset the font-size back to 100% and deactive captions
+		document.querySelector('.comic-strip').dataset.fontsize = '100';
+		document.querySelector('.font-sizer .label strong').innerHTML = '100%';
+		document.querySelectorAll('.comic-strip .caption-closed').forEach(function (item) {
+			item.style.fontSize = "100%";
+		});
 
-    // Reset the font-size back to 100% and deactive captions
-    document.querySelector('.comic-strip').dataset.fontsize = '100';
-    document.querySelector('.font-sizer .text strong').innerHTML = '100%';
-    document.querySelectorAll('.comic-strip .caption-closed').forEach(function (item) {
-      item.style.fontSize = "100%";
-    });
+		// Send focus back to contrast button
+		document.querySelector('.js-closedcaptions').focus();
 
-    // Send focus back to contrast button
-    document.querySelector('.js-closedcaptions').focus();
-
-    // Reset the buttons
-    document.querySelector('.js-resize-up').disabled = false;
-    document.querySelector('.js-resize-down').disabled = true;
-  }
+		// Reset the buttons
+		document.querySelector('.js-resize-up').disabled = false;
+		document.querySelector('.js-resize-down').disabled = true;
+	}
 });
 
 
@@ -359,120 +350,103 @@ ccBtn.addEventListener('click', function () {
 // Increase / decrease font size
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
-  item.addEventListener('click', function (e) {
-    currentSize = document.querySelector('.comic-strip').dataset.fontsize;
-    if (item.classList.contains('js-resize-up')) {
-      currentSize = parseFloat(currentSize) + 10;
-    }
-    if (item.classList.contains('js-resize-down')) {
-      currentSize = parseFloat(currentSize) - 10;
-    }
+	item.addEventListener('click', function (e) {
+		currentSize = document.querySelector('.comic-strip').dataset.fontsize;
+		if (item.classList.contains('js-resize-up')) {
+			currentSize = parseFloat(currentSize) + 10;
+		}
+		if (item.classList.contains('js-resize-down')) {
+			currentSize = parseFloat(currentSize) - 10;
+		}
 
-    // Removed disbaled button state while we're in the 110% - 190% font-size state
-    if (currentSize != 100 && currentSize != 200) {
-      document.querySelector('.js-resize-down').disabled = false;
-      document.querySelector('.js-resize-up').disabled = false;
-    }
+		// Removed disbaled button state while we're in the 110% - 190% font-size state
+		if (currentSize != 100 && currentSize != 200) {
+			document.querySelector('.js-resize-down').disabled = false;
+			document.querySelector('.js-resize-up').disabled = false;
+		}
 
-    // If it's font size above 100 add .is-resized
-    if (currentSize != 100) {
-      comicStrip.classList.add('is-closed-caption-mode', 'is-resized');
-      ccBtn.classList.add('is-active');
-      ccBtn.setAttribute('aria-pressed', 'true');
-      document.querySelector('.comic-strip').firstElementChild.lastElementChild.focus();
-    } else {
-      if (!comicStrip.classList.contains('is-browserZoom')) {
-        comicStrip.classList.remove('is-closed-caption-mode');
-        ccBtn.classList.remove('is-active');
-        ccBtn.setAttribute('aria-pressed', 'false');
-      }
-      comicStrip.classList.remove('is-resized');
-    }
+		// If it's font size above 100 add .is-resized
+		if (currentSize != 100) {
+			comicStrip.classList.add('is-closed-caption-mode', 'is-resized');
+			ccBtn.classList.add('is-active');
+			ccBtn.setAttribute('aria-pressed', 'true');
+			document.querySelector('.comic-strip').firstElementChild.lastElementChild.focus();
+		} else {
+			if (!comicStrip.classList.contains('is-browserZoom')) {
+				comicStrip.classList.remove('is-closed-caption-mode');
+				ccBtn.classList.remove('is-active');
+				ccBtn.setAttribute('aria-pressed', 'false');
+			}
+			comicStrip.classList.remove('is-resized');
+		}
 
-    // Add disabled state to resize down at font-size 100%
-    if (currentSize == 100) {
-      document.querySelector('.js-resize-down').disabled = true;
-    }
+		// Add disabled state to resize down at font-size 100%
+		if (currentSize == 100) {
+			document.querySelector('.js-resize-down').disabled = true;
+		}
 
-    // Add disabled state to resize up at font-size 200%
-    if (currentSize == 200) {
-      document.querySelector('.js-resize-up').disabled = true;
-    }
+		// Add disabled state to resize up at font-size 200%
+		if (currentSize == 200) {
+			document.querySelector('.js-resize-up').disabled = true;
+		}
 
-    // Upkeep
-    comicStrip.dataset.fontsize = currentSize; // Update the data-attribute to reflect to increase / decrease.
-    document.querySelector('.font-sizer .text strong').innerHTML = currentSize + '%'; // Update the font size inline text.
-    document.querySelectorAll('.comic-strip .caption-closed').forEach(function (item) {
-      item.style.fontSize = currentSize + '%'; // Update the font-size css value on comic-strip.
-    });
+		// Upkeep
+		comicStrip.dataset.fontsize = currentSize; // Update the data-attribute to reflect to increase / decrease.
+		document.querySelector('.font-sizer .label strong').innerHTML = currentSize + '%'; // Update the font size inline text.
+		document.querySelectorAll('.comic-strip .caption-closed').forEach(function (item) {
+			item.style.fontSize = currentSize + '%'; // Update the font-size css value on comic-strip.
+		});
 
-    e.preventDefault;
-  });
+		e.preventDefault;
+	});
 });
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Colourblind mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Colour blind reset
 function colourblindReset() {
-  if (
-    comicStrip.classList.contains('is-cb-protanopia') ||
-    comicStrip.classList.contains('is-cb-protanomaly') ||
-    comicStrip.classList.contains('is-cb-deuteranopia') ||
-    comicStrip.classList.contains('is-cb-deuteranomaly') ||
-    comicStrip.classList.contains('is-cb-tritanopia') ||
-    comicStrip.classList.contains('is-cb-tritanomaly') ||
-    comicStrip.classList.contains('is-cb-achromatopsia') ||
-    comicStrip.classList.contains('is-cb-achromatomaly')
-  ) {
-    comicStrip.classList.remove('is-cb-protanopia', 'is-cb-protanomaly', 'is-cb-deuteranopia', 'is-cb-deuteranomaly', 'is-cb-tritanopia', 'is-cb-tritanomaly', 'is-cb-achromatopsia', 'is-cb-achromatomaly');
-  }
+
+	if (
+		comicStrip.classList.contains('is-cb-protanopia') ||
+		comicStrip.classList.contains('is-cb-protanomaly') ||
+		comicStrip.classList.contains('is-cb-deuteranopia') ||
+		comicStrip.classList.contains('is-cb-deuteranomaly') ||
+		comicStrip.classList.contains('is-cb-tritanopia') ||
+		comicStrip.classList.contains('is-cb-tritanomaly') ||
+		comicStrip.classList.contains('is-cb-achromatopsia') ||
+		comicStrip.classList.contains('is-cb-achromatomaly')
+	) {
+		comicStrip.classList.remove('is-cb-protanopia', 'is-cb-protanomaly', 'is-cb-deuteranopia', 'is-cb-deuteranomaly', 'is-cb-tritanopia', 'is-cb-tritanomaly', 'is-cb-achromatopsia', 'is-cb-achromatomaly');
+	}
 }
 
+// Colour blind toggle
 document.querySelector('.js-colourblind').addEventListener('change', function (e) {
-  sel = e.srcElement;
-  opt = sel.options[sel.selectedIndex];
-  mode = opt.value;
+	sel = e.srcElement;
+	opt = sel.options[sel.selectedIndex];
+	mode = opt.value;
 
-  // Reset colourblind mode
-  colourblindReset();
-  if (mode != 'normal') {
-    document.querySelector('.comic-strip').classList.add('is-cb-' + mode);
-  } else {
-    colourblindReset();
-  }
+	// Reset colourblind mode
+	colourblindReset();
+	if (mode != 'normal') {
+		document.querySelector('.comic-strip').classList.add('is-cb-' + mode);
+	} else {
+		colourblindReset();
+	}
 });
 
 
-// To refresh bubbles // Eventually this will be irrelevant
-bubbleBtn.addEventListener('click', function (e) {
-  bubbles();
-  e.preventDefault;
-});
-
-function bubblesResize() {
-  // Need to rework this functionality	
-}
-
-function bubbleBrowserZoom() {
-  let para = document.querySelector('.bubble');
-  let compStyles = window.getComputedStyle(para);
-
-  if (parseInt(compStyles.getPropertyValue('font-size'), 10) > 23) {
-
-    comicStrip.classList.add('is-closed-caption-mode', 'is-browserZoom');
-    ccBtn.classList.add('is-active');
-    ccBtn.setAttribute('aria-pressed', true);
-    // ccBtn.disabled = true;
-
-  }
-}
-
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Bubbles
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Generate the bubbles
 function bubbles() {
   comicStrip.classList.add('is-loading'); // Force the desktop width and height to normalise the stroke width.
 
-  // bubblesResize(); // Resize font to the normalised desktop size
-  // bubbleBrowserZoom(); // Detect if the browser has zoom - if so remove bubbles and replace with captions
+  bubblesResize(); // Resize font to the normalised desktop size
+  browserZoom(); // Detect if the browser has zoom - if so remove bubbles and replace with captions
 
   document.querySelectorAll('.bubble svg').forEach(function (item) {
     item.remove(); // Remove all current bubble SVG graphics.
@@ -785,6 +759,41 @@ function bubbles() {
   bubblesResize(); // Resize the font once more.
 }
 
+// Init the bubbles
+bubbles();
+
+// Re-generate the bubbles on resize
+var timeout; // For debouncing
+function bubblesResize() {
+	// Need to rework this functionality
+	w = document.querySelector('.comic-frame').offsetWidth / 265 + 'em';
+	bubbleSel = document.querySelectorAll('.bubble');
+
+	bubbleSel.forEach(function(item){
+		item.setAttribute('style', 'font-size: '+w);
+	});
+}
+
+// If the zoom level has been set via the browser, activate the closed captions
+function browserZoom() {
+	let para = document.querySelector('.bubble');
+	let compStyles = window.getComputedStyle(para);
+
+	if (parseInt(compStyles.getPropertyValue('font-size'), 10) > 23) {
+		comicStrip.classList.add('is-closed-caption-mode', 'is-browserZoom');
+		ccBtn.classList.add('is-active');
+		ccBtn.setAttribute('aria-pressed', true);
+		// ccBtn.disabled = true;
+	}
+}
+
+// To refresh bubbles // Eventually this will be irrelevant
+bubbleBtn.addEventListener('click', function (e) {
+	bubbles();
+	e.preventDefault;
+});
+
+
 /*
   * Bezier Function
   * Get X,Y by t 
@@ -794,16 +803,16 @@ function bubbles() {
   * @return {{x:x on curve ,y:y on curve}}
 */
 function Bezier(a, b, c, d, t) {
-  var point = { x: 0, y: 0 },
-    mt = 1 - t,
-    mt2 = mt * mt,
-    mt3 = mt2 * mt;
+	var point = { x: 0, y: 0 },
+	mt = 1 - t,
+	mt2 = mt * mt,
+	mt3 = mt2 * mt;
 
-  //fx(t) = x1 * (1-t)³ + x2 * 3 * (1-t)²t + x3 * 3 * (1-t)t² + x4 * t³
-  point.x = a.x * mt3 + b.x * 3 * mt2 * t + c.x * 3 * mt * t * t + d.x * t * t * t;
+	//fx(t) = x1 * (1-t)³ + x2 * 3 * (1-t)²t + x3 * 3 * (1-t)t² + x4 * t³
+	point.x = a.x * mt3 + b.x * 3 * mt2 * t + c.x * 3 * mt * t * t + d.x * t * t * t;
 
-  //fy(t) = y1 * (1-t)³ + y2 * 3 * (1-t)²t + y3 * 3 * (1-t)t² + y4 * t³
-  point.y = a.y * mt3 + b.y * 3 * mt2 * t + c.y * 3 * mt * t * t + d.y * t * t * t;
+	//fy(t) = y1 * (1-t)³ + y2 * 3 * (1-t)²t + y3 * 3 * (1-t)t² + y4 * t³
+	point.y = a.y * mt3 + b.y * 3 * mt2 * t + c.y * 3 * mt * t * t + d.y * t * t * t;
 
-  return point;
+	return point;
 }
