@@ -241,10 +241,14 @@ window.a11yTabs = (function tabsComponentIIFE(global, document) {
 
 const tabComponent = a11yTabs.create('[data-tab-component]')
 
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Generate bubbles
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 bubbles();
 
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Resize bubbles
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 window.addEventListener('resize', function (event) {
   if (timeout) { window.cancelAnimationFrame(timeout); }
   timeout = window.requestAnimationFrame(function () {
@@ -259,7 +263,7 @@ document.querySelectorAll('.caption-sr').forEach(function (item) {
   item.addEventListener('blur', (event) => {
     event.target.parentNode.classList.remove('is-active');
   });
-});
+});  
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––

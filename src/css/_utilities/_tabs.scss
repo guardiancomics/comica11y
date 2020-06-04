@@ -1,3 +1,10 @@
+@include breakpoint(0,400px) {
+  div[data-tab-component] {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+
 [role="tablist"] {
     padding: 0;
     margin: 0;
@@ -37,10 +44,13 @@
     z-index: 2;
     text-decoration: none;
     transition: all 100ms cubic-bezier(0.42, 0, 1, 1);
-  }
-  
-  [role="tab"]:focus {
-      outline: 0;
+
+    @include breakpoint(0,550px) {
+      padding: 15px 10px;
+    }
+    @include breakpoint(0,340px) {
+      padding: 15px 7px;
+    } 
   }
   
   [role="tabpanel"] {
@@ -51,12 +61,13 @@
     position: relative;
     z-index: 1;
     border-radius: 0 0 5px 5px;
+
+    @include breakpoint(0,768px) { 
+      padding: 20px;
+
+    }
   }
   
   [role="tabpanel"][aria-hidden="true"] {
     display: none;
-  }
-  
-  [role="tabpanel"]:focus {
-    outline: 0;
   }

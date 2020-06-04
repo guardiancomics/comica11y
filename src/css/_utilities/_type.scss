@@ -86,8 +86,12 @@ body {
 p {
 	margin: 30px 0;
 
-	&:first-child { margin-top: 0; }
-	&:last-child { margin-bottom: 0; }
+	&:first-child { margin-top: 0!important; }
+	&:last-child { margin-bottom: 0!important; }
+
+	@include breakpoint(0,700px) {
+		margin: 20px 0;
+	}
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -132,9 +136,23 @@ a {
 	color: #c43c3e;
 	&:visited { color: #c43c9b; }
 	&:hover { text-decoration: none; }
-}
 
-.focus-visible {
-	outline: 1px dotted #212121;
-	outline: 5px auto -webkit-focus-ring-color;
+	@include breakpoint(0,768px) {
+		/* These are technically the same, but use both */
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+	  
+		-ms-word-break: break-all;
+		/* This is the dangerous one in WebKit, as it breaks things wherever */
+		word-break: break-all;
+		/* Instead use this non-standard one: */
+		word-break: break-word;
+	  
+		/* Adds a hyphen where the word breaks, if supported (No Blink) */
+		-ms-hyphens: auto;
+		-moz-hyphens: auto;
+		-webkit-hyphens: auto;
+		hyphens: auto;
+	  
+	}
 }

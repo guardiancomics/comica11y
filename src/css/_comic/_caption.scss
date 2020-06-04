@@ -30,6 +30,10 @@
         padding-bottom: 20px;
         @include hide();
     }
+
+    &.focus-visible {
+        outline: none;
+    }
 }
 
 // Closed captions

@@ -50,11 +50,11 @@
 		}
 	}
 
-	@include breakpoint(0,767px){
+	@include breakpoint(0,768px){
 		margin: 15px 0;
-		padding: 5px 20px;
+		padding: 20px;
 	}
-	@include breakpoint(0,479px) {
+	@include breakpoint(0,480px) {
 		margin: 10px 0;
 
 		ol > li,

@@ -1,6 +1,5 @@
 .tagline {
     @include vfont(620);
-    font-size: 2.6rem;
     line-height: 1.4;
     background-color: $grey-cool;
 
@@ -23,5 +22,39 @@
         strong {
             color: $brand-primary;
         }
+    }
+
+    @include breakpoint(961px,0) {
+        font-size: 2.6rem;
+    }
+    @include breakpoint(0,960px) {
+        font-size: 2.2rem;
+    }
+    @include breakpoint(0,768px) {
+        .container {
+            padding: 50px 30px;
+        }
+        &__logo {
+            margin-right: 20px;
+        }
+    }
+    @include breakpoint(0,700px) {
+        font-size: 1.8rem;
+        .container {
+            flex-direction: column;
+            padding: 30px;
+        }
+        &__logo {
+            margin: 0 auto 20px;
+            max-width: 180px;
+        }
+        &__text {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    }
+    @include breakpoint(0,375px) {
+        font-size: 1.6rem;
     }
 }

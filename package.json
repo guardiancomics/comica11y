@@ -6,7 +6,8 @@
   "main": "gulpfile.js",
   "author": "Humaan",
   "dependencies": {
-    "gulp": "^4.0.0"
+    "gulp": "^4.0.0",
+    "focus-visible": "^5.0.2"
   },
   "devDependencies": {
     "gulp-autoprefixer": "^4.1.0",
