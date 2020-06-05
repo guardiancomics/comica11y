@@ -41,24 +41,28 @@
     outline: none;
     background-color: black;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     z-index: 10;
+    padding: 1em 0 0 1em;
 
     .avatar {
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        width: 3em;
+        height: 3em;
         position: absolute;
-        left: 10px;
-        top: 10px;
+        left: 1em;
+        top: .65em;
     }
 
     > p {
-        margin: 10px;
-        padding-left: 60px;
         position: relative;
         display: block;
-        min-width: 300px;
-        margin: 10px;
+        padding-left: 5em;
+        margin: 0 1em 1em 0;;
+
+        width: 30em;
+        min-height: 4.2em;
     }
+
 }

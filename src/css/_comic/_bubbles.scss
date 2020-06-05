@@ -61,4 +61,8 @@
         font-style: italic;
     }
 
+    .is-closed-caption-mode & {
+        display: none;
+    }
+
 }
