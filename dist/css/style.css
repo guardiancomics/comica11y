@@ -553,6 +553,7 @@ a:hover {
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   font-size: 1.6rem;
+  position: relative;
 }
 
 .comic-strip.is-loading {
@@ -609,6 +610,70 @@ a:hover {
 .comic-strip.is-cb-achromatomaly .comic-frame picture img {
   -webkit-filter: url(#achromatomaly);
   filter: url(#achromatomaly);
+}
+
+.comic-strip:before,
+.comic-strip:after {
+  content: '';
+  position: absolute;
+}
+
+.comic-strip:before {
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: .95;
+}
+
+.comic-strip:after {
+  left: 50%;
+  top: 50%;
+  z-index: 11;
+  margin-left: -30px;
+  margin-top: -30px;
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-color: #3156e1;
+  -webkit-animation: sk-rotateplane 1s infinite ease-in-out;
+  animation: sk-rotateplane 1s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
 }
 
 .comic-frame {
@@ -1528,4 +1593,29 @@ img {
     padding-top: 30px;
     padding-bottom: 30px;
   }
+}
+
+@media (prefers-reduced-motion) {
+  .comic-strip:after {
+    content: 'Loading...';
+    font-family: "Montserrat", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 2.5rem;
+    background-color: transparent;
+    -webkit-animation: none;
+    animation: none;
+    text-align: center;
+    margin-left: -5em;
+    margin-top: -1em;
+    width: 10em;
+    height: 2em;
+    line-height: 2em;
+    white-space: nowrap;
+  }
+
+@supports (font-variation-settings: normal) {
+    .comic-strip:after {
+      font-family: "Montserrat Variable", serif;
+      font-variation-settings: "wght" 700;
+    }
+}
 }
