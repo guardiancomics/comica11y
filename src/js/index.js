@@ -299,22 +299,6 @@ highContrastBtn.addEventListener('click', function(e) {
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// Toggle RTL / LTR mode
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-rtlBtn.addEventListener('click', function() {
-	if (!rtlBtn.checked == false) {
-		rtlBtn.checked = true;
-		rtlBtn.setAttribute('aria-pressed', 'true');
-		comicStrip.classList.add('is-rtl-mode');
-	} else {
-		rtlBtn.checked = false;
-		rtlBtn.setAttribute('aria-pressed', 'false');
-		comicStrip.classList.remove('is-rtl-mode');
-	}
-});
-
-
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Toggle closed caption mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 ccBtn.addEventListener('click', function() {
@@ -410,9 +394,9 @@ document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// colourvision mode
+// colour vision mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// Colour blind reset
+// Colour vision reset
 function colourvisionReset() {
 
 	if (
@@ -429,7 +413,7 @@ function colourvisionReset() {
 	}
 }
 
-// Colour blind toggle
+// Colour vision toggle
 document.querySelector('.js-colourvision').addEventListener('change', function (e) {
 	sel = e.srcElement;
 	opt = sel.options[sel.selectedIndex];
@@ -448,6 +432,7 @@ document.querySelector('.js-colourvision').addEventListener('change', function (
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Bubbles
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
 // Generate the bubbles
 function bubbles() {
 
@@ -803,12 +788,6 @@ function browserZoom() {
 		// ccBtn.disabled = true;
 	}
 }
-
-// To refresh bubbles // Eventually this will be irrelevant
-bubbleBtn.addEventListener('click', function (e) {
-	bubbles();
-	e.preventDefault;
-});
 
 
 /*

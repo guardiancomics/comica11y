@@ -33,8 +33,8 @@
     font-size: 1.35em;
     color: black;
 
-    &--left { margin-left: -3em; }
-    &--right { margin-right: -3em; }
+    &--left { margin-left: 0; }
+    &--right { margin-right: 0; }
         
     svg {
         position: absolute;

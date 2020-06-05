@@ -1,3 +1,4 @@
+.goog-te-combo,
 .dropdown {
     // reset 
 	appearance: none;
@@ -15,4 +16,20 @@
     border-radius: 3px;
     min-width: 140px;
     background: url(../../img/arrow.svg) no-repeat center right 10px;
+}
+
+// Overrides
+.goog-te-gadget {
+    overflow: hidden;
+    height: 28px;
+}
+.goog-logo-link {
+    pointer-events: none!important;
+    display: none!important;
+}
+.goog-te-combo, .goog-te-banner *, .goog-te-ftab *, .goog-te-menu *, .goog-te-menu2 *, .goog-te-balloon * {
+    margin: 0!important;
+    font-size: 1.3rem!important;
+    font-family: "Montserrat Variable", serif!important;
+    font-variation-settings: "wght" 620!important;
 }

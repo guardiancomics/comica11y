@@ -83,7 +83,7 @@
                         <h2 id="frame-1" class="hidden">Frame 1</h2>
 
                         <picture class="comic-image">
-                            <img src="img/comics/colour-f1.png" data-src="img/comics/colour-f1.png" data-contrast="img/comics/contrast-f1.png" alt="">
+                            <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/colour-f1.png" data-contrast="img/comics/contrast-f1.png" alt="">
                         </picture><!-- .comic-image -->
 
                         <div class="caption-closed" tabindex="-1" aria-hidden="true">
@@ -104,7 +104,7 @@
                         <h2 id="frame-2" class="hidden">Frame 2</h2>
 
                         <picture class="comic-image">
-                            <img src="img/comics/colour-f2.png" data-src="img/comics/colour-f2.png" data-contrast="img/comics/contrast-f2.png" alt="">
+                            <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/colour-f2.png" data-contrast="img/comics/contrast-f2.png" alt="">
                         </picture><!-- .comic-image -->
 
                         <div class="bubble-wrap" aria-hidden="true">
@@ -146,7 +146,7 @@
                         <h2 id="frame-3" class="hidden">Frame 3</h2>
 
                         <picture class="comic-image">
-                            <img src="img/comics/colour-f3.png" data-src="img/comics/colour-f3.png" data-contrast="img/comics/contrast-f3.png" alt="">
+                            <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/colour-f3.png" data-contrast="img/comics/contrast-f3.png" alt="">
                         </picture><!-- // .comic-image -->
 
                         <div class="bubble-wrap" aria-hidden="true">
@@ -190,7 +190,7 @@
                         <h2 id="frame-4" class="hidden">Frame 4</h2>
 
                         <picture class="comic-image">
-                            <img src="img/comics/colour-f4.png" data-src="img/comics/colour-f4.png" data-contrast="img/comics/contrast-f4.png" alt="">
+                            <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/colour-f4.png" data-contrast="img/comics/contrast-f4.png" alt="">
                         </picture><!-- .comic-image -->
 
                         <div class="caption-closed" tabindex="-1" aria-hidden="true">
@@ -243,78 +243,52 @@
                             </select>
                         </label>
                         <label>
-                            <span class="label">TODO: Translate</span>
-                            <select title="translate" class="dropdown" name="translate">
-                                <option value="">English</option>
-                            </select>
+                            <span class="label">Translate</span>
+                            <div class="translate">
+                                <!-- GTranslate: https://gtranslate.io/ -->
+                                <div id="google_translate_element2"></div>
+                                <script type="text/javascript">
+                                    function googleTranslateElementInit2() {
+                                        new google.translate.TranslateElement(
+                                            {
+                                                pageLanguage: 'en',
+                                                autoDisplay: false
+                                            },
+                                            'google_translate_element2'
+                                        );
+                                        var htmlNode = document.querySelector('html');
+                                        var languageChangeCallback = function(mutationsList, observer) {
+                                            for (let mutation of mutationsList) {
+                                                if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
+                                                    document.querySelector('.comic-strip').classList.add('is-loading');
+                                                    setTimeout(function() {
+                                                        bubbles();
+                                                        document.querySelector('.comic-strip').classList.remove('is-loading');
+                                                    }, 1000);
+                                                }
+                                            }
+                                        };
+                                        var languageChangeObserver = new MutationObserver(languageChangeCallback);
+                                        languageChangeObserver.observe(
+                                            htmlNode,
+                                            {
+                                                attributes: true,
+                                                childList: false,
+                                                subtree: false
+                                            }
+                                        );
+                                    }
+                                </script>
+                                <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+                                <script type="text/javascript">
+                                    /* <![CDATA[ */
+                                    eval(function (p, a, c, k, e, r) { e = function (c) { return (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36)) }; if (!''.replace(/^/, String)) { while (c--) r[e(c)] = k[c] || e(c); k = [function (e) { return r[e] }]; e = function () { return '\\w+' }; c = 1 }; while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]); return p }('6 7(a,b){n{4(2.9){3 c=2.9("o");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s(\'t\'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a==\'\')v;3 b=a.w(\'|\')[1];3 c;3 d=2.x(\'y\');z(3 i=0;i<d.5;i++)4(d[i].A==\'B-C-D\')c=d[i];4(2.j(\'k\')==E||2.j(\'k\').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,\'m\');7(c,\'m\')}}', 43, 43, '||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500'.split('|'), 0, {}))
+                                    /* ]]> */
+                                </script>
+                            </div><!-- // .translate -->
                         </label>
-                    </div><!-- .buttons -->
-
+                    </div><!-- // .buttons -->
                 </div><!-- // .filter -->
-
-                <div class="notes">
-                    <p><strong>WIP Zone</strong></p>
-                    <p><small>Eventually all of these features will be baked in or integrated into the above features:</small></p>
-                    <button class="btn js-bubbles" type="button">Refresh bubbles</button>
-                    <div class="translate">
-                        <!-- GTranslate: https://gtranslate.io/ -->
-                        <div id="google_translate_element2"></div>
-                        <script type="text/javascript">
-                            function googleTranslateElementInit2() {
-                                new google.translate.TranslateElement(
-                                    {
-                                        pageLanguage: 'en',
-                                        autoDisplay: false
-                                    },
-                                    'google_translate_element2'
-                                );
-                                var htmlNode = document.querySelector('html');
-                                var languageChangeCallback = function(mutationsList, observer) {
-                                    for (let mutation of mutationsList) {
-                                        if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
-                                            document.querySelector('.comic-strip').classList.add('loading');
-                                            setTimeout(function() {
-                                                bubbles();
-                                                document.querySelector('.comic-strip').classList.remove('loading');
-                                            }, 1000);
-                                        }
-                                    }
-                                };
-                                var languageChangeObserver = new MutationObserver(languageChangeCallback);
-                                languageChangeObserver.observe(
-                                    htmlNode,
-                                    {
-                                        attributes: true,
-                                        childList: false,
-                                        subtree: false
-                                    }
-                                );
-                            }
-                        </script>
-                        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
-                        <script type="text/javascript">
-                            /* <![CDATA[ */
-                            eval(function (p, a, c, k, e, r) { e = function (c) { return (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36)) }; if (!''.replace(/^/, String)) { while (c--) r[e(c)] = k[c] || e(c); k = [function (e) { return r[e] }]; e = function () { return '\\w+' }; c = 1 }; while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]); return p }('6 7(a,b){n{4(2.9){3 c=2.9("o");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s(\'t\'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a==\'\')v;3 b=a.w(\'|\')[1];3 c;3 d=2.x(\'y\');z(3 i=0;i<d.5;i++)4(d[i].A==\'B-C-D\')c=d[i];4(2.j(\'k\')==E||2.j(\'k\').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,\'m\');7(c,\'m\')}}', 43, 43, '||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500'.split('|'), 0, {}))
-                            /* ]]> */
-                        </script>
-                        <label class="toggle">
-                            <span class="label">RTL / LTR</span>
-                            <input type="checkbox" name="RTL/LTR toggle" class="hidden toggle js-rtl">
-                            <span class="checkbox"></span>
-                        </label>
-                        <!-- /*
-                            The list of languages that need to be RTL:
-                            - Arabic
-                            - Aramaic
-                            - Azeri
-                            - Dhivehi/Maldivian
-                            - Hebrew
-                            - Kurdish (Sorani)
-                            - Persian/Farsi
-                            - Urdu
-                        */ -->
-                    </div><!-- // .transla -->
-                </div><!-- // .notes -->
 
             </div><!-- // .container -->
         </section><!-- // .comic-wrap -->
@@ -368,6 +342,9 @@
                         <h3 class="title">Translatable text</h3>
                         <p>Because the text is rendered on the page as text, it means we can translate it too. You're welcome! Or should I say... ¡De nada!</p>
 
+                        <h3 class="title">left to right &amp; right to left reading support</h3>
+                        <p>Because not every language reads left-to-right like English and French, the comic layout artwork and bubbles inverses to read right to left upon translated where needed.</p>
+
                         <h3 class="title">Programatic bubbles</h3>
                         <p>Using javascript, SVG and a lot of math, each speech bubble is assembled on the fly, based around the width and height of the text contained within. Each bubble accepts parameters that set the position of the spike (left, center or right), the direction the spike curls (left, center or right) and how long the spike is (short, normal, long, variable). Because it's constructed on the fly, it can be moved, altered or resized.</p>
 
@@ -377,11 +354,8 @@
                         <h3 class="title">Responsive images</h3>
                         <p>Using the picture element and source queries, we serve the correct size and density to suit the device. (No more fuzzy iPhone toons.)</p>
 
-                        <h3 class="title">Lazyloading</h3>
+                        <h3 class="title">lazyload</h3>
                         <p>Each image is only fetched from the server once the page has loaded, ensuring speed and performance come first.</p>
-
-                        <h3 class="title">RTL / LTR mode</h3>
-                        <p>Because not every language reads left-to-right like English and French, we added the option to flip the layout if needed. This reverses the order of the frames along with all of the speech and artwork.</p>
 
                     </div><!-- // .notes -->
                     <p><strong>Helpful links:</strong></p>
@@ -569,7 +543,7 @@
             elements_selector: ".lazyload"
         });
     </script>
-    <script src="dist/js/build.js"></script>
+    <script src="src/js/index.js"></script>
 
 </body>
 

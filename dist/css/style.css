@@ -561,12 +561,12 @@ a:hover {
   white-space: nowrap;
 }
 
-.comic-strip.is-rtl-mode {
+.translated-rtl .comic-strip {
   direction: rtl;
 }
 
-.comic-strip.is-rtl-mode .comic-frame img,
-.comic-strip.is-rtl-mode .comic-frame svg {
+.translated-rtl .comic-strip .comic-frame img,
+.translated-rtl .comic-strip .comic-frame svg {
   -webkit-transform: scaleX(-1);
   -ms-transform: scaleX(-1);
   transform: scaleX(-1);
@@ -612,13 +612,13 @@ a:hover {
   filter: url(#achromatomaly);
 }
 
-.comic-strip:before,
-.comic-strip:after {
+.comic-strip.is-loading:before,
+.comic-strip.is-loading:after {
   content: '';
   position: absolute;
 }
 
-.comic-strip:before {
+.comic-strip.is-loading:before {
   left: 0;
   top: 0;
   z-index: 10;
@@ -628,7 +628,7 @@ a:hover {
   opacity: .95;
 }
 
-.comic-strip:after {
+.comic-strip.is-loading:after {
   left: 50%;
   top: 50%;
   z-index: 11;
@@ -770,11 +770,11 @@ a:hover {
 }
 
 .bubble--left {
-  margin-left: -3em;
+  margin-left: 0;
 }
 
 .bubble--right {
-  margin-right: -3em;
+  margin-right: 0;
 }
 
 .bubble svg {
@@ -922,6 +922,7 @@ button {
   }
 }
 
+.goog-te-combo,
 .dropdown {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -943,10 +944,33 @@ button {
 }
 
 @supports (font-variation-settings: normal) {
+  .goog-te-combo,
   .dropdown {
     font-family: "Montserrat Variable", serif;
     font-variation-settings: "wght" 620;
   }
+}
+
+.goog-te-gadget {
+  overflow: hidden;
+  height: 28px;
+}
+
+.goog-logo-link {
+  pointer-events: none !important;
+  display: none !important;
+}
+
+.goog-te-combo,
+.goog-te-banner *,
+.goog-te-ftab *,
+.goog-te-menu *,
+.goog-te-menu2 *,
+.goog-te-balloon * {
+  margin: 0 !important;
+  font-size: 1.3rem !important;
+  font-family: "Montserrat Variable", serif !important;
+  font-variation-settings: "wght" 620 !important;
 }
 
 .font-sizer__buttons {
@@ -1112,6 +1136,9 @@ button {
 }
 
 .filter {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1020px;
   width: 100%;
   padding: 15px 20px;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -1596,8 +1623,8 @@ img {
 }
 
 @media (prefers-reduced-motion) {
-  .comic-strip:after {
-    content: 'Loading...';
+  .comic-strip.is-loading:after {
+    content: 'Translating...';
     font-family: "Montserrat", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 2.5rem;
     background-color: transparent;
@@ -1613,7 +1640,7 @@ img {
   }
 
 @supports (font-variation-settings: normal) {
-    .comic-strip:after {
+    .comic-strip.is-loading:after {
       font-family: "Montserrat Variable", serif;
       font-variation-settings: "wght" 700;
     }
