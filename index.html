@@ -272,9 +272,11 @@
                                 var languageChangeCallback = function(mutationsList, observer) {
                                     for (let mutation of mutationsList) {
                                         if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
+                                            document.querySelector('.comic-strip').classList.add('loading');
                                             setTimeout(function() {
                                                 bubbles();
-                                            }, 500);
+                                                document.querySelector('.comic-strip').classList.remove('loading');
+                                            }, 1000);
                                         }
                                     }
                                 };
