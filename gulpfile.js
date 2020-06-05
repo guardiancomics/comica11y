@@ -74,6 +74,7 @@ var rename = require('gulp-rename');
 // Javacsript
 var uglify = require('gulp-uglify-es').default;
 var concat = require('gulp-concat');
+var babel = require('gulp-babel');
 
 // Stylesheets
 var sass = require('gulp-sass');
@@ -138,6 +139,9 @@ var task_concat_js = function(done) {
                  'src/js/**/*.js',
                 '!' +  'src/js/resources/**'
             ]),
+            babel({
+                presets: ['@babel/env']
+            }),
             concat('build.js').on('error', function(err) {
                 parse_errors(err, done);
             }),
