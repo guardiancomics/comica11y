@@ -260,7 +260,34 @@
                         <!-- GTranslate: https://gtranslate.io/ -->
                         <div id="google_translate_element2"></div>
                         <script type="text/javascript">
-                            function googleTranslateElementInit2() { new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element2'); }
+                            function googleTranslateElementInit2() {
+                                new google.translate.TranslateElement(
+                                    {
+                                        pageLanguage: 'en',
+                                        autoDisplay: false
+                                    },
+                                    'google_translate_element2'
+                                );
+                                var htmlNode = document.querySelector('html');
+                                var languageChangeCallback = function(mutationsList, observer) {
+                                    for (let mutation of mutationsList) {
+                                        if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
+                                            setTimeout(function() {
+                                                bubbles();
+                                            }, 500);
+                                        }
+                                    }
+                                };
+                                var languageChangeObserver = new MutationObserver(languageChangeCallback);
+                                languageChangeObserver.observe(
+                                    htmlNode,
+                                    {
+                                        attributes: true,
+                                        childList: false,
+                                        subtree: false
+                                    }
+                                );
+                            }
                         </script>
                         <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
                         <script type="text/javascript">
