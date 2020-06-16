@@ -572,6 +572,26 @@ a:hover {
   transform: scaleX(-1);
 }
 
+.translated-rtl .comic-strip .bubble--left {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.translated-rtl .comic-strip .bubble--right {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.translated-rtl .comic-strip .caption-closed .avatar {
+  left: auto;
+  right: 1em;
+}
+
+.translated-rtl .comic-strip .caption-closed > p {
+  padding-left: 0;
+  padding-right: 5em;
+}
+
 .comic-strip.is-cb-protanopia .comic-frame picture img {
   -webkit-filter: url(#protanopia);
   filter: url(#protanopia);
@@ -717,10 +737,22 @@ a:hover {
   width: 1px;
 }
 
-.comic-frame > img {
+.comic-frame img {
   display: block;
   margin: 0;
   width: 100%;
+}
+
+.comic-frame picture.master {
+  position: relative;
+}
+
+.comic-frame picture.slave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .bubble-wrap {
@@ -745,24 +777,25 @@ a:hover {
   -ms-flex-pack: start;
   justify-content: flex-start;
   outline: none;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
-.bubble-wrap > .bubble:first-child {
-  margin-top: -1.75em;
-  padding-top: 2em;
+.bubble-wrap > .bubble:first-child:not([class*="nudge--top"]) {
+  margin-top: -.4em;
 }
 
 .bubble-wrap .bubble + .bubble {
   z-index: 2;
-  margin-top: -.5em;
+  margin-top: -.4em;
 }
 
 .bubble {
   display: inline-block;
   font-family: "DigitalStripBB", "Comic Sans MS", "Comic Sans", cursive;
-  line-height: 1;
+  line-height: .95;
   text-align: center;
-  padding: .8em 1em .9em;
+  padding: .8em 1em .7em;
   position: relative;
   white-space: nowrap;
   font-size: 1.35em;
@@ -770,11 +803,11 @@ a:hover {
 }
 
 .bubble--left {
-  margin-left: 0;
+  margin-right: auto;
 }
 
 .bubble--right {
-  margin-right: 0;
+  margin-left: auto;
 }
 
 .bubble svg {
@@ -804,6 +837,166 @@ a:hover {
 
 .is-closed-caption-mode .bubble {
   display: none;
+}
+
+html:not(.translated-rtl) .nudge--left--1 {
+  margin-left: -1em;
+}
+
+html:not(.translated-rtl) .nudge--left--1.5 {
+  margin-left: -1.5em;
+}
+
+html:not(.translated-rtl) .nudge--left--2 {
+  margin-left: -2em;
+}
+
+html:not(.translated-rtl) .nudge--left--2.5 {
+  margin-left: -2.5em;
+}
+
+html:not(.translated-rtl) .nudge--left--3 {
+  margin-left: -3em;
+}
+
+html:not(.translated-rtl) .nudge--left--3.5 {
+  margin-left: -3.5em;
+}
+
+html:not(.translated-rtl) .nudge--left--4 {
+  margin-left: -4em;
+}
+
+html:not(.translated-rtl) .nudge--left--4.5 {
+  margin-left: -4.5em;
+}
+
+html:not(.translated-rtl) .nudge--right--1 {
+  margin-right: -1em;
+}
+
+html:not(.translated-rtl) .nudge--right--1.5 {
+  margin-right: -1.5em;
+}
+
+html:not(.translated-rtl) .nudge--right--2 {
+  margin-right: -2em;
+}
+
+html:not(.translated-rtl) .nudge--right--2.5 {
+  margin-right: -2.5em;
+}
+
+html:not(.translated-rtl) .nudge--right--3 {
+  margin-right: -3em;
+}
+
+html:not(.translated-rtl) .nudge--right--3.5 {
+  margin-right: -3.5em;
+}
+
+html:not(.translated-rtl) .nudge--right--4 {
+  margin-right: -4em;
+}
+
+html:not(.translated-rtl) .nudge--right--4.5 {
+  margin-right: -4.5em;
+}
+
+html:not(.translated-rtl) .nudge--top--1 {
+  margin-top: 1em;
+}
+
+html:not(.translated-rtl) .nudge--top--2 {
+  margin-top: 2em;
+}
+
+html:not(.translated-rtl) .nudge--top--3 {
+  margin-top: 3em;
+}
+
+html:not(.translated-rtl) .nudge--top--4 {
+  margin-top: 4em;
+}
+
+html.translated-rtl .nudge--left--1 {
+  margin-right: -1em;
+}
+
+html.translated-rtl .nudge--left--1.5 {
+  margin-right: -1.5em;
+}
+
+html.translated-rtl .nudge--left--2 {
+  margin-right: -2em;
+}
+
+html.translated-rtl .nudge--left--2.5 {
+  margin-right: -2.5em;
+}
+
+html.translated-rtl .nudge--left--3 {
+  margin-right: -3em;
+}
+
+html.translated-rtl .nudge--left--3.5 {
+  margin-right: -3.5em;
+}
+
+html.translated-rtl .nudge--left--4 {
+  margin-right: -4em;
+}
+
+html.translated-rtl .nudge--left--4.5 {
+  margin-right: -4.5em;
+}
+
+html.translated-rtl .nudge--right--1 {
+  margin-left: -1em;
+}
+
+html.translated-rtl .nudge--right--1.5 {
+  margin-left: -1.5em;
+}
+
+html.translated-rtl .nudge--right--2 {
+  margin-left: -2em;
+}
+
+html.translated-rtl .nudge--right--2.5 {
+  margin-left: -2.5em;
+}
+
+html.translated-rtl .nudge--right--3 {
+  margin-left: -3em;
+}
+
+html.translated-rtl .nudge--right--3.5 {
+  margin-left: -3.5em;
+}
+
+html.translated-rtl .nudge--right--4 {
+  margin-left: -4em;
+}
+
+html.translated-rtl .nudge--right--4.5 {
+  margin-left: -4.5em;
+}
+
+html.translated-rtl .nudge--top--1 {
+  margin-top: 1em;
+}
+
+html.translated-rtl .nudge--top--2 {
+  margin-top: 2em;
+}
+
+html.translated-rtl .nudge--top--3 {
+  margin-top: 3em;
+}
+
+html.translated-rtl .nudge--top--4 {
+  margin-top: 4em;
 }
 
 .caption-sr__inner,
@@ -871,6 +1064,7 @@ a:hover {
   position: absolute;
   left: 1em;
   top: .65em;
+  border: 3px solid #3156e1;
 }
 
 .caption-closed > p {

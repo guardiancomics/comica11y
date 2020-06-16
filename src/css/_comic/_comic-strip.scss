@@ -33,6 +33,20 @@
         .comic-frame svg {
             transform: scaleX(-1);
         }
+
+        .bubble--left { margin-left: auto; margin-right: 0;}
+        .bubble--right { margin-left: 0; margin-right: auto; }
+
+        .caption-closed {
+            .avatar {
+                left: auto;
+                right: 1em;
+            }
+            > p {
+                padding-left: 0;
+                padding-right: 5em;
+            }
+        }
     }
     
     // Colourblind filters
