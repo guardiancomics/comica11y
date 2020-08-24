@@ -2,6 +2,7 @@
 comicStrip = document.querySelector('.comic-strip');
 comicFrame = document.querySelectorAll('.comic-frame');
 highContrastBtn = document.querySelector('.js-highcontrast');
+verticalBtn = document.querySelector('.js-vertical');
 rtlBtn = document.querySelector('.js-rtl');
 ccBtn = document.querySelector('.js-closedcaptions');
 bubbleBtn = document.querySelector('.js-bubbles');
@@ -292,6 +293,23 @@ highContrastBtn.addEventListener('click', function(e) {
 			srcUrl = strip.dataset.colour;
       strip.setAttribute('src', srcUrl);
 		});
+	}
+
+	e.preventDefault;
+});
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Toggle Vertical mode
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+verticalBtn.addEventListener('click', function(e) {
+	if (!verticalBtn.checked == false) {
+		verticalBtn.checked = true;
+		verticalBtn.setAttribute('aria-pressed', 'true');
+		comicStrip.classList.add('is-vertical-mode');
+	} else {
+		verticalBtn.checked = false;
+		verticalBtn.setAttribute('aria-pressed', 'false');
+		comicStrip.classList.remove('is-vertical-mode');
 	}
 
 	e.preventDefault;

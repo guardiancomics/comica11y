@@ -1,30 +1,10 @@
 .comic-strip {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     font-size: 1.6rem; // Base
     position: relative;
-    
-    &:not(.is-loading) {
-        @include breakpoint(0,1200px){
-            grid-template-columns: repeat(2, 1fr);
-            margin: 0 auto;
-            max-width: 820px;
-        }
-        @include breakpoint(0,767px){
-            grid-template-columns: repeat(1, 1fr);
-            margin: 0 auto;
-            max-width: 280px;
-        }
-    }
-    
-    &.is-loading {
-        width: 1650px;
-        white-space:nowrap;
-    }
-    
+
     // RTL mode
     .translated-rtl & {
         direction: rtl;
@@ -59,9 +39,36 @@
     &.is-cb-achromatopsia .comic-frame picture img { filter: url(#achromatopsia); }
     &.is-cb-achromatomaly .comic-frame picture img { filter: url(#achromatomaly); }
 
+    // Loading states
+    &:not(.is-loading) {
+        &:not(.is-vertical-mode) {
+            @include breakpoint(1201px,0){
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-rows: 1fr;
+                
+            }
+            @include breakpoint(0,1200px){
+                grid-template-columns: repeat(2, 1fr);
+                margin: 0 auto;
+                max-width: 820px;
+            }
+            @include breakpoint(0,767px){
+                grid-template-columns: repeat(1, 1fr);
+                margin: 0 auto;
+                max-width: 280px;
+            }
+        }
+        &.is-vertical-mode {
+            max-width: 417px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 
-    // Loading state
     &.is-loading {
+        width: 1650px;
+        white-space:nowrap;
+
         &:before,
         &:after {
             content: '';

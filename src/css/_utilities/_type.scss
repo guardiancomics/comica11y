@@ -125,6 +125,18 @@ strong {
 	@include vfont(600);
 }
 
+code {
+	font-family: $code-stack;
+	font-weight: $fw-regular;
+    unicode-bidi: embed;
+    font-family: monospace;
+	width: min-content;
+	background-color: $grey-cool;
+	color: black;
+	border: 1px solid $border-color;
+	padding: 3px 5px;
+	margin: 0 5px;
+}
 
 
 // Links

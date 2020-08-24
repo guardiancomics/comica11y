@@ -21,14 +21,14 @@
     <meta property="og:url" content="https://comica11y.humaan.com/comica11y">
     <meta property="og:title" content="humaan.com/comica11y">
     <meta property="og:description" content="ComicA11y is an experiment that aims to achieve an all-inclusive online comic experience. Because comics should be universal.">
-    <meta property="og:image" content="https://comica11y.humaan.com/img/og.png"><!--  width 1200x1200 -->
+    <meta property="og:image" content="https://comica11y.humaan.com/img/og.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="https://comica11y.humaan.com/">
     <meta property="twitter:title" content="comica11y.humaan.com">
     <meta property="twitter:description" content="ComicA11y is an experiment that aims to achieve an all-inclusive online comic experience. Because comics should be universal.">
-    <meta property="twitter:image" content="https://comica11y.humaan.com/comica11y/img/og.png"><!--  width 1200x1200 -->
+    <meta property="twitter:image" content="https://comica11y.humaan.com/comica11y/img/og.png">
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="img/favicon.ico">
@@ -275,13 +275,19 @@
 
                         <label class="toggle">
                             <span class="label">Closed captions</span>
-                            <input type="checkbox" name="closed captions" class="hidden toggle js-closedcaptions">
+                            <input type="checkbox" name="closed captions" class="hidden js-closedcaptions">
                             <span class="checkbox"></span>
                         </label>
 
                         <label class="toggle">
                             <span class="label">High contrast</span>
-                            <input type="checkbox" name="high contrast" class="hidden toggle js-highcontrast">
+                            <input type="checkbox" name="high contrast" class="hidden js-highcontrast">
+                            <span class="checkbox"></span>
+                        </label>
+
+                        <label class="toggle">
+                            <span class="label">Vertical layout</span>
+                            <input type="checkbox" name="vertical layout" class="hidden js-vertical">
                             <span class="checkbox"></span>
                         </label>
 
@@ -365,18 +371,15 @@
                     <li class="tab-item">
                         <a class="tab-link" href="#tab-objectives">Objectives</a>
                     </li>
-                    <li class="tab-item">
-                        <a class="tab-link" href="#tab-updates">Updates</a>
-                    </li>
                 </ul>
                 <section id="tab-features" class="tab-panel">
                     <h2 class="title">What ComicA11y does</h2>
                     <div class="notes">
                         <h3 class="title">Focus management</h3>
-                        <p>The `tab` key on the keyboard lets users navigate between panels in your comic strip. The panels in focus is highlighted with a thickened frame border.</p>
+                        <p>The <code>tab</code> key on the keyboard lets users navigate between panels in your comic strip. The panels in focus is highlighted with a thickened frame border.</p>
 
                         <h3 class="title">Engineered for screen readers</h3>
-                        <p>Using an HTML `figcaption` element, the frame in focus features text specifically written for screen readers. It describes the setting, the characters speaking, the dialogue, along with anything else necessary to convey the meaning of the frame contents.</p>
+                        <p>Using an HTML <code>figcaption</code> element, the frame in focus features text specifically written for screen readers. It describes the setting, the characters speaking, the dialogue, along with anything else necessary to convey the meaning of the frame contents.</p>
 
                         <h3 class="title">Best practices</h3>
                         <p>The comic includes semantic HTML5 markup that includes WAI-ARIA attributes to aid assistive technology.</p>
@@ -432,7 +435,7 @@
                         <p><strong>Here's a typical example of how an online comic author might present their comic strip.</strong></p>
                         <ul>
                             <li>
-                                <p>Little to no information provided in the `alt` text or `title`.</p>
+                                <p>Little to no information provided in the <code>alt</code> text or <code>title</code>.</p>
                             </li>
                             <li>
                                 <p>A high resolution image serving all screen and device sizes. This is often a high resolution asset ranging from 900 - ~3500px wide and file size anywhere between 100kb - 2.5mb.</p>
@@ -479,19 +482,20 @@
                         <div class="grid-item">
                             <h3>Must have features</h3>
                             <ul>
-                                <li><del>Colour vision and high contrast modes.</del></li>
-                                <li><del>Closed captions.</del></li>
-                                <li><del>Translatable.</del></li>
-                                <li><del>RTL/LTR.</del></li>
-                                <li><del>Resizable text.</del></li>
-                                <li><del>Responsive / fluid layout.</del></li>
-                                <li><del>ARIA best practices.</del></li>
+                                <li>✅ Colour vision and high contrast modes.</li>
+                                <li>✅ Closed captions.</li>
+                                <li>✅ Translatable.</li>
+                                <li>✅ RTL/LTR.</li>
+                                <li>✅ Resizable text.</li>
+                                <li>✅ Responsive / fluid layout.</li>
+                                <li>✅ ARIA best practices.</li>
                             </ul>
                         </div><!-- // .grid-item -->
                         <div class="grid-item">
                             <h3>Nice to have features</h3>
                             <ul>
-                                <li>Toggle closed captions on with browser zoom and <del>system zoom.</del></li>
+                                <li>✅ System zoom.</li>
+                                <li>Toggle closed captions with browser zoom.</li>
                                 <li>Autoplay mode.</li>
                                 <li>Audio mode.</li>
                                 <li>Responsive image sizes.</li>
@@ -499,38 +503,6 @@
                             </ul>
                         </div><!-- // .grid-item -->
                     </div><!-- // .grid -->
-                </section>
-                <section id="tab-updates" class="tab-panel">
-                    <div class="notes notes--log">
-                        <p><strong>Updates</strong></p>
-                        <ol>
-                            <li><strong class="date">04/06/2020</strong> Added some responsive styles and restructured the filter bar. Moved all the WIP features out of the filter tray and into a specific region while the bugs are being ironed out and features integrated</li>
-                            <li><strong class="date">03/06/2020</strong> Restructured the page and added tabs. Included a write up of all of the features and docked problems / objectives / change log.</li>
-                            <li><strong class="date">02/06/2020</strong> Converted all filter buttons into native select and checkboxes where appropriate. Added focus management for the filters. Added javascript for input onchange event to toggle the colour blind modes correctly.</li>
-                            <li><strong class="date">29/05/2020</strong> Converted from jquery to javascript and removed dependencies. Thickened the border, improved the focus state for the frame to signify which frame you're currently reading. Added avatars to closed captions so to know which person the caption belongs to. Added fixed position for the closed captions.</li>
-                            <li><strong class="date">25/05/2020</strong> Validated markup. Removed all JS that was not needed to power the plugin. Still require jquery dependency to be eliminated. Restructured the bubbles to use cubic beziers instead of quadratic beziers. The tails are now positioned exactly. Tweeked and improved the tail constructor to draw the angles and curves of the spike better than before. Still not perfect.</li>
-                            <li><strong class="date">29/01/2020</strong> Fixed SVG filter bug for colour blind options by moving the filters inline and referring to simply the ID within the CSS.</li>
-                            <li><strong class="date">29/01/2020</strong> Reworked resize font function to only apply the font-size to the closed captions. The bubbles were toggling the browser zoom functionality when the font-size was increased using the buttons, which we don't want.</li>
-                            <li><strong class="date">29/01/2020</strong> Added a detection for browser font-size being set to large or very large. If so, it will remove the bubbles (they break), toggle captions and disable the toggle button. Resizing font-size still works. Reworked pixel padding to use em's so the layout of the page doesn't break when text is increased.</li>
-                            <li><strong class="date">29/01/2020</strong> Removed "click here" text from all buttons. Added "verb the noun" format for text resize buttons. Removed pale grey for toggles and update log dates. Removed the lime green on toggles and replaced with blue. Added aria-pressed attribute to all toggle switches. Added true to aria-hidden attributes to avoid axe errors.</li>
-                            <li><strong class="date">28/01/2020</strong> Added a function to the bubble SVG generator to fontsize-detector the beginning point and end point along the quadratic bezier arc - phew.</li>
-                            <li><strong class="date">23/01/2020</strong> Reworked the bubbles() function. The SVG generating of the bubbles is now a lot easier to read. Updated the path names so they work out of the box without a hostname.</li>
-                            <li><strong class="date">23/01/2020</strong> Added some improvements to the aria attributes and markup.</li>
-                            <li><strong class="date">20/01/2020</strong> Replaced the artwork with dinosaurs and re-wrote the captions and screen reader text. Rejigged the logic for the closed caption toggle and the text resizing - Now when you increase the font size it defaults to closed caption mode and toggles off bubbles. Added the logic to the svg generator to flip the tails left and right.</li>
-                            <li><strong class="date">17/01/2020</strong> Added a tweak to the jquery so the bubbles are measured and drawn during a loading state, where the comic-strip width is normalised, to ensure the stroke width is always the same. Added a jquery function to measure the frame width and calculate an apprpriate em value that allows for fluid bubbles on resize, while also allowing for up and down resizing.</li>
-                            <li><strong class="date">17/01/2020</strong> Updated the jquery logic for resizing font-size, to cap between 100% - 200% - added disabled states where needed.</li>
-                            <li><strong class="date">17/01/2020</strong> Added responisve styles for the comic-strip. Just a simple 4 column, 2 column, 1 column breakdown.</li>
-                            <li><strong class="date">17/01/2020</strong> Removed all PHP and reverted to simple HTML to make the page more shareable.</li>
-                            <li><strong class="date">15/01/2020</strong> Adding some jquery, I added some simple buttons that allow you to resize the text as needed.</li>
-                            <li><strong class="date">15/01/2020</strong> Using SVG filters, I added the ability to filter out colours that effect the user with particular colour blindness. Added a dropdown to toggle them on/off.</li>
-                            <li><strong class="date">14/01/2020</strong> Added SVG bubbles and Digital Strip webfont to the comic strip. Added google translate. Replacing the graphical speech bubbles with SVG graphics as well as a comic book webfont was the major step to making the comic accessible to other languages.</li>
-                            <li><strong class="date">13/01/2020</strong> Added right to left reading mode. Inversed the images and the order of panels.</li>
-                            <li><strong class="date">13/01/2020</strong> Added screen reader caption text for when tabbing through the comic. Tested on OSX VoiceOver. When keyboard focus selects the screen reader text while the closed captions are on screen, the closed captions will disappear.</li>
-                            <li><strong class="date">13/01/2020</strong> Added closed caption toggle and closed caption text to each comic book frame. Added closed caption and ensured they can't be tabbed to - we don't want to double up on voice overs.</li>
-                            <li><strong class="date">08/01/2020</strong> Added high contrast images and toggle for people who have vision impairment.</li>
-                            <li><strong class="date">19/12/2019</strong> Split the comic into individual, borderless panels. Firstly. Let's split the comic into the individual frames and remove all text from the image - we want the text to be overlayed later.</li>
-                        </ol>
-                    </div><!-- // .notes -->
                 </section>
             </div>
         </div><!-- // .container -->

@@ -4,21 +4,27 @@
     
     .checkbox {
         display: block;
-        width: 50px;
+        width: 62px;
         height: 28px;
         position: relative;
         margin-right: 10px;
         
         &:before {
-            content: '';
+            content: 'off';
+            text-transform: uppercase;
+            @include vfont(800);
+            font-size: 1.3rem;
+            text-align: right;
+            line-height: 24px;
+            padding: 0 8px;
             position: absolute;
             left: 0;
             top: 0;
-            width: 50px;
+            width: 62px;
             height: 28px;
             border-radius: 28px;
-            background-color: #555555;
-            border: 2px solid #555555;
+            background-color: white;
+            border: 2px solid $border-color;
         }
         &:after {
             content:'';
@@ -29,24 +35,28 @@
             height: 16px;
             display: block;
             border-radius: 18px;
-            background-color: white;
+            background-color: $border-color;
             transition: transform .1s ease-out;
             box-shadow: 0 0 0 0 white;
-            transition: box-shadow $timing $ease-std;
+            transition: transform $timing $ease-std;
         }
     }
 
-    input[type="checkbox"]:focus + .checkbox:after {
-        box-shadow: 0 0 0 2px white;
+    input[type="checkbox"]:focus + .checkbox:before {
+        border-color :$brand-primary;
+        background-color: white;
         
     }
     
     input[type="checkbox"]:checked + .checkbox {
         &:before {
-            background-color: $brand-primary;
+            content: 'on';
+            text-align: left;
+            color: $brand-primary;
         }
         &:after {
-            transform: translateX(22px);
+            transform: translateX(34px);
+            background-color: $brand-primary;
         }	
     }
     

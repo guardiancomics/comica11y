@@ -530,6 +530,21 @@ strong {
   }
 }
 
+code {
+  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+  font-weight: 400;
+  unicode-bidi: embed;
+  font-family: monospace;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  background-color: #f7faff;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 3px 5px;
+  margin: 0 5px;
+}
+
 a {
   outline: 0;
   -webkit-transition: color 0.15s linear;
@@ -548,17 +563,10 @@ a:hover {
 
 .comic-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   font-size: 1.6rem;
   position: relative;
-}
-
-.comic-strip.is-loading {
-  width: 1650px;
-  white-space: nowrap;
 }
 
 .translated-rtl .comic-strip {
@@ -630,6 +638,17 @@ a:hover {
 .comic-strip.is-cb-achromatomaly .comic-frame picture img {
   -webkit-filter: url(#achromatomaly);
   filter: url(#achromatomaly);
+}
+
+.comic-strip:not(.is-loading).is-vertical-mode {
+  max-width: 417px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comic-strip.is-loading {
+  width: 1650px;
+  white-space: nowrap;
 }
 
 .comic-strip.is-loading:before,
@@ -1254,22 +1273,35 @@ button {
 
 .toggle .checkbox {
   display: block;
-  width: 50px;
+  width: 62px;
   height: 28px;
   position: relative;
   margin-right: 10px;
 }
 
 .toggle .checkbox:before {
-  content: '';
+  content: 'off';
+  text-transform: uppercase;
+  font-family: "Montserrat", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 1.3rem;
+  text-align: right;
+  line-height: 24px;
+  padding: 0 8px;
   position: absolute;
   left: 0;
   top: 0;
-  width: 50px;
+  width: 62px;
   height: 28px;
   border-radius: 28px;
-  background-color: #555555;
-  border: 2px solid #555555;
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+@supports (font-variation-settings: normal) {
+  .toggle .checkbox:before {
+    font-family: "Montserrat Variable", serif;
+    font-variation-settings: "wght" 800;
+  }
 }
 
 .toggle .checkbox:after {
@@ -1281,7 +1313,7 @@ button {
   height: 16px;
   display: block;
   border-radius: 18px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.08);
   -webkit-transition: -webkit-transform .1s ease-out;
   transition: -webkit-transform .1s ease-out;
   -o-transition: transform .1s ease-out;
@@ -1289,26 +1321,29 @@ button {
   transition: transform .1s ease-out, -webkit-transform .1s ease-out;
   -webkit-box-shadow: 0 0 0 0 white;
   box-shadow: 0 0 0 0 white;
-  -webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
-  transition: -webkit-box-shadow 0.15s ease-in-out;
-  -o-transition: box-shadow 0.15s ease-in-out;
-  transition: box-shadow 0.15s ease-in-out;
-  transition: box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -webkit-transition: -webkit-transform 0.15s ease-in-out;
+  transition: -webkit-transform 0.15s ease-in-out;
+  -o-transition: transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
 }
 
-.toggle input[type="checkbox"]:focus + .checkbox:after {
-  -webkit-box-shadow: 0 0 0 2px white;
-  box-shadow: 0 0 0 2px white;
+.toggle input[type="checkbox"]:focus + .checkbox:before {
+  border-color: #3156e1;
+  background-color: white;
 }
 
 .toggle input[type="checkbox"]:checked + .checkbox:before {
-  background-color: #3156e1;
+  content: 'on';
+  text-align: left;
+  color: #3156e1;
 }
 
 .toggle input[type="checkbox"]:checked + .checkbox:after {
-  -webkit-transform: translateX(22px);
-  -ms-transform: translateX(22px);
-  transform: translateX(22px);
+  -webkit-transform: translateX(34px);
+  -ms-transform: translateX(34px);
+  transform: translateX(34px);
+  background-color: #3156e1;
 }
 
 .toggle input[type="checkbox"]:disabled + .checkbox {
@@ -1596,6 +1631,13 @@ img {
   }
 }
 
+@media (min-width: 1201px) {
+  .comic-strip:not(.is-loading):not(.is-vertical-mode) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
+}
+
 @media (min-width: 1740px) {
   .breakout {
     margin-left: -150px;
@@ -1604,7 +1646,7 @@ img {
 }
 
 @media (max-width: 1200px) {
-  .comic-strip:not(.is-loading) {
+  .comic-strip:not(.is-loading):not(.is-vertical-mode) {
     grid-template-columns: repeat(2, 1fr);
     margin: 0 auto;
     max-width: 820px;
@@ -1713,7 +1755,7 @@ img {
     margin-bottom: 15px;
   }
 
-  .comic-strip:not(.is-loading) {
+  .comic-strip:not(.is-loading):not(.is-vertical-mode) {
     grid-template-columns: repeat(1, 1fr);
     margin: 0 auto;
     max-width: 280px;
