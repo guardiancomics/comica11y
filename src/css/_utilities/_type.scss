@@ -149,6 +149,10 @@ a {
 	&:visited { color: #c43c9b; }
 	&:hover { text-decoration: none; }
 
+	&:focus {
+		outline: 2px solid $brand-primary;
+	}
+
 	@include breakpoint(0,768px) {
 		/* These are technically the same, but use both */
 		overflow-wrap: break-word;

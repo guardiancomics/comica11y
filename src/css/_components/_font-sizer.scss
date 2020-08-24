@@ -15,6 +15,10 @@
         align-items: center;
         justify-content: center;
         margin-right: 10px;
+
+        &:focus {
+            border: 2px solid $brand-primary;
+        }
     }
     
     .js-resize-down:before { content: '-'; }

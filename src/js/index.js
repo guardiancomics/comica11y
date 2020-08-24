@@ -1,3 +1,4 @@
+
 // Selectors
 comicStrip = document.querySelector('.comic-strip');
 comicFrame = document.querySelectorAll('.comic-frame');

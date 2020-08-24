@@ -28,6 +28,10 @@
       color: $brand-primary;
       border: 1px solid $border-color;
       border-bottom: 0;
+
+      &:focus {
+        text-decoration: underline;
+      }
     }
   }
   

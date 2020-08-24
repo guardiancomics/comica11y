@@ -132,23 +132,54 @@
                         </figcaption><!-- .caption-sr -->
                     </figure>
 
-                    <figure aria-labelledby="frame-2" aria-describedby="frame-2-desc" class="comic-frame">
+                    <figure
+                        class="comic-frame"
+                        aria-labelledby="frame-2"
+                        aria-describedby="frame-2-desc"
+                    >
                         <h2 id="frame-2" class="hidden">Frame 2</h2>
 
                         <div class="comic-image">
                             <picture class="master">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f2-colour-bg.png" data-colour="img/comics/f2-colour-bg.png" data-contrast="img/comics/f2-contrast-bg.png" alt="">
+                                <img
+                                    class="lazyload"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                    data-src="img/comics/f2-colour-bg.png"
+                                    data-colour="img/comics/f2-colour-bg.png"
+                                    data-contrast="img/comics/f2-contrast-bg.png"
+                                    alt=""
+                                >
                             </picture><!-- Comic BG -->
                             <picture class="slave">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f2-colour-actor1.png" data-colour="img/comics/f2-colour-actor1.png" data-contrast="img/comics/f2-contrast-actor1.png" alt="">
+                                <img
+                                    class="lazyload"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                    data-src="img/comics/f2-colour-actor1.png"
+                                    data-colour="img/comics/f2-colour-actor1.png"
+                                    data-contrast="img/comics/f2-contrast-actor1.png"
+                                    alt=""
+                                >
                             </picture><!-- Actor 1 -->
                             <picture class="slave">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f2-colour-actor2.png" data-colour="img/comics/f2-colour-actor2.png" data-contrast="img/comics/f2-contrast-actor2.png" alt="">
+                                <img
+                                    class="lazyload"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                    data-src="img/comics/f2-colour-actor2.png"
+                                    data-colour="img/comics/f2-colour-actor2.png"
+                                    data-contrast="img/comics/f2-contrast-actor2.png"
+                                    alt=""
+                                >
                             </picture><!-- Actor 2 -->
                         </div><!-- .comic-image -->
 
                         <div class="bubble-wrap" aria-hidden="true">
-                            <div class="bubble" data-curve="6" data-position="center" data-direction="left" data-length="short">
+                            <div
+                                class="bubble"
+                                data-curve="6"
+                                data-position="center"
+                                data-direction="left"
+                                data-length="short"
+                            >
                                 <span class="inner">
                                     Excuse me sir,<br>
                                     I just wanted <br>
@@ -164,7 +195,14 @@
 
                         <div class="caption-closed" tabindex="-1" aria-hidden="true">
                             <p>
-                                <img class="avatar lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/avatar-colour-actor1.png" data-colour="img/comics/avatar-colour-actor1.png" data-contrast="img/comics/avatar-contrast-actor1.png" alt="Avatar for Jayden">
+                                <img
+                                    class="avatar lazyload"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                    data-src="img/comics/avatar-colour-actor1.png"
+                                    data-colour="img/comics/avatar-colour-actor1.png"
+                                    data-contrast="img/comics/avatar-contrast-actor1.png"
+                                    alt="Avatar for Jayden"
+                                >
                                 <strong>[Jayden]:</strong> Excuse me sir. I just wanted to say, I'm really looking forward to your talk on accessibility. I'm a big fan.
                             </p>
                         </div><!-- // .caption-closed -->
@@ -565,14 +603,13 @@
         </defs>
     </svg>
 
-    <script src="node_modules/focus-visible/dist/focus-visible.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@16.1.0/dist/lazyload.min.js"></script>
     <script>
         var lazyLoadInstance = new LazyLoad({
             elements_selector: ".lazyload"
         });
     </script>
-    <script src="src/js/index.js"></script>
+    <script src="dist/js/build.js"></script>
 
 </body>
 

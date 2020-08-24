@@ -1,0 +1,21 @@
+// --------------------------------------------------
+// Containers
+// --------------------------------------------------
+
+.container {
+    max-width: $container-std + ($container-gutter*2);
+    margin: 0 auto;
+    width: 100%;
+
+    &--narrow {
+        max-width: $container-narrow + ($container-gutter*2);
+    }
+
+    @include breakpoint(769px,959px) {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    @include breakpoint(0,768px) {
+        padding: 20px;
+    }
+}
