@@ -1,69 +1,127 @@
-// Caption styles
-.caption-sr__inner,
-.caption-closed > p {
-    padding: 20px 15px;
-    font-size: .875em;
-    border-radius: 3px;
-    background-color: white;
-}
-
 // Screen reader caption
 .caption-sr {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 10;
-    width: calc(100% - 20px);
-    outline: none;
-    background-color: transparent;
-
-    &__inner {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        background-color: rgba(black, .9);
-        color: white;
-        text-align: center;
-        border-radius: 0;
-        width: 100%;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        @include hide();
-    }
-
-    &.focus-visible {
-        outline: none;
-    }
+    @include hide();
 }
 
 // Closed captions
 .caption-closed {
-    outline: none;
-    background-color: black;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    z-index: 10;
-    padding: 1em 0 0 1em;
+    position: relative;
+    padding: 30px 15px 20px;
+    font-size: .875em;
+    border-radius: 3px;
+    background-color: white;
+    display: block;
+    margin: 0;
+
+    .comic-frame & {
+        @include hide();
+    }
 
     .avatar {
         border-radius: 50%;
-        width: 3em;
-        height: 3em;
+        width: 5em;
+        height: 5em;
         position: absolute;
-        left: 1em;
-        top: .65em;
+        left: 50%;
+        bottom: 100%;
+        margin-bottom: -20px;
+        margin-left: -2.5em;
         border: 3px solid $brand-primary;
     }
+}
 
-    > p {
-        position: relative;
-        display: block;
-        padding-left: 5em;
-        margin: 0 1em 1em 0;
+.caption-dock {
+    outline: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    padding: 20px 90px;
+    background-color: white;
+    border-top: 1px solid $border-color;
+    // background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+    min-height: 100px;
+    transition: transform $timing $ease-std, height $timing $ease-std, visibility $timing linear, opacity $timing linear;
 
-        width: 30em;
-        min-height: 4.2em;
+
+    .comic-strip:not(.is-closed-caption-mode) + & {
+        transform: translateY(100%);
+        opacity: 0;
+        pointer-events: none;
     }
 
+
+    &,
+    &__prev,
+    &__next {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__prev,
+    &__next {
+        position: absolute;
+        top: 50%;
+        margin-top: -40px;
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+        z-index: 2;
+        padding: 0;
+
+        &:disabled {
+            display: none;
+        }
+
+        &:before {
+            content: '';
+            border-left: 2px solid $heading-color;
+            border-bottom: 2px solid $heading-color;
+            width: 20px;
+            height: 20px;
+            display: block;
+            transition: transform $timing $ease-std;
+        }
+    }
+
+    &__prev {
+        left: 10px;
+        &:before {
+            transform: translateX(3px) rotate(45deg);
+        }
+
+        &:hover:before {
+            transform: translateX(-7px) rotate(45deg);
+        }
+        
+        html.translated-rtl & {
+            right: 10px;
+            left: auto;
+
+            transform: scaleX(-1);
+        }
+    }
+    &__next {
+        right: 10px;
+        &:before {
+            transform: translateX(-3px) rotate(-135deg);
+        }
+        &:hover:before {
+            transform: translateX(7px) rotate(-135deg);
+        }
+
+        html.translated-rtl & {
+            left: 10px;
+            right: auto;
+
+            transform: scaleX(-1);
+        }
+    }
+
+    .caption-closed:not(:focus):not(.is-active) {
+        @include hide;
+        opacity: 0;
+        pointer-events: none;
+    }
 }

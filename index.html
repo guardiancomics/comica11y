@@ -77,229 +77,366 @@
                 <p class="section-comic__blurb">What you're about to read may look and feel like a typical online comic but take a closer look and explore the different reading modes, built for an enhanced, accessible reading experience.</p>
                 <!-- .section-comic__blurb -->
 
-                <article class="comic-strip breakout" data-fontsize="100">
+                <div class="comic-wrap">
+                    <article class="comic-strip breakout" data-fontsize="100">
 
-                    <figure aria-labelledby="frame-1" aria-describedby="frame-1-desc" class="comic-frame">
-                        <h2 id="frame-1" class="hidden">Frame 1</h2>
+                        <!-- Frame 1 -->
+                        <figure
+                            aria-labelledby="frame-1"
+                            aria-describedby="frame-1-desc"
+                            class="comic-frame"
+                        >
+                            <h2 id="frame-1" class="hidden">Frame 1</h2>
 
-                        <div class="comic-image">
-                            <picture class="master">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f1-colour-bg.png" data-colour="img/comics/f1-colour-bg.png" data-contrast="img/comics/f1-contrast-bg.png" alt="">
-                            </picture><!-- Comic BG -->
-                            <picture class="slave">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f1-colour-actor3.png" data-colour="img/comics/f1-colour-actor3.png" data-contrast="img/comics/f1-contrast-actor3.png" alt="">
-                            </picture><!-- Actor 3 -->
-                            <picture class="slave">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f1-colour-actor2.png" data-colour="img/comics/f1-colour-actor2.png" data-contrast="img/comics/f1-contrast-actor2.png" alt="">
-                            </picture><!-- Actor 2 -->
-                            <picture class="slave">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f1-colour-actor1.png" data-colour="img/comics/f1-colour-actor1.png" data-contrast="img/comics/f1-contrast-actor1.png" alt="">
-                            </picture><!-- Actor 1 -->
-                        </div><!-- .comic-image -->
+                            <div class="comic-image">
+                                <picture id="frame-1-1" class="master">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f1-colour-bg.png"
+                                        data-colour="img/comics/f1-colour-bg.png"
+                                        data-contrast="img/comics/f1-contrast-bg.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Comic BG -->
+                                <picture id="frame-1-2" class="slave">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f1-colour-actor3.png"
+                                        data-colour="img/comics/f1-colour-actor3.png"
+                                        data-contrast="img/comics/f1-contrast-actor3.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Actor 3 -->
+                                <picture id="frame-1-3" class="slave">
+                                    <img
+                                        class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f1-colour-actor2.png"
+                                        data-colour="img/comics/f1-colour-actor2.png"
+                                        data-contrast="img/comics/f1-contrast-actor2.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Actor 2 -->
+                                <picture id="frame-1-4" class="slave">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f1-colour-actor1.png"
+                                        data-colour="img/comics/f1-colour-actor1.png"
+                                        data-contrast="img/comics/f1-contrast-actor1.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Actor 1 -->
+                            </div><!-- .comic-image -->
 
-                        <div class="bubble-wrap" aria-hidden="true">
-                            <div class="bubble bubble--left" data-curve="6" data-position="center" data-direction="right" data-length="80">
-                                <span class="inner">
-                                    Check it out.<br>
-                                    That's the keynote<br>
-                                    speaker.
-                                </span>
-                            </div>
-                            <div class="bubble bubble--right" data-curve="6" data-position="center" data-direction="left" data-length="50">
-                                <span class="inner">
-                                    For real?<br>
-                                    I <strong>have</strong> to talk<br>
-                                    to him...
-                                </span>
-                            </div>
-                        </div><!-- // .bubble-wrap -->
+                            <div class="bubble-wrap" aria-hidden="true">
+                                <div
+                                    class="bubble bubble--left"
+                                    data-curve="6"
+                                    data-position="center"
+                                    data-direction="right"
+                                    data-length="80"
+                                >
+                                    <span class="inner">
+                                        Check it out.<br>
+                                        That's the keynote<br>
+                                        speaker.
+                                    </span>
+                                </div>
+                                <div
+                                    class="bubble bubble--right"
+                                    data-curve="6"
+                                    data-position="center"
+                                    data-direction="left"
+                                    data-length="50"
+                                >
+                                    <span class="inner">
+                                        For real?<br>
+                                        I <strong>have</strong> to talk<br>
+                                        to him...
+                                    </span>
+                                </div>
+                            </div><!-- // .bubble-wrap -->
 
-                        <div class="caption-closed" tabindex="-1" aria-hidden="true">
-                            <p>
-                                <img class="avatar lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/avatar-colour-actor2.png" data-colour="img/comics/avatar-colour-actor2.png" data-contrast="img/comics/avatar-contrast-actor2.png" alt="Avatar for Fatima">
-                                <strong>[Fatima]</strong>: Check it out. That's the keynote speaker.
-                            </p>
-                            <p>
-                                <img class="avatar lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/avatar-colour-actor1.png" data-colour="img/comics/avatar-colour-actor1.png" data-contrast="img/comics/avatar-contrast-actor1.png" alt="Avatar for ">
-                                <strong>[Jayden]</strong>: For real? I have to talk to him.
-                            </p>
-                        </div><!-- // .caption-closed -->
-
-                        <figcaption id="frame-1-desc" class="caption-sr" tabindex="0">
-                            <span class="caption-sr__inner">
+                            <figcaption id="frame-1-desc" class="caption-sr" tabindex="0">
                                 Fatima, a young fashionable woman wearing a purple hijab, green top and blue jeans is standing next to Jayden, a trendy young man wearing bright and colourful colours and backpack. They're standing outside a convention centre where a line of people gather to enter. In the foreground an older, well dressed man in a wheel chair enters into the frame. "Check it out. That's the keynote speaker.", Fatima says to Jayden. "For real? I have to talk to him.", he replies.
-                            </span>
-                        </figcaption><!-- .caption-sr -->
-                    </figure>
+                            </figcaption><!-- .caption-sr -->
+                        </figure>
 
-                    <figure
-                        class="comic-frame"
-                        aria-labelledby="frame-2"
-                        aria-describedby="frame-2-desc"
-                    >
-                        <h2 id="frame-2" class="hidden">Frame 2</h2>
+                        <!-- Frame 2 -->
+                        <figure
+                            class="comic-frame"
+                            aria-labelledby="frame-2"
+                            aria-describedby="frame-2-desc"
+                        >
+                            <h2 id="frame-2" class="hidden">Frame 2</h2>
 
-                        <div class="comic-image">
-                            <picture class="master">
-                                <img
-                                    class="lazyload"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
-                                    data-src="img/comics/f2-colour-bg.png"
-                                    data-colour="img/comics/f2-colour-bg.png"
-                                    data-contrast="img/comics/f2-contrast-bg.png"
-                                    alt=""
+                            <div class="comic-image">
+                                <picture id="frame-2-1" class="master">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f2-colour-bg.png"
+                                        data-colour="img/comics/f2-colour-bg.png"
+                                        data-contrast="img/comics/f2-contrast-bg.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Comic BG -->
+                                <picture id="frame-2-2" class="slave">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f2-colour-actor1.png"
+                                        data-colour="img/comics/f2-colour-actor1.png"
+                                        data-contrast="img/comics/f2-contrast-actor1.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Actor 1 -->
+                                <picture id="frame-2-3" class="slave">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f2-colour-actor2.png"
+                                        data-colour="img/comics/f2-colour-actor2.png"
+                                        data-contrast="img/comics/f2-contrast-actor2.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Actor 2 -->
+                            </div><!-- .comic-image -->
+
+                            <div class="bubble-wrap" aria-hidden="true">
+                                <div
+                                    class="bubble"
+                                    data-curve="6"
+                                    data-position="center"
+                                    data-direction="left"
+                                    data-length="short"
                                 >
-                            </picture><!-- Comic BG -->
-                            <picture class="slave">
-                                <img
-                                    class="lazyload"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
-                                    data-src="img/comics/f2-colour-actor1.png"
-                                    data-colour="img/comics/f2-colour-actor1.png"
-                                    data-contrast="img/comics/f2-contrast-actor1.png"
-                                    alt=""
+                                    <span class="inner">
+                                        Excuse me sir,<br>
+                                        I just wanted <br>
+                                        to say I'm really looking <br>
+                                        forward to your talk on <br>
+                                        accessibility.
+                                        I'm a<br>
+                                        big fan.
+                                    </span>
+                                </div>
+
+                            </div><!-- // .bubble-wrap -->
+
+                            <figcaption id="frame-2-desc" class="caption-sr" tabindex="0">
+                                "Excuse me sir. I just wanted to say, I'm really looking forward to your talk on accessibility. I'm a big fan.", Jayden says to Hugh; the man in the wheelchair.
+                            </figcaption><!-- .caption-sr -->
+                        </figure>
+
+                        <!-- Frame 3 -->
+                        <figure
+                            aria-labelledby="frame-3"
+                            aria-describedby="frame-3-desc"
+                            class="comic-frame"
+                        >
+                            <h2 id="frame-3" class="hidden">Frame 3</h2>
+
+                            <div class="comic-image">
+                                <picture id="frame-3-1" class="master">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f3-colour-bg.png"
+                                        data-colour="img/comics/f3-colour-bg.png"
+                                        data-contrast="img/comics/f3-contrast-bg.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Comic background -->
+                                <picture id="frame-3-2" class="slave">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f3-colour-actor1.png"
+                                        data-colour="img/comics/f3-colour-actor1.png"
+                                        data-contrast="img/comics/f3-contrast-actor1.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Actor 1 -->
+                                <picture id="frame-3-3" class="slave">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f3-colour-actor2.png"
+                                        data-colour="img/comics/f3-colour-actor2.png"
+                                        data-contrast="img/comics/f3-contrast-actor2.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Actor 2 -->
+                            </div><!-- // .comic-image -->
+
+                            <div class="bubble-wrap" aria-hidden="true">
+                                <div
+                                    class="bubble bubble--right"
+                                    data-curve="6"
+                                    data-position="right"
+                                    data-direction="left"
+                                    data-length="80"
                                 >
-                            </picture><!-- Actor 1 -->
-                            <picture class="slave">
-                                <img
-                                    class="lazyload"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
-                                    data-src="img/comics/f2-colour-actor2.png"
-                                    data-colour="img/comics/f2-colour-actor2.png"
-                                    data-contrast="img/comics/f2-contrast-actor2.png"
-                                    alt=""
+                                    <span class="inner">
+                                        Nice to <br>
+                                        meet you, thank you <br>
+                                        for saying. I'm really <br>
+                                        looking forward to<br>
+                                        giving it.
+                                    </span>
+                                </div>
+                                <div
+                                    class="bubble nudge--left--1"
+                                    data-curve="6"
+                                    data-position="center"
+                                    data-direction="left"
+                                    data-length="30"
                                 >
-                            </picture><!-- Actor 2 -->
-                        </div><!-- .comic-image -->
+                                    <span class="inner">
+                                        Awesome! <br>
+                                        Well...see you <br>
+                                        inside.
+                                    </span>
+                                </div>
+                            </div><!-- // .bubble-wrap -->
 
-                        <div class="bubble-wrap" aria-hidden="true">
-                            <div
-                                class="bubble"
-                                data-curve="6"
-                                data-position="center"
-                                data-direction="left"
-                                data-length="short"
-                            >
-                                <span class="inner">
-                                    Excuse me sir,<br>
-                                    I just wanted <br>
-                                    to say I'm really looking <br>
-                                    forward to your talk on <br>
-                                    accessibility.
-                                    I'm a<br>
-                                    big fan.
-                                </span>
-                            </div>
+                            <figcaption id="frame-3-desc" class="caption-sr" tabindex="0">
+                                "Nice to meet you, thank you for saying. I'm really looking forward to giving it.", Hugh says smiling at Jayden.
+                                "Awesome...well see you inside.", Jayden says in reply as he walks away waving a gleeful goodbye.
+                            </figcaption><!-- // .caption-sr -->
+                        </figure>
 
-                        </div><!-- // .bubble-wrap -->
+                        <!-- Frame 4 -->
+                        <figure
+                            aria-labelledby="frame-4"
+                            aria-describedby="frame-4-desc"
+                            class="comic-frame"
+                        >
+                            <h2 id="frame-4" class="hidden">Frame 4</h2>
 
-                        <div class="caption-closed" tabindex="-1" aria-hidden="true">
-                            <p>
+                            <div class="comic-image">
+                                <picture id="frame-4-1" class="master">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f4-colour-bg.png"
+                                        data-colour="img/comics/f4-colour-bg.png"
+                                        data-contrast="img/comics/f4-contrast-bg.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Comic BG -->
+                                <picture id="frame-4-2" class="slave">
+                                    <img
+                                        class="lazyload"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
+                                        data-src="img/comics/f4-colour-actor1.png"
+                                        data-colour="img/comics/f4-colour-actor1.png"
+                                        data-contrast="img/comics/f4-contrast-actor1.png"
+                                        alt=""
+                                    >
+                                </picture><!-- Comic BG -->
+                            </div><!-- .comic-image -->
+
+                            <div class="bubble-wrap" aria-hidden="true">
+                                <div
+                                    class="bubble nudge--top--1"
+                                    data-curve="8"
+                                    data-position="center"
+                                    data-direction="right"
+                                    data-length="50"
+                                >
+                                    <span class="inner">
+                                        Ummmm...
+                                    </span>
+                                </div>
+                            </div><!-- // .bubble-wrap -->
+
+                            <figcaption id="frame-4-desc" class="caption-sr" tabindex="0">
+                                "Ummmm...", Hugh says to himself as he looks towards the entrance to the auditorium, stairs blocking his way.
+                            </figcaption><!-- .caption-sr -->
+                        </figure>
+
+                    </article><!-- // .comic-strip -->
+
+                    <aside class="caption-dock" tabindex="-1" aria-hidden="true">
+                        <button type="button" class="caption-dock__prev js-caption-prev" disabled>
+                            <span class="hidden">Previous caption</span>
+                        </button>
+                        <div class="captions">
+                            <p class="caption-closed" data-actor="frame-1-4">
                                 <img
                                     class="avatar lazyload"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg=="
-                                    data-src="img/comics/avatar-colour-actor1.png"
+                                    src="img/comics/avatar-colour-actor2.png"
+                                    data-colour="img/comics/avatar-colour-actor2.png"
+                                    data-contrast="img/comics/avatar-contrast-actor2.png"
+                                    alt="Avatar for Fatima"
+                                >
+                                <strong>[Fatima]</strong>: Check it out. That's the keynote speaker.
+                            </p><!-- // .caption-closed -->
+
+                            <p class="caption-closed" data-actor="frame-1-3">
+                                <img
+                                    class="avatar lazyload"
+                                    src="img/comics/avatar-colour-actor1.png"
+                                    data-colour="img/comics/avatar-colour-actor1.png"
+                                    data-contrast="img/comics/avatar-contrast-actor1.png"
+                                    alt="Avatar for Jayden"
+                                >
+                                <strong>[Jayden]</strong>: For real? I have to talk to him.
+                            </p><!-- // .caption-closed -->
+
+                            <p class="caption-closed" data-actor="frame-2-2">
+                                <img
+                                    class="avatar lazyload"
+                                    src="img/comics/avatar-colour-actor1.png"
                                     data-colour="img/comics/avatar-colour-actor1.png"
                                     data-contrast="img/comics/avatar-contrast-actor1.png"
                                     alt="Avatar for Jayden"
                                 >
                                 <strong>[Jayden]:</strong> Excuse me sir. I just wanted to say, I'm really looking forward to your talk on accessibility. I'm a big fan.
-                            </p>
-                        </div><!-- // .caption-closed -->
+                            </p><!-- // .caption-closed -->
 
-                        <figcaption id="frame-2-desc" class="caption-sr" tabindex="0">
-                            <span class="caption-sr__inner">"Excuse me sir. I just wanted to say, I'm really looking forward to your talk on accessibility. I'm a big fan.", Jayden says to Hugh; the man in the wheelchair.</span>
-                        </figcaption><!-- .caption-sr -->
-                    </figure>
-
-                    <figure aria-labelledby="frame-3" aria-describedby="frame-3-desc" class="comic-frame">
-                        <h2 id="frame-3" class="hidden">Frame 3</h2>
-
-                        <div class="comic-image">
-                            <picture class="master">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f3-colour-bg.png" data-colour="img/comics/f3-colour-bg.png" data-contrast="img/comics/f3-contrast-bg.png" alt="">
-                            </picture><!-- Comic background -->
-                            <picture class="slave">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f3-colour-actor1.png" data-colour="img/comics/f3-colour-actor1.png" data-contrast="img/comics/f3-contrast-actor1.png" alt="">
-                            </picture><!-- Actor 1 -->
-                            <picture class="slave">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f3-colour-actor2.png" data-colour="img/comics/f3-colour-actor2.png" data-contrast="img/comics/f3-contrast-actor2.png" alt="">
-                            </picture><!-- Actor 2 -->
-                        </div><!-- // .comic-image -->
-
-                        <div class="bubble-wrap" aria-hidden="true">
-                            <div class="bubble bubble--right" data-curve="6" data-position="right" data-direction="left" data-length="80">
-                                <span class="inner">
-                                    Nice to <br>
-                                    meet you, thank you <br>
-                                    for saying. I'm really <br>
-                                    looking forward to<br>
-                                    giving it.
-                                </span>
-                            </div>
-                            <div class="bubble nudge--left--1" data-curve="6" data-position="center" data-direction="left" data-length="30">
-                                <span class="inner">
-                                    Awesome! <br>
-                                    Well...see you <br>
-                                    inside.
-                                </span>
-                            </div>
-                        </div><!-- // .bubble-wrap -->
-
-                        <div class="caption-closed" tabindex="-1" aria-hidden="true">
-                            <p>
-                                <img class="avatar lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/avatar-colour-actor3.png" data-colour="img/comics/avatar-colour-actor3.png" data-contrast="img/comics/avatar-contrast-actor3.png" alt="Avatar for Hugh">
+                            <p class="caption-closed" data-actor="frame-3-3">
+                                <img
+                                    class="avatar lazyload"
+                                    src="img/comics/avatar-colour-actor3.png"
+                                    data-colour="img/comics/avatar-colour-actor3.png"
+                                    data-contrast="img/comics/avatar-contrast-actor3.png"
+                                    alt="Avatar for Hugh"
+                                >
                                 <strong>[Hugh]</strong>: Nice to meet you, thank you for saying. I'm really looking forward to giving it.
-                            </p>
-                            <p>
-                                <img class="avatar lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/avatar-colour-actor1.png" data-orignal="img/comics/avatar-colour-actor1.png" data-contrast="img/comics/avatar-contrast-actor1.png" alt="Avatar for Jayden">
+                            </p><!-- // .caption-closed -->
+
+                            <p class="caption-closed" data-actor="frame-3-2">
+                                <img
+                                    class="avatar lazyload"
+                                    src="img/comics/avatar-colour-actor1.png"
+                                    data-orignal="img/comics/avatar-colour-actor1.png"
+                                    data-contrast="img/comics/avatar-contrast-actor1.png"
+                                    alt="Avatar for Jayden"
+                                >
                                 <strong>[Jayden]</strong>: Awesome...well see you inside.
-                            </p>
-                        </div><!-- // .caption-closed -->
+                            </p><!-- // .caption-closed -->
 
-                        <figcaption id="frame-3-desc" class="caption-sr" tabindex="0">
-                            <span class="caption-sr__inner">
-                                "Nice to meet you, thank you for saying. I'm really looking forward to giving it.", Hugh says smiling at Jayden.
-                                "Awesome...well see you inside.", Jayden says in reply as he walks away waving a gleeful goodbye.
-                            </span>
-                        </figcaption><!-- // .caption-sr -->
-                    </figure>
-
-                    <figure aria-labelledby="frame-4" aria-describedby="frame-4-desc" class="comic-frame">
-                        <h2 id="frame-4" class="hidden">Frame 4</h2>
-
-                        <div class="comic-image">
-                            <picture class="master">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f4-colour-bg.png" data-colour="img/comics/f4-colour-bg.png" data-contrast="img/comics/f4-contrast-bg.png" alt="">
-                            </picture><!-- Comic BG -->
-                            <picture class="slave">
-                                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/f4-colour-actor1.png" data-colour="img/comics/f4-colour-actor1.png" data-contrast="img/comics/f4-contrast-actor1.png" alt="">
-                            </picture><!-- Comic BG -->
-                        </div><!-- .comic-image -->
-
-                        <div class="bubble-wrap" aria-hidden="true">
-                            <div class="bubble nudge--top--1" data-curve="8" data-position="center" data-direction="right" data-length="50">
-                                <span class="inner">
-                                    Ummmm...
-                                </span>
-                            </div>
-                        </div><!-- // .bubble-wrap -->
-
-                        <div class="caption-closed" tabindex="-1" aria-hidden="true">
-                            <p>
-                                <img class="avatar lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2MwDHv4HwAEjAJo4di+tgAAAABJRU5ErkJggg==" data-src="img/comics/avatar-colour-actor3.png" data-colour="img/comics/avatar-colour-actor3.png" data-contrast="img/comics/avatar-contrast-actor3.png" alt="Avatar for Hugh">
+                            <p class="caption-closed" data-actor="frame-4-2">
+                                <img
+                                    class="avatar lazyload"
+                                    src="img/comics/avatar-colour-actor3.png"
+                                    data-colour="img/comics/avatar-colour-actor3.png"
+                                    data-contrast="img/comics/avatar-contrast-actor3.png"
+                                    alt="Avatar for Hugh"
+                                >
                                 <strong>[Hugh]</strong>: Ummmm...
-                            </p>
-                        </div><!-- // .caption-closed -->
-
-                        <figcaption id="frame-4-desc" class="caption-sr" tabindex="0">
-                            <span class="caption-sr__inner">
-                                "Ummmm...", Hugh says to himself as he looks towards the entrance to the auditorium, stairs blocking his way.
-                            </span>
-                        </figcaption><!-- .caption-sr -->
-                    </figure>
-
-                </article><!-- // .comic-strip -->
+                            </p><!-- // .caption-closed -->
+                        </div>
+                        <button type="button" class="caption-dock__next js-caption-next">
+                            <span class="hidden">Next caption</span>
+                        </button>
+                    </aside><!-- // .caption-reader -->
+                </div>
 
                 <div class="filter">
                     <div class="buttons">
@@ -392,7 +529,7 @@
                 </div><!-- // .filter -->
 
             </div><!-- // .container -->
-        </section><!-- // .comic-wrap -->
+        </section><!-- // .section-comic -->
 
     </main>
 
@@ -430,6 +567,8 @@
 
                         <h3 class="title">Closed captions</h3>
                         <p>If there's too much visual stimulation within the comic frame, the closed captions feature provides a script of each frame. We include the name of each character speaking, along with an avatar of that character.</p>
+                        <p>The speaking subject is highlighted to aid identifying who the closed caption belongs to.</p>
+                        <p>Closed captions supports tab focus, left and right button and also arrows.</p>
 
                         <h3 class="title">Increase / Decrease font-size</h3>
                         <p>While in closed caption mode, you can control how large or small you prefer the font.</p>

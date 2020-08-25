@@ -1,14 +1,13 @@
 
 // Selectors
+comicWrap = document.querySelector('.comic-wrap');
 comicStrip = document.querySelector('.comic-strip');
 comicFrame = document.querySelectorAll('.comic-frame');
-highContrastBtn = document.querySelector('.js-highcontrast');
-verticalBtn = document.querySelector('.js-vertical');
-rtlBtn = document.querySelector('.js-rtl');
-ccBtn = document.querySelector('.js-closedcaptions');
-bubbleBtn = document.querySelector('.js-bubbles');
 
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Tabs
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 window.a11yTabs = (function tabsComponentIIFE(global, document) {
   'use strict';
 
@@ -273,6 +272,7 @@ document.querySelectorAll('.comic-frame').forEach(function(item) {
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Toggle high contrast mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+highContrastBtn = document.querySelector('.js-highcontrast');
 highContrastBtn.addEventListener('click', function(e) {
 	if (!highContrastBtn.checked == false) {
 		highContrastBtn.checked = true;
@@ -302,6 +302,7 @@ highContrastBtn.addEventListener('click', function(e) {
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Toggle Vertical mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+verticalBtn = document.querySelector('.js-vertical');
 verticalBtn.addEventListener('click', function(e) {
 	if (!verticalBtn.checked == false) {
 		verticalBtn.checked = true;
@@ -320,39 +321,120 @@ verticalBtn.addEventListener('click', function(e) {
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Toggle closed caption mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+const ccBtn = document.querySelector('.js-closedcaptions');
+const captions = document.querySelectorAll('.caption-closed');
+
+// Activate closed caption mode
 ccBtn.addEventListener('click', function() {
+  
 	if (!ccBtn.checked == false) {
-		ccBtn.checked = true;
-		ccBtn.setAttribute('aria-pressed', 'true');
-		comicStrip.classList.add('is-closed-caption-mode');
+    ccBtn.checked = true;
 
-		document.querySelector('.comic-strip').firstElementChild.lastElementChild.focus();
-	} else {
-		ccBtn.checked = false;
-		ccBtn.setAttribute('aria-pressed', 'false');
-		comicStrip.classList.remove('is-closed-caption-mode');
+    // Set active
+    ccBtn.setAttribute('aria-pressed', 'true');
+    comicStrip.classList.add('is-closed-caption-mode');
 
-		// Reset the font-size back to 100% and deactive captions
-		document.querySelector('.comic-strip').dataset.fontsize = '100';
-		document.querySelector('.font-sizer .label strong').innerHTML = '100%';
-		document.querySelectorAll('.comic-strip .caption-closed').forEach(function (item) {
-			item.style.fontSize = "100%";
-		});
+    // Send focus to the first caption in the dock
+    document.querySelector('.captions').firstElementChild.focus();
 
-		// Send focus back to contrast button
-		document.querySelector('.js-closedcaptions').focus();
+  } else {
+    ccBtn.checked = false;
 
-		// Reset the buttons
-		document.querySelector('.js-resize-up').disabled = false;
-		document.querySelector('.js-resize-down').disabled = true;
-
-		// Reset the font-size
-		comicStrip.removeAttribute('style');
-	}
+    // Set inactive 
+    ccBtn.setAttribute('aria-pressed', 'false');
+	  comicStrip.classList.remove('is-closed-caption-mode');
+  }
 });
+
+// Add event listeners to cloned captions
+if( captions ) {
+  captions.forEach(function(caption){
+
+    caption.setAttribute('tabindex','0');
+
+    // Add event listener on focus
+    caption.addEventListener('focus', (event) => {
+      let frame = document.querySelector('#'+event.target.dataset.frame);
+      let actor = document.querySelector('#'+event.target.dataset.actor);
+
+      // Remove any active states from actors
+      let activeActor = document.querySelector('.comic-image .is-active');
+      if(activeActor) {
+        activeActor.classList.remove('is-active');
+      }
+      
+      // Add a active state to current actor
+      actor.classList.add('is-active');
+
+      // Remove active class from any captions
+      let activeCaption = document.querySelector('.caption-closed.is-active');
+      if(activeCaption) {
+        activeCaption.classList.remove('is-active');
+      }
+      
+      // Add a active state to current actor
+      caption.classList.add('is-active');
+
+    });
+  });
+}
+
+const prevCaptionBtn = document.querySelector('.caption-dock__prev');
+const nextCaptionBtn = document.querySelector('.caption-dock__next');
+
+// Previous caption button
+if( prevCaptionBtn ) {
+  prevCaptionBtn.addEventListener('click', (event) => {
+    let prevCaption = document.querySelector('.caption-closed.is-active').previousElementSibling;
+    let prevPrevCaption = prevCaption.previousElementSibling;
+    if( prevCaption ) {
+      prevCaption.focus();
+      nextCaptionBtn.disabled=false;
+    }
+    if( !prevPrevCaption ) {
+      prevCaptionBtn.disabled=true;
+    }
+    event.preventDefault;
+  });
+}
+
+// Next caption button
+if( nextCaptionBtn ) {
+  nextCaptionBtn.addEventListener('click', (event) => {
+    let nextCaption = document.querySelector('.caption-closed.is-active').nextElementSibling;
+    let nextNextCaption = nextCaption.nextElementSibling;
+    if( nextCaption ) {
+      nextCaption.focus();
+      prevCaptionBtn.disabled=false;
+    }
+    if( !nextNextCaption ) {
+      nextCaptionBtn.disabled=true;
+    }
+    event.preventDefault;
+  });
+}
+
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// TODO: Alter this to work with new closed captions
+// If the zoom level has been set via the browser, activate the closed captions
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+function browserZoom() {
+	let para = document.querySelector('.bubble');
+	let compStyles = window.getComputedStyle(para);
+
+	if (parseInt(compStyles.getPropertyValue('font-size'), 10) > 23) {
+		comicStrip.classList.add('is-closed-caption-mode', 'is-browserZoom');
+		ccBtn.checked = true;
+		ccBtn.setAttribute('aria-pressed', true);
+		// ccBtn.disabled = true;
+	}
+}
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// TODO: Increase / decrease without deactivating bubbles
 // Increase / decrease font size
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
@@ -373,14 +455,14 @@ document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
 
 		// If it's font size above 100 add .is-resized
 		if (currentSize != 100) {
-			comicStrip.classList.add('is-closed-caption-mode', 'is-resized');
-			ccBtn.checked = true;
-			ccBtn.setAttribute('aria-pressed', 'true');
-			document.querySelector('.comic-strip').firstElementChild.lastElementChild.focus();
+			comicStrip.classList.add('is-resized');
+			// ccBtn.checked = true;
+			// ccBtn.setAttribute('aria-pressed', 'true');
+			// document.querySelector('.comic-strip').firstElementChild.lastElementChild.focus();
 		} else {
 			if (!comicStrip.classList.contains('is-browserZoom')) {
-				comicStrip.classList.remove('is-closed-caption-mode');
-				ccBtn.checked = false;
+				// comicStrip.classList.remove('is-closed-caption-mode');
+				// ccBtn.checked = false;
 				ccBtn.setAttribute('aria-pressed', 'false');
 			}
 			comicStrip.classList.remove('is-resized');
@@ -391,7 +473,7 @@ document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
 			document.querySelector('.js-resize-down').disabled = true;
 			comicStrip.removeAttribute('style');
 		} else {
-			comicStrip.setAttribute('style', 'font-size: '+ currentSize +'%');
+			comicWrap.setAttribute('style', 'font-size: '+ currentSize +'%');
 		}
 
 		// Add disabled state to resize up at font-size 200%
@@ -413,7 +495,7 @@ document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// colour vision mode
+// Colour vision mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Colour vision reset
 function colourvisionReset() {
@@ -870,19 +952,6 @@ function bubblesResize() {
 	bubbleSel.forEach(function(item){
 		item.setAttribute('style', 'font-size: '+w);
 	});
-}
-
-// If the zoom level has been set via the browser, activate the closed captions
-function browserZoom() {
-	let para = document.querySelector('.bubble');
-	let compStyles = window.getComputedStyle(para);
-
-	if (parseInt(compStyles.getPropertyValue('font-size'), 10) > 23) {
-		comicStrip.classList.add('is-closed-caption-mode', 'is-browserZoom');
-		ccBtn.checked = true;
-		ccBtn.setAttribute('aria-pressed', true);
-		// ccBtn.disabled = true;
-	}
 }
 
 
