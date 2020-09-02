@@ -1,7 +1,9 @@
 .section-information {
-    padding: 0 50px 70px;
+    padding: 0 50px;
+    margin-bottom: 70px;
 
     @include breakpoint(0,768px) {
         padding: 0;
+        margin-bottom: 0;
     }
 }

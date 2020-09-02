@@ -1689,6 +1689,43 @@ button {
   z-index: 999999;
 }
 
+.getintouch {
+  display: block;
+  font-size: 1.8rem;
+  margin: 70px auto;
+  text-align: center;
+  color: #3156e1;
+  max-width: 480px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.75);
+  border-radius: 8px;
+  background-color: #3156e1;
+  color: white;
+  padding: 30px;
+}
+
+.getintouch i {
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.getintouch i svg {
+  min-width: 34px;
+  min-height: 24px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.getintouch i svg > * {
+  fill: white;
+}
+
+.getintouch:focus,
+.getintouch:hover {
+  text-decoration: underline;
+}
+
 svg {
   min-height: 0;
   min-width: 0;
@@ -1795,7 +1832,8 @@ img {
 }
 
 .section-information {
-  padding: 0 50px 70px;
+  padding: 0 50px;
+  margin-bottom: 70px;
 }
 
 .statement {
@@ -2012,6 +2050,7 @@ img {
 
   .section-information {
     padding: 0;
+    margin-bottom: 0;
   }
 
   .tagline .container {
