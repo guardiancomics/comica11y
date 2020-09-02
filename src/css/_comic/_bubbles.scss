@@ -39,9 +39,9 @@
     .translated-ltr &,
     .translated-rtl & {
         white-space: normal;
-        br {
-            display: none;
-        }
+        // br {
+        //     display: none;
+        // }
     }
 
     &--left {
