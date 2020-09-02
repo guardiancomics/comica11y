@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>ComicA11y - an all inclusive online comic experiment.</title>
+    <title>ComicA11y - An all inclusive online comic experiment.</title>
 
     <meta name="title" content="ComicA11y" />
     <meta name="description"
@@ -72,13 +72,13 @@
 
 
         <section class="section-comic" aria-label="Accessible comic reader">
-            <div class="container">
+            <div class="container container--wide">
 
                 <p class="section-comic__blurb">What you're about to read may look and feel like a typical online comic but take a closer look and explore the different reading modes, built for an enhanced, accessible reading experience.</p>
                 <!-- .section-comic__blurb -->
 
                 <div class="comic-wrap">
-                    <article class="comic-strip breakout" data-fontsize="100">
+                    <article class="comic-strip" data-fontsize="100">
 
                         <!-- Frame 1 -->
                         <figure
@@ -374,7 +374,7 @@
                                     data-contrast="img/comics/avatar-contrast-actor2.png"
                                     alt="Avatar for Fatima"
                                 >
-                                <strong>[Fatima]</strong>: Check it out. That's the keynote speaker.
+                                <strong>[Fatima] </strong><span>Check it out. That's the keynote speaker.</span>
                             </p><!-- // .caption-closed -->
 
                             <p class="caption-closed" data-actor="frame-1-3">
@@ -385,7 +385,7 @@
                                     data-contrast="img/comics/avatar-contrast-actor1.png"
                                     alt="Avatar for Jayden"
                                 >
-                                <strong>[Jayden]</strong>: For real? I have to talk to him.
+                                <strong>[Jayden] </strong><span>For real? I have to talk to him.</span>
                             </p><!-- // .caption-closed -->
 
                             <p class="caption-closed" data-actor="frame-2-2">
@@ -396,7 +396,7 @@
                                     data-contrast="img/comics/avatar-contrast-actor1.png"
                                     alt="Avatar for Jayden"
                                 >
-                                <strong>[Jayden]:</strong> Excuse me sir. I just wanted to say, I'm really looking forward to your talk on accessibility. I'm a big fan.
+                                <strong>[Jayden] </strong><span> Excuse me sir. I just wanted to say, I'm really looking forward to your talk on accessibility. I'm a big fan.</span>
                             </p><!-- // .caption-closed -->
 
                             <p class="caption-closed" data-actor="frame-3-3">
@@ -407,7 +407,7 @@
                                     data-contrast="img/comics/avatar-contrast-actor3.png"
                                     alt="Avatar for Hugh"
                                 >
-                                <strong>[Hugh]</strong>: Nice to meet you, thank you for saying. I'm really looking forward to giving it.
+                                <strong>[Hugh] </strong><span>Nice to meet you, thank you for saying. I'm really looking forward to giving it.</span>
                             </p><!-- // .caption-closed -->
 
                             <p class="caption-closed" data-actor="frame-3-2">
@@ -418,7 +418,7 @@
                                     data-contrast="img/comics/avatar-contrast-actor1.png"
                                     alt="Avatar for Jayden"
                                 >
-                                <strong>[Jayden]</strong>: Awesome...well see you inside.
+                                <strong>[Jayden] </strong><span>Awesome...well see you inside.</span>
                             </p><!-- // .caption-closed -->
 
                             <p class="caption-closed" data-actor="frame-4-2">
@@ -429,7 +429,7 @@
                                     data-contrast="img/comics/avatar-contrast-actor3.png"
                                     alt="Avatar for Hugh"
                                 >
-                                <strong>[Hugh]</strong>: Ummmm...
+                                <strong>[Hugh] </strong><span>Ummmm...</span>
                             </p><!-- // .caption-closed -->
                         </div>
                         <button type="button" class="caption-dock__next js-caption-next">
@@ -451,19 +451,28 @@
                         <label class="toggle">
                             <span class="label">Closed captions</span>
                             <input type="checkbox" name="closed captions" class="hidden js-closedcaptions">
-                            <span class="checkbox"></span>
+                            <span class="checkbox">
+                                <span class="on">On</span>
+                                <span class="off">Off</span>
+                            </span>
                         </label>
 
                         <label class="toggle">
                             <span class="label">High contrast</span>
                             <input type="checkbox" name="high contrast" class="hidden js-highcontrast">
-                            <span class="checkbox"></span>
+                            <span class="checkbox">
+                                <span class="on">On</span>
+                                <span class="off">Off</span>
+                            </span>
                         </label>
 
                         <label class="toggle">
                             <span class="label">Vertical layout</span>
                             <input type="checkbox" name="vertical layout" class="hidden js-vertical">
-                            <span class="checkbox"></span>
+                            <span class="checkbox">
+                                <span class="on">On</span>
+                                <span class="off">Off</span>
+                            </span>
                         </label>
 
                         <label>
@@ -480,7 +489,7 @@
                                 <option value="achromatomaly">Achromatomaly</option>
                             </select>
                         </label>
-                        <label>
+                        <div>
                             <span class="label">Translate</span>
                             <div class="translate">
                                 <!-- GTranslate: https://gtranslate.io/ -->
@@ -524,7 +533,7 @@
                                     /* ]]> */
                                 </script>
                             </div><!-- // .translate -->
-                        </label>
+                        </div>
                     </div><!-- // .buttons -->
                 </div><!-- // .filter -->
 
@@ -657,6 +666,17 @@
 
                     <div class="grid">
                         <div class="grid-item">
+                            <h3>To-do's</h3>
+                            <ul>
+                                <li>On resize bubble font-size should be relative to the selected font-size through toolbar (At the moment resize only works at native 100%).</li>
+                                <li>Functionality to work with mismatched panel sizes (at the moment they all need to be equal sized).</li>
+                                <li>Connected bubbles (two bubbles connected and sharing the same border).</li>
+                                <li>Conversation bubbles (two bubbles connected with umbilical chord).</li>
+                                <li>Create a more flexible method for bubble placement.</li>
+                                <li>Rethink the font scaling - needs to be more flexible.</li>
+                            </ul>
+                        </div><!-- // .grid-item -->
+                        <div class="grid-item">
                             <h3>Must have features</h3>
                             <ul>
                                 <li>✅ Colour vision and high contrast modes.</li>
@@ -671,12 +691,12 @@
                         <div class="grid-item">
                             <h3>Nice to have features</h3>
                             <ul>
-                                <li>✅ System zoom.</li>
-                                <li>Toggle closed captions with browser zoom.</li>
-                                <li>Autoplay mode.</li>
-                                <li>Audio mode.</li>
+                                <li>Browser zoom.</li>
+                                <li>System zoom.</li>
                                 <li>Responsive image sizes.</li>
                                 <li>Keyboard commands.</li>
+                                <li>Audio book mode.</li>
+                                <li>Autoplay mode.</li>
                             </ul>
                         </div><!-- // .grid-item -->
                     </div><!-- // .grid -->

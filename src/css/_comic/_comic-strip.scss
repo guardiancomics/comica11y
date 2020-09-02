@@ -3,10 +3,12 @@
 }
 .comic-strip {
     display: grid;
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     font-size: inherit;
     position: relative;
+    margin: 0 auto;
 
     // RTL mode
     .translated-rtl & {
@@ -44,44 +46,85 @@
 
 
     &:not(.is-vertical-mode) {
-        @include breakpoint(1201px,0){
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: 1fr;
+        // Eventually will need to improve this to not need magic numbers
+        &[data-fontsize="110"] { max-width: 960px; }
+        &[data-fontsize="120"] { max-width: 1040px; }
+        &[data-fontsize="130"] { max-width: 1120px; }
+        &[data-fontsize="140"] { max-width: 1200px; }
+        &[data-fontsize="150"] { max-width: 1280px; }
+        &[data-fontsize="160"] { max-width: 670px; }
+        &[data-fontsize="170"] { max-width: 720px; }
+        &[data-fontsize="180"] { max-width: 770px; }
+        &[data-fontsize="190"] { max-width: 800px; }
+        &[data-fontsize="200"] { max-width: 860px; }
+        
+        // Layout shifting depending on which fontsize
+        &[data-fontsize="100"] {
+            .comic-frame {
+                @include breakpoint(0,1200px){
+                    grid-column: span 2;
+                }
+                @include breakpoint(0,767px){
+                    grid-column: span 4;
+                }
+            }
         }
-        @include breakpoint(0,1200px){
-            grid-template-columns: repeat(2, 1fr);
+        &[data-fontsize="110"],
+        &[data-fontsize="120"],
+        &[data-fontsize="130"],
+        &[data-fontsize="140"],
+        &[data-fontsize="150"] {
+            .comic-frame {
+                @include breakpoint(768px,0){
+                    grid-column: span 2;
+                }
+                @include breakpoint(0,767px){
+                    grid-column: span 4;
+                }
+            }
         }
-        @include breakpoint(0,767px){
-            grid-template-columns: repeat(1, 1fr);
-
+        &[data-fontsize="160"],
+        &[data-fontsize="170"],
+        &[data-fontsize="180"],
+        &[data-fontsize="190"],
+        &[data-fontsize="200"] {
+            .comic-frame {
+                grid-column: span 4;
+            }
         }
     }
 
     // Loading states
     &:not(.is-loading) {
-        
         &.is-vertical-mode {
-            max-width: 417px;
-            margin-left: auto;
-            margin-right: auto;
+            .comic-frame {
+                grid-column: span 4;
+            }
+
+            &[data-fontsize="100"] { max-width: 440px; }
+            &[data-fontsize="110"] { max-width: 480px; }
+            &[data-fontsize="120"] { max-width: 520px; }
+            &[data-fontsize="130"] { max-width: 570px; }
+            &[data-fontsize="140"] { max-width: 600px; }
+            &[data-fontsize="150"] { max-width: 650px; }
+            &[data-fontsize="160"] { max-width: 680px; }
+            &[data-fontsize="170"] { max-width: 730px; }
+            &[data-fontsize="180"] { max-width: 780px; }
+            &[data-fontsize="190"] { max-width: 810px; }
+            &[data-fontsize="200"] { max-width: 860px; }
         }
 
-        @include breakpoint(0,1200px) {
-            margin: 0 auto;
-            max-width: 820px;
-        }
-        @include breakpoint(0,767px) {
-            margin: 0 auto;
-            max-width: 280px;
-
-        }
     }
 
     &.is-loading {
         white-space:nowrap;
 
         &:not(.is-vertical-mode) {
-            width: 1650px;
+            max-width: 1650px;
+
+            .comic-frame {
+                max-width: 400px;
+            }
         }
         &.is-vertical-mode {
             width: 400px;

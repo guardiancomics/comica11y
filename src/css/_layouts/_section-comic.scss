@@ -1,5 +1,9 @@
 .section-comic {
-    padding: 70px 50px;
+    
+    .container.container--wide {
+        padding: 70px 50px;
+        max-width: $container-std + 460px;
+    }
 
     &__blurb {
         font-size: 2.2rem;

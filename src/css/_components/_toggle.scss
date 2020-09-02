@@ -3,38 +3,41 @@
     cursor: pointer;
     
     .checkbox {
-        display: block;
-        width: 62px;
-        height: 28px;
         position: relative;
-        margin-right: 10px;
-        
-        &:before {
-            content: 'off';
-            text-transform: uppercase;
+        width: auto;
+        display: inline-flex;
+
+        > .off,
+        > .on {
             @include vfont(800);
-            font-size: 1.3rem;
+            text-transform: uppercase;
+            display: block;
             text-align: right;
-            line-height: 24px;
-            padding: 0 8px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 62px;
-            height: 28px;
-            border-radius: 28px;
+            line-height: 1;
+            padding: 0.5em 0.7em 0.4em;
             background-color: white;
-            border: 2px solid $border-color;
+            border: .2em solid $border-color;
+            border-radius: 2em;
+            font-size: .75em;
+        }
+        > .off {
+            padding-left: 2.6em;
+        }
+        > .on {
+            display: none;
+            text-align: left;
+            color: $brand-primary;
+            padding-right: 2.6em;
         }
         &:after {
             content:'';
             position: absolute;
-            left: 6px;
-            top: 6px;
-            width: 16px;
-            height: 16px;
+            left: .3em;
+            top: .3em;
+            width: 1.2em;
+            height: 1.2em;
             display: block;
-            border-radius: 18px;
+            border-radius: 50%;
             background-color: $border-color;
             transition: transform .1s ease-out;
             box-shadow: 0 0 0 0 white;
@@ -42,20 +45,22 @@
         }
     }
 
-    input[type="checkbox"]:focus + .checkbox:before {
+    input[type="checkbox"]:focus + .checkbox > .on,
+    input[type="checkbox"]:focus + .checkbox > .off {
         border-color :$brand-primary;
         background-color: white;
-        
     }
     
     input[type="checkbox"]:checked + .checkbox {
-        &:before {
-            content: 'on';
-            text-align: left;
-            color: $brand-primary;
+        > .off {
+            display: none;
+        }
+        > .on {
+            display: block;
         }
         &:after {
-            transform: translateX(34px);
+            left: auto;
+            right: .3em;
             background-color: $brand-primary;
         }	
     }
@@ -63,7 +68,8 @@
     input[type="checkbox"]:disabled + .checkbox {
         cursor: default;
     
-        &:before,
+        > .on,
+        > .off,
         &:after {
             opacity: .5;
         }

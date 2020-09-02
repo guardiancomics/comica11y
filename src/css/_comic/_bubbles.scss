@@ -30,9 +30,19 @@
     text-align: center;
     padding: .8em 1em .7em;
     position: relative;
-    white-space: nowrap;
     font-size: 1.35em;
     color: black;
+    white-space: nowrap;
+
+
+
+    .translated-ltr &,
+    .translated-rtl & {
+        white-space: normal;
+        br {
+            display: none;
+        }
+    }
 
     &--left {
         margin-right: auto;

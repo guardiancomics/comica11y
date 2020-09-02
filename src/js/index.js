@@ -1,9 +1,9 @@
 
 // Selectors
-comicWrap = document.querySelector('.comic-wrap');
-comicStrip = document.querySelector('.comic-strip');
-comicFrame = document.querySelectorAll('.comic-frame');
-
+var comicWrap = document.querySelector('.comic-wrap');
+var comicStrip = document.querySelector('.comic-strip');
+var comicFrame = document.querySelectorAll('.comic-frame');
+var timeout; // For debouncing
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Tabs
@@ -239,32 +239,16 @@ window.a11yTabs = (function tabsComponentIIFE(global, document) {
 
 const tabComponent = a11yTabs.create('[data-tab-component]')
 
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// Resize bubbles
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-window.addEventListener('resize', function(event) {
-	if (timeout) { window.cancelAnimationFrame(timeout); }
-		timeout = window.requestAnimationFrame(function () {
-		bubbles();
-	});
-}, false);
 
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// If caption screen reader is focus, add active class to comic-frame
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 document.querySelectorAll('.caption-sr').forEach(function(item) {
 	item.addEventListener('focus', (event) => {
 		event.target.parentNode.classList.add('is-active');
 	});
 		item.addEventListener('blur', (event) => {
 		event.target.parentNode.classList.remove('is-active');
-	});
-});  
-
-
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// When clicking a comic-frame, send the focus to the caption
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-document.querySelectorAll('.comic-frame').forEach(function(item) {
-	item.addEventListener('click', function (itemClick) {
-		item.lastElementChild.focus();
 	});
 });
 
@@ -323,6 +307,9 @@ verticalBtn.addEventListener('click', function(e) {
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 const ccBtn = document.querySelector('.js-closedcaptions');
 const captions = document.querySelectorAll('.caption-closed');
+const figcaptions = document.querySelectorAll('.caption-sr');
+const prevCaptionBtn = document.querySelector('.caption-dock__prev');
+const nextCaptionBtn = document.querySelector('.caption-dock__next');
 
 // Activate closed caption mode
 ccBtn.addEventListener('click', function() {
@@ -334,6 +321,16 @@ ccBtn.addEventListener('click', function() {
     ccBtn.setAttribute('aria-pressed', 'true');
     comicStrip.classList.add('is-closed-caption-mode');
 
+    // Deactivate tabindex on the screen reader captions
+    figcaptions.forEach(function(figcaption){
+      figcaption.setAttribute('tabindex', '-1');
+    });
+
+    // Activate tabindex on the closed captions
+    captions.forEach(function(caption){
+      caption.setAttribute('tabindex','0');
+    });
+
     // Send focus to the first caption in the dock
     document.querySelector('.captions').firstElementChild.focus();
 
@@ -342,15 +339,23 @@ ccBtn.addEventListener('click', function() {
 
     // Set inactive 
     ccBtn.setAttribute('aria-pressed', 'false');
-	  comicStrip.classList.remove('is-closed-caption-mode');
+    comicStrip.classList.remove('is-closed-caption-mode');
+    
+    // Activate tabindex on the screen reader captions
+    figcaptions.forEach(function(figcaption){
+      figcaption.setAttribute('tabindex', '0');
+    });
+
+    // Deativate tabindex on the closed captions
+    captions.forEach(function(caption){
+      caption.setAttribute('tabindex','-1');
+    });
   }
 });
 
-// Add event listeners to cloned captions
+// Add event listeners to captions
 if( captions ) {
   captions.forEach(function(caption){
-
-    caption.setAttribute('tabindex','0');
 
     // Add event listener on focus
     caption.addEventListener('focus', (event) => {
@@ -375,14 +380,25 @@ if( captions ) {
       // Add a active state to current actor
       caption.classList.add('is-active');
 
+      // Check for previous or next and toggle buttons
+      
+      // Disable both buttons by default
+      prevCaptionBtn.disabled=true;
+      nextCaptionBtn.disabled=true;
+      
+      // If there is a previous / next caption activate the button needed
+      if( document.querySelector('.caption-closed.is-active').previousElementSibling ) {
+        prevCaptionBtn.disabled=false;
+      }
+      if( document.querySelector('.caption-closed.is-active').nextElementSibling ) {
+        nextCaptionBtn.disabled=false;
+      }
+
     });
   });
 }
 
-const prevCaptionBtn = document.querySelector('.caption-dock__prev');
-const nextCaptionBtn = document.querySelector('.caption-dock__next');
-
-// Previous caption button
+// Previous caption button click
 if( prevCaptionBtn ) {
   prevCaptionBtn.addEventListener('click', (event) => {
     let prevCaption = document.querySelector('.caption-closed.is-active').previousElementSibling;
@@ -398,7 +414,7 @@ if( prevCaptionBtn ) {
   });
 }
 
-// Next caption button
+// Next caption button click
 if( nextCaptionBtn ) {
   nextCaptionBtn.addEventListener('click', (event) => {
     let nextCaption = document.querySelector('.caption-closed.is-active').nextElementSibling;
@@ -415,19 +431,17 @@ if( nextCaptionBtn ) {
 }
 
 
-
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// TODO: Alter this to work with new closed captions
-// If the zoom level has been set via the browser, activate the closed captions
+// When the zoom level has been set via the browser
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 function browserZoom() {
 	let para = document.querySelector('.bubble');
 	let compStyles = window.getComputedStyle(para);
 
 	if (parseInt(compStyles.getPropertyValue('font-size'), 10) > 23) {
-		comicStrip.classList.add('is-closed-caption-mode', 'is-browserZoom');
-		ccBtn.checked = true;
-		ccBtn.setAttribute('aria-pressed', true);
+		comicStrip.classList.add('is-browserZoom');
+		// ccBtn.checked = true;
+		// ccBtn.setAttribute('aria-pressed', true);
 		// ccBtn.disabled = true;
 	}
 }
@@ -439,13 +453,14 @@ function browserZoom() {
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
 	item.addEventListener('click', function (e) {
-		currentSize = document.querySelector('.comic-strip').dataset.fontsize;
+    currentSize = document.querySelector('.comic-strip').dataset.fontsize;
+    
 		if (item.classList.contains('js-resize-up')) {
 			currentSize = parseFloat(currentSize) + 10;
 		}
 		if (item.classList.contains('js-resize-down')) {
 			currentSize = parseFloat(currentSize) - 10;
-		}
+    }
 
 		// Removed disbaled button state while we're in the 110% - 190% font-size state
 		if (currentSize != 100 && currentSize != 200) {
@@ -470,6 +485,7 @@ document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
 
 		// Add disabled state to resize down at font-size 100%
 		if (currentSize == 100) {
+      comicWrap.setAttribute('style', 'font-size: '+ currentSize +'%');
 			document.querySelector('.js-resize-down').disabled = true;
 			comicStrip.removeAttribute('style');
 		} else {
@@ -943,7 +959,6 @@ function bubbles() {
 bubbles();
 
 // Re-generate the bubbles on resize
-var timeout; // For debouncing
 function bubblesResize() {
 	// Need to rework this functionality
 	w = document.querySelector('.comic-frame').offsetWidth / 265 + 'em';
@@ -953,6 +968,16 @@ function bubblesResize() {
 		item.setAttribute('style', 'font-size: '+w);
 	});
 }
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Resize bubbles
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+window.addEventListener('resize', function(event) {
+	if (timeout) { window.cancelAnimationFrame(timeout); }
+		timeout = window.requestAnimationFrame(function () {
+		bubbles();
+	});
+}, false);
 
 
 /*

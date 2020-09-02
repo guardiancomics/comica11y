@@ -7,17 +7,17 @@
     .js-resize-down,
     .js-resize-up {
         @include vfont(500);
-        font-size: 2.0rem;
+        font-size: 1.2em;
         padding: 0;
-        width: 28px;
-        height: 28px;
+        width: 1.2em;
+        height: 1.2em;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 10px;
+        margin-right: .5em;
 
         &:focus {
-            border: 2px solid $brand-primary;
+            border: .1em solid $brand-primary;
         }
     }
     
