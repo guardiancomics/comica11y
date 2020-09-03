@@ -24,6 +24,7 @@
 }
 
 .getintouch {
+    @include vfont(600);
     display: block;
     font-size: 1.8rem;
     margin: 70px auto;
@@ -57,6 +58,12 @@
     &:focus,
     &:hover {
         text-decoration: underline;
+    }
+
+    @include breakpoint(0,480px) { 
+        margin: 0 auto 10px;
+        font-size: 1.4rem;
+        @include vfont(750);
     }
 }
 
