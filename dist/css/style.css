@@ -949,7 +949,6 @@ a:focus {
 
 .bubble {
   display: inline-block;
-  font-family: "DigitalStripBB", "Comic Sans MS", "Comic Sans", cursive;
   line-height: .95;
   text-align: center;
   padding: .8em 1em .7em;
@@ -957,6 +956,10 @@ a:focus {
   font-size: 1.35em;
   color: black;
   white-space: nowrap;
+}
+
+html:not(.translated-ltr):not(.translated-rtl) .bubble {
+  font-family: "DigitalStripBB", "Comic Sans MS", "Comic Sans", cursive;
 }
 
 .translated-ltr .bubble,
@@ -992,7 +995,7 @@ a:focus {
 }
 
 .bubble strong {
-  font-family: "DigitalStripBB", "Comic Sans MS", "Comic Sans", cursive;
+  font-family: inherit;
   font-weight: bold;
   font-style: italic;
 }

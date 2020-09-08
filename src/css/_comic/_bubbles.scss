@@ -25,7 +25,6 @@
     
 .bubble {
     display: inline-block;
-    font-family: $comic-stack;
     line-height: .95;
     text-align: center;
     padding: .8em 1em .7em;
@@ -35,6 +34,9 @@
     white-space: nowrap;
 
 
+    html:not(.translated-ltr):not(.translated-rtl) & {
+        font-family: $comic-stack;
+    }
 
     .translated-ltr &,
     .translated-rtl & {
@@ -71,7 +73,7 @@
     }
     
     strong {
-        font-family: $comic-stack;
+        font-family: inherit;
         font-weight: bold;
         font-style: italic;
     }
