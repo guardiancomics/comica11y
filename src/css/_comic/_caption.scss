@@ -60,6 +60,11 @@
         transform: translateY(100%);
         opacity: 0;
         pointer-events: none;
+
+        .js-caption-prev,
+        .js-caption-next {
+            display: none;
+        }
     }
 
 
@@ -129,12 +134,13 @@
             transform: scaleX(-1);
         }
     }
-
+    
     .caption-closed:not(:focus):not(.is-active) {
         @include hide;
         opacity: 0;
         pointer-events: none;
     }
+
 
     @include breakpoint(0,960px) {
         padding: 20px 50px;

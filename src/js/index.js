@@ -307,6 +307,7 @@ verticalBtn.addEventListener('click', function(e) {
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 const ccBtn = document.querySelector('.js-closedcaptions');
 const captions = document.querySelectorAll('.caption-closed');
+const captionDock = document.querySelector('.caption-dock');
 const figcaptions = document.querySelectorAll('.caption-sr');
 const prevCaptionBtn = document.querySelector('.caption-dock__prev');
 const nextCaptionBtn = document.querySelector('.caption-dock__next');
@@ -320,6 +321,7 @@ ccBtn.addEventListener('click', function() {
     // Set active
     ccBtn.setAttribute('aria-pressed', 'true');
     comicStrip.classList.add('is-closed-caption-mode');
+    captionDock.setAttribute('aria-hidden', 'false');
 
     // Deactivate tabindex on the screen reader captions
     figcaptions.forEach(function(figcaption){
@@ -340,6 +342,7 @@ ccBtn.addEventListener('click', function() {
     // Set inactive 
     ccBtn.setAttribute('aria-pressed', 'false');
     comicStrip.classList.remove('is-closed-caption-mode');
+    captionDock.setAttribute('aria-hidden', 'true');
     
     // Activate tabindex on the screen reader captions
     figcaptions.forEach(function(figcaption){
