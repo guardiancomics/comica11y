@@ -1,14 +1,19 @@
 .tagline {
-    @include vfont(620);
-    line-height: 1.4;
     background-color: $grey-cool;
 
     .container {
         max-width: 1080px;
         padding: 50px;
+    }
 
+    .title {
         display: flex;
         align-items: center;
+        margin: 0;
+        font-size: 1em;
+        line-height: 1.4;
+        @include vfont(400);
+        color: $text-color;
     }
 
     &__logo {
