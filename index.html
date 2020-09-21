@@ -481,20 +481,6 @@
                             </span>
                         </label>
 
-                        <label>
-                            <span class="label">Colour vision</span>
-                            <select title="Colour vision" class="dropdown js-colourvision" name="colourvision">
-                                <option value="trichromacy">Trichromacy</option>
-                                <option value="protanopia">Protanopia</option>
-                                <option value="protanomaly">Protanomaly</option>
-                                <option value="deuteranopia">Deuteranopia</option>
-                                <option value="deuteranomaly">Deuteranomaly</option>
-                                <option value="tritanopia">Tritanopia</option>
-                                <option value="tritanomaly">Tritanomaly</option>
-                                <option value="achromatopsia">Achromatopsia</option>
-                                <option value="achromatomaly">Achromatomaly</option>
-                            </select>
-                        </label>
                         <div>
                             <span class="label">Translate</span>
                             <div class="translate">
@@ -577,9 +563,6 @@
                         <h3 class="title">High contrast mode</h3>
                         <p>Each frame contains the source content for both full-colour and uncoloured artwork, with a “High contrast” setting that switches between them. We recommend uncoloured, line-art artwork as a high contrast option for users with visual impairments.</p>
 
-                        <h3 class="title">Colour blindness filters</h3>
-                        <p>Using SVG filters, we alter the palette of the full-colour artwork to suit a range of colour vision deficiencies.</p>
-
                         <h3 class="title">Closed captions</h3>
                         <p>If there's too much visual stimulation within the comic frame, the closed captions feature provides a script of each frame. We include the name of each character speaking, along with an avatar of that character.</p>
                         <p>The speaking subject is highlighted to aid identifying who the closed caption belongs to.</p>
@@ -630,9 +613,6 @@
                                 <p>No keyboard ARIA information for assistive technologies.</p>
                             </li>
                             <li>
-                                <p>No colour options to accommodate colour vision deficiencies and vision impairments.</p>
-                            </li>
-                            <li>
                                 <p>No closed captions for assistive technology to convey the speech bubbles to text.</p>
                             </li>
                             <li>
@@ -678,7 +658,7 @@
                         <div class="grid-item">
                             <h3>Must have features</h3>
                             <ul>
-                                <li>✅ Colour vision and high contrast modes.</li>
+                                <li>✅ High contrast modes.</li>
                                 <li>✅ Closed captions.</li>
                                 <li>✅ Translatable.</li>
                                 <li>✅ RTL/LTR.</li>
@@ -723,59 +703,6 @@
     <footer class="credits">
         <p>This experiment brought to you by <a href="https://paulspencer.net.au" target="_blank"><span class="hidden">Opens in a new window:</span> Paul Spencer</a> at <a href="https://humaan.com" target="_blank" title="World-class digital for forward thinking brands – Websites, Apps, eCommerce and Software"><span class="hidden">Opens in a new window:</span> Humaan</a>.</p>
     </footer>
-
-    <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
-        <defs>
-            <filter id="protanopia">
-                <feColorMatrix in="SourceGraphic" type="matrix" values="0.567, 0.433, 0,     0, 0
-                    0.558, 0.442, 0,     0, 0
-                    0,     0.242, 0.758, 0, 0
-                    0,     0,     0,     1, 0" />
-            </filter>
-            <filter id="protanomaly">
-                <feColorMatrix in="SourceGraphic" type="matrix" values="0.817, 0.183, 0,     0, 0
-                    0.333, 0.667, 0,     0, 0
-                    0,     0.125, 0.875, 0, 0
-                    0,     0,     0,     1, 0" />
-            </filter>
-            <filter id="deuteranopia">
-                <feColorMatrix in="SourceGraphic" type="matrix" values="0.625, 0.375, 0,   0, 0
-                    0.7,   0.3,   0,   0, 0
-                    0,     0.3,   0.7, 0, 0
-                    0,     0,     0,   1, 0" />
-            </filter>
-            <filter id="deuteranomaly">
-                <feColorMatrix in="SourceGraphic" type="matrix" values="0.8,   0.2,   0,     0, 0
-                    0.258, 0.742, 0,     0, 0
-                    0,     0.142, 0.858, 0, 0
-                    0,     0,     0,     1, 0" />
-            </filter>
-            <filter id="tritanopia">
-                <feColorMatrix in="SourceGraphic" type="matrix" values="0.95, 0.05,  0,     0, 0
-                    0,    0.433, 0.567, 0, 0
-                    0,    0.475, 0.525, 0, 0
-                    0,    0,     0,     1, 0" />
-            </filter>
-            <filter id="tritanomaly">
-                <feColorMatrix in="SourceGraphic" type="matrix" values="0.967, 0.033, 0,     0, 0
-                    0,     0.733, 0.267, 0, 0
-                    0,     0.183, 0.817, 0, 0
-                    0,     0,     0,     1, 0" />
-            </filter>
-            <filter id="achromatopsia">
-                <feColorMatrix in="SourceGraphic" type="matrix" values="0.299, 0.587, 0.114, 0, 0
-                    0.299, 0.587, 0.114, 0, 0
-                    0.299, 0.587, 0.114, 0, 0
-                    0,     0,     0,     1, 0" />
-            </filter>
-            <filter id="achromatomaly">
-                <feColorMatrix in="SourceGraphic" type="matrix" values="0.618, 0.320, 0.062, 0, 0
-                    0.163, 0.775, 0.062, 0, 0
-                    0.163, 0.320, 0.516, 0, 0
-                    0,     0,     0,     1, 0" />
-            </filter>
-        </defs>
-    </svg>
 
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@16.1.0/dist/lazyload.min.js"></script>
     <script>

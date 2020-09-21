@@ -514,42 +514,6 @@ document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// Colour vision mode
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// Colour vision reset
-function colourvisionReset() {
-
-	if (
-		comicStrip.classList.contains('is-cb-protanopia') ||
-		comicStrip.classList.contains('is-cb-protanomaly') ||
-		comicStrip.classList.contains('is-cb-deuteranopia') ||
-		comicStrip.classList.contains('is-cb-deuteranomaly') ||
-		comicStrip.classList.contains('is-cb-tritanopia') ||
-		comicStrip.classList.contains('is-cb-tritanomaly') ||
-		comicStrip.classList.contains('is-cb-achromatopsia') ||
-		comicStrip.classList.contains('is-cb-achromatomaly')
-	) {
-		comicStrip.classList.remove('is-cb-protanopia', 'is-cb-protanomaly', 'is-cb-deuteranopia', 'is-cb-deuteranomaly', 'is-cb-tritanopia', 'is-cb-tritanomaly', 'is-cb-achromatopsia', 'is-cb-achromatomaly');
-	}
-}
-
-// Colour vision toggle
-document.querySelector('.js-colourvision').addEventListener('change', function (e) {
-	sel = e.srcElement;
-	opt = sel.options[sel.selectedIndex];
-	mode = opt.value;
-
-	// Reset colourvision mode
-	colourvisionReset();
-	if (mode != 'normal') {
-		document.querySelector('.comic-strip').classList.add('is-cb-' + mode);
-	} else {
-		colourvisionReset();
-	}
-});
-
-
-// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Bubbles
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
