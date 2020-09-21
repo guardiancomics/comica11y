@@ -298,6 +298,7 @@ verticalBtn.addEventListener('click', function(e) {
 		comicStrip.classList.remove('is-vertical-mode');
 	}
 
+  bubblesResize();
 	e.preventDefault;
 });
 

@@ -95,25 +95,22 @@
     }
 
     // Loading states
-    &:not(.is-loading) {
-        &.is-vertical-mode {
-            .comic-frame {
-                grid-column: span 4;
-            }
-
-            &[data-fontsize="100"] { max-width: 440px; }
-            &[data-fontsize="110"] { max-width: 480px; }
-            &[data-fontsize="120"] { max-width: 520px; }
-            &[data-fontsize="130"] { max-width: 570px; }
-            &[data-fontsize="140"] { max-width: 600px; }
-            &[data-fontsize="150"] { max-width: 650px; }
-            &[data-fontsize="160"] { max-width: 680px; }
-            &[data-fontsize="170"] { max-width: 730px; }
-            &[data-fontsize="180"] { max-width: 780px; }
-            &[data-fontsize="190"] { max-width: 810px; }
-            &[data-fontsize="200"] { max-width: 860px; }
+    &.is-vertical-mode {
+        .comic-frame {
+            grid-column: span 4;
         }
 
+        &[data-fontsize="100"] { max-width: 440px; }
+        &[data-fontsize="110"] { max-width: 480px; }
+        &[data-fontsize="120"] { max-width: 520px; }
+        &[data-fontsize="130"] { max-width: 570px; }
+        &[data-fontsize="140"] { max-width: 600px; }
+        &[data-fontsize="150"] { max-width: 650px; }
+        &[data-fontsize="160"] { max-width: 680px; }
+        &[data-fontsize="170"] { max-width: 730px; }
+        &[data-fontsize="180"] { max-width: 780px; }
+        &[data-fontsize="190"] { max-width: 810px; }
+        &[data-fontsize="200"] { max-width: 860px; }
     }
 
     &.is-loading {
