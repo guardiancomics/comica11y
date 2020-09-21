@@ -1005,6 +1005,16 @@ html:not([lang="en"]).translated-ltr .bubble br,
   z-index: 2;
 }
 
+.bubble .inner::-moz-selection {
+  background-color: black;
+  color: white;
+}
+
+.bubble .inner::selection {
+  background-color: black;
+  color: white;
+}
+
 .bubble strong {
   font-family: inherit;
   font-weight: bold;

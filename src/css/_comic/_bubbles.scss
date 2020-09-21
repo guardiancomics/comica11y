@@ -33,7 +33,6 @@
     color: black;
     white-space: nowrap;
 
-
     html:not(.translated-ltr):not(.translated-rtl) &,
     html[lang="en"].translated-ltr & {
         font-family: $comic-stack;
@@ -75,6 +74,11 @@
     .inner {
         position: relative;
         z-index: 2;
+
+        &::selection {
+            background-color: black;
+            color: white;
+        }
     }
     
     strong {
