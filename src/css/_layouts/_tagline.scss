@@ -50,10 +50,9 @@
         }
     }
     @include breakpoint(0,700px) {
-        font-size: 1.8rem;
-        .container {
+        &__inner {
             flex-direction: column;
-            padding: 30px;
+            // padding: 30px;
         }
         &__logo {
             margin: 0 auto 20px;
@@ -63,9 +62,12 @@
             text-align: center;
             max-width: 500px;
             margin: 0 auto;
+            font-size: 1.8rem;
         }
     }
     @include breakpoint(0,375px) {
-        font-size: 1.6rem;
+        &__text {
+            font-size: 1.6rem;
+        }
     }
 }

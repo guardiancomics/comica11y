@@ -1553,7 +1553,7 @@ button {
   display: block;
   text-align: right;
   line-height: 1;
-  padding: 0.5em 0.7em 0.4em;
+  padding: 0.5em 0.7em;
   background-color: white;
   border: 0.2em solid rgba(0, 0, 0, 0.08);
   border-radius: 2em;
@@ -2119,16 +2119,11 @@ img {
     margin-bottom: 30px;
   }
 
-  .tagline {
-    font-size: 1.8rem;
-  }
-
-  .tagline .container {
+  .tagline__inner {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    padding: 30px;
   }
 
   .tagline__logo {
@@ -2140,6 +2135,7 @@ img {
     text-align: center;
     max-width: 500px;
     margin: 0 auto;
+    font-size: 1.8rem;
   }
 }
 
@@ -2215,7 +2211,7 @@ img {
 }
 
 @media (max-width: 375px) {
-  .tagline {
+  .tagline__text {
     font-size: 1.6rem;
   }
 }
