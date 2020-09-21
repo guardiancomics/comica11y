@@ -17,10 +17,10 @@
         width: 100%;
     }
     picture {
-        &.master {
+        &.parent {
             position: relative;
         }
-        &.slave {
+        &.child {
             position: absolute;
             bottom: 0;
             left: 0;

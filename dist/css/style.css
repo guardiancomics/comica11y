@@ -866,11 +866,11 @@ a:focus {
   width: 100%;
 }
 
-.comic-frame picture.master {
+.comic-frame picture.parent {
   position: relative;
 }
 
-.comic-frame picture.slave {
+.comic-frame picture.child {
   position: absolute;
   bottom: 0;
   left: 0;
