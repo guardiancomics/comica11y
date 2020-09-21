@@ -34,11 +34,16 @@
     white-space: nowrap;
 
 
-    html:not(.translated-ltr):not(.translated-rtl) & {
+    html:not(.translated-ltr):not(.translated-rtl) &,
+    html[lang="en"].translated-ltr & {
         font-family: $comic-stack;
+
+        br {
+            display: block;
+        }
     }
 
-    .translated-ltr &,
+    html:not([lang="en"]).translated-ltr &,
     .translated-rtl & {
         white-space: normal;
         br {
