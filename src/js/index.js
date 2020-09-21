@@ -296,8 +296,7 @@ verticalBtn.addEventListener('click', function(e) {
 		verticalBtn.checked = false;
 		verticalBtn.setAttribute('aria-pressed', 'false');
 		comicStrip.classList.remove('is-vertical-mode');
-	}
-
+  }
   bubblesResize();
 	e.preventDefault;
 });
@@ -522,18 +521,8 @@ document.querySelectorAll('.font-sizer .btn').forEach(function (item) {
 function bubbles() {
 
 	frameWidth = document.querySelector('.comic-frame').offsetWidth - 10 + 'px';
-	document.querySelectorAll('.bubble').forEach(function(item){
-
-		bubbleAttribute = item.getAttribute('style');
-		bubbleAttribute = bubbleAttribute + ', max-width' + frameWidth; 
-		item.setAttribute('style', bubbleAttribute);
-
-	}); 
 
   comicStrip.classList.add('is-loading'); // Force the desktop width and height to normalise the stroke width.
-
-  // bubblesResize(); // Resize font to the normalised desktop size
-  // browserZoom(); // Detect if the browser has zoom - if so remove bubbles and replace with captions
 
   document.querySelectorAll('.bubble svg').forEach(function (item) {
     item.remove(); // Remove all current bubble SVG graphics.
@@ -920,7 +909,7 @@ function bubbles() {
   // Cleanup - remove the loading class
   comicStrip.classList.remove('is-loading');
 
-  bubblesResize(); // Resize the font once more.
+  bubblesResize(); // Resize the font.
 }
 
 // Init the bubbles
