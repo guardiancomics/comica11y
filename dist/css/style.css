@@ -967,6 +967,11 @@ html:not(.translated-ltr):not(.translated-rtl) .bubble {
   white-space: normal;
 }
 
+.translated-ltr .bubble br,
+.translated-rtl .bubble br {
+  display: none;
+}
+
 .bubble--left {
   margin-right: auto;
 }
