@@ -1926,7 +1926,7 @@ img {
 }
 
 .tagline__text > span + span {
-  margin-top: 20px;
+  margin-top: 1em;
 }
 
 .tagline__text strong {
