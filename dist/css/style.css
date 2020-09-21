@@ -1911,6 +1911,7 @@ img {
   line-height: 1.4;
   color: rgba(0, 0, 0, 0.75);
   text-align: left;
+  margin-bottom: 0;
 }
 
 @supports (font-variation-settings: normal) {
@@ -1918,6 +1919,14 @@ img {
     font-family: "Montserrat Variable", serif;
     font-variation-settings: "wght" 400;
   }
+}
+
+.tagline__text > span {
+  display: block;
+}
+
+.tagline__text > span + span {
+  margin-top: 20px;
 }
 
 .tagline__text strong {
