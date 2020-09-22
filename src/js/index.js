@@ -283,6 +283,27 @@ highContrastBtn.addEventListener('click', function(e) {
 	e.preventDefault;
 });
 
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Disable comic font
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+disableFontBtn = document.querySelector('.js-disablefont');
+disableFontBtn.addEventListener('click', function(e) {
+	if (!disableFontBtn.checked == false) {
+		disableFontBtn.checked = true;
+		disableFontBtn.setAttribute('aria-pressed', 'true');
+    comicStrip.classList.add('is-font-disabled');
+    
+	} else {
+		disableFontBtn.checked = false;
+		disableFontBtn.setAttribute('aria-pressed', 'false');
+		comicStrip.classList.remove('is-font-disabled');
+	}
+
+	e.preventDefault;
+});
+
+
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Toggle Vertical mode
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––

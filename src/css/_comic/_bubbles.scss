@@ -33,8 +33,8 @@
     color: black;
     white-space: nowrap;
 
-    html:not(.translated-ltr):not(.translated-rtl) &,
-    html[lang="en"].translated-ltr & {
+    html:not(.translated-ltr):not(.translated-rtl) .comic-strip:not(.is-font-disabled) &,
+    html[lang="en"].translated-ltr .comic-strip:not(.is-font-disabled) & {
         font-family: $comic-stack;
 
         br {

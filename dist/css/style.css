@@ -958,13 +958,13 @@ a:focus {
   white-space: nowrap;
 }
 
-html:not(.translated-ltr):not(.translated-rtl) .bubble,
-html[lang="en"].translated-ltr .bubble {
+html:not(.translated-ltr):not(.translated-rtl) .comic-strip:not(.is-font-disabled) .bubble,
+html[lang="en"].translated-ltr .comic-strip:not(.is-font-disabled) .bubble {
   font-family: "DigitalStripBB", "Comic Sans MS", "Comic Sans", cursive;
 }
 
-html:not(.translated-ltr):not(.translated-rtl) .bubble br,
-html[lang="en"].translated-ltr .bubble br {
+html:not(.translated-ltr):not(.translated-rtl) .comic-strip:not(.is-font-disabled) .bubble br,
+html[lang="en"].translated-ltr .comic-strip:not(.is-font-disabled) .bubble br {
   display: block;
 }
 
